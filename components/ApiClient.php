@@ -104,7 +104,6 @@ class ApiClient extends Component {
         // 生成API访问签名字符串
         $parameters['_hmac'] = $this->getHmac($parameters);
         $parameters['_appid'] = $this->appId;
-        
         $response = $this->oAuthRequest($url, 'POST', $parameters, $multi );
         switch($this->format) {
             case 'json':
@@ -221,7 +220,7 @@ class ApiClient extends Component {
      * 生成签名字符串
      * @return string
      */
-    private function getHmac($data = []) {
+    private function getHmac($data = [], $debug = false) {
         // 将传递参数按照参数名升序排列
         $data['_appid'] = $this->appId;
         $dataKeys = array_keys($data);

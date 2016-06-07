@@ -23,6 +23,8 @@ class BaseController extends Controller {
 	public $errors = [];
     // 运行环境
     public $env = '';
+    // 当前访客fansid
+    public $fans = null;
 	
 	public function init() {
 	    // 根据应用名称判断当前是生产环境还是测试环境
@@ -31,13 +33,37 @@ class BaseController extends Controller {
 	    } else {
 	        $this->env = 'product';
 	    }
-	    /*
-	    if(Yii::$app->user->isGuest) {
-	        $login = $this->buildUrl('account/login', 'index');
-	        header('location:'.$login);
-	        exit;
-	    }
-	    */
+	    // 如果cookie中已存在openid
+        if(Yii::$app->cookie->has('openid')) {
+            $arr = [
+                'openid' => Yii::$app->cookie->getValue('openid'),
+                'fansid' => Yii::$app->cookie->getValue('fansid'),
+                'thumb'  => Yii::$app->cookie->getValue('thumb'),
+                'name'   => Yii::$app->cookie->getValue('name'),
+            ];
+            $this->fans = (object)$arr;
+            
+        } else {
+            // 生成授权地址，并自动跳转到该地址上
+            $redirect = [
+                'redirect_url' => Yii::$app->homeUrl.'/oauth/get-user-info/',
+                'state'=>'oauth-redirect',
+                'scope'=>'snsapi_userinfo'
+            ];
+            $res = Yii::$app->api->get('weixin/get-oauth-redirect-url', $redirect);
+            if($res['code'] == 200) {
+                // 跳转到授权页面前，记录跳转前的页面地址，方便授权后返回
+                Yii::$app->cookie->setValue([
+                    'name' => 'backurl',
+                    'value' => Yii::$app->request->url,
+                    'expire' => time() + 60
+                ]);
+                header("Location:".$res['data']['authUrl']);
+                exit;
+            } else {
+                exit('api error: weixin::get-oauth-redirect-url '.$res['message']);
+            }
+        }
     }
 	/**
      * 获取请求参数
