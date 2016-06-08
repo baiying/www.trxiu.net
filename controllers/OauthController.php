@@ -10,6 +10,10 @@ class OauthController extends Controller {
      * @return Ambigous <string, string>
      */
     public function actionGetUserInfo() {
+        if(Yii::$app->cookie->has('openid')) {
+            header('Location:'.Yii::$app->homeUrl);
+            exit;
+        }
         $renderArgs = [];
         $fansId = 0;
         $args = [

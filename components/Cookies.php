@@ -81,7 +81,7 @@ class Cookies extends Component {
      */
     public function remove($cookieName) {
         if(isset($_COOKIE[$cookieName])) {
-            setcookie($cookieName, '', time()-86400);
+            return setcookie($cookieName, '', time()-86400);
         }
     }
 }
