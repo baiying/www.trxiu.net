@@ -10,7 +10,7 @@ class OauthController extends Controller {
      * @return Ambigous <string, string>
      */
     public function actionGetUserInfo() {
-        if(Yii::$app->cookie->has('openid')) {
+        if(Yii::$app->cookie->has('fans')) {
             header('Location:'.Yii::$app->homeUrl);
             exit;
         }
@@ -38,24 +38,9 @@ class OauthController extends Controller {
             $fansId = $resReg['data']['fans_id'];
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
-                'name' => 'openid',
-                'value' => $data['openid'],
-                'expire' => time() + 7200
-            ]);
-            Yii::$app->cookie->setValue([
-                'name' => 'name',
-                'value' => $data['nickname'],
-                'expire'=> time()+7200
-            ]);
-            Yii::$app->cookie->setValue([
-                'name' => 'thumb',
-                'value' => $data['headimgurl'],
-                'expire'=> time()+7200
-            ]);
-            Yii::$app->cookie->setValue([
-                'name' => 'fansid',
-                'value' => $fansId,
-                'expire'=> time()+7200
+                'name'    => 'fans',
+                'value'   => $data['openid']."|".$data['nickname']."|".$data['headimgurl']."|".$fansId,
+                'expire'  => time()+7200
             ]);
             // 获取授权跳转前页面地址，如果不存在则跳转到活动首页
             if(Yii::$app->cookie->has('backurl')) {

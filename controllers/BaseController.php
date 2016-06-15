@@ -34,12 +34,13 @@ class BaseController extends Controller {
 	        $this->env = 'product';
 	    }
 	    // 如果cookie中已存在openid
-        if(Yii::$app->cookie->has('openid')) {
+        if(Yii::$app->cookie->has('fans')) {
+            list($openid, $name, $thumb, $fansid) = explode("|", Yii::$app->cookie->getValue('fans'));
             $arr = [
-                'openid' => Yii::$app->cookie->getValue('openid'),
-                'fansid' => Yii::$app->cookie->getValue('fansid'),
-                'thumb'  => Yii::$app->cookie->getValue('thumb'),
-                'name'   => Yii::$app->cookie->getValue('name'),
+                'openid' => $openid,
+                'fansid' => $fansid,
+                'thumb'  => $thumb,
+                'name'   => $name,
             ];
             $this->fans = (object)$arr;
             
