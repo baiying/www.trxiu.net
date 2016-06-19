@@ -7,66 +7,27 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js"></script>
 	<title>盟主派对</title>
+
+	<script id="tplItem" type="text/template">
+		<a href="zhuboshow.html?id={{id}}" class="li {{index}}">
+			<dd class="pic"><img src="{{thumb}}"/></dd>
+			<dt><span>{{anchor_name}}</span></dt>
+			<dl><span>9905票</span></dl>
+		</a>
+	</script>
+
+
+
 </head>
 <body>
 	<div class="page">
 		<p class="pdate">第一期（5月1日-5月30日）</p>
-		<div class="zhubolistpage">
-			<li class="li n1">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li n2">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li n3">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			<li class="li">
-				<dd class="pic"><img src="uploads/111.jpg"/></dd>
-				<dt><span>LiLian</span><img src="uploads/222.jpg" /></dt>
-				<dl><span>9905票</span></dl>
-			</li>
-			
-		</div>
+		<div id="divZhuboList" class="zhubolistpage"></div>
 	</div>
-	<div class="footer">
-		<a ><span class="zhubo">主播</span></a>
-		<a class="focus"><span class="xiaoxi">消息</span></a>
-		<a><span class="dajiang">大奖</span></a>
-		<a><span class="guize">规则</span></a>
-	</div>
+	<div class="footer"></div>
 
 </body>
 </html>
