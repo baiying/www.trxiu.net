@@ -30,11 +30,11 @@ class AjaxAccountController extends AjaxBaseController {
         }
     }
     /**
-     * get-user-info-by-code
+     * login-by-code
      * 通过微信code获取用户信息
      * 用户信息包括：微信账号的openid，本系统中的fansid，用户头像thumb，用户昵称name
      */
-    public function actionGetUserInfoByCode() {
+    public function actionLoginByCode() {
         $rule = [
             'code' => ['type'=>'string', 'required'=>TRUE]
         ];
