@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js"></script>
+	<title>盟主派对</title>
+
+	<script id="tplItem" type="text/template">
+		<a href="zhuboshow.html?id={{id}}" class="li {{index}}">
+			<dd class="pic"><img src="{{thumb}}"/></dd>
+			<dt><span>{{anchor_name}}</span></dt>
+			<dl><span>9905票</span></dl>
+		</a>
+	</script>
+
+
+
+</head>
+<body>
+	<div class="page">
+		<p class="pdate">第一期（5月1日-5月30日）</p>
+		<div id="divZhuboList" class="zhubolistpage"></div>
+	</div>
+	<div class="footer"></div>
+
+</body>
+</html>
