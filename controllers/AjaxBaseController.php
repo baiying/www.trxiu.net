@@ -19,9 +19,11 @@ class AjaxBaseController extends Controller {
     public $env = '';
 	
 	public function init() {
+	    /*
 	    if(!Yii::$app->request->isAjax) {
 	        exit(Json::encode(['status'=>'fail', 'message'=>'请使用ajax方式调用接口', 'data'=>[]]));
 	    }
+	    */
     }
 	/**
      * 获取请求参数
