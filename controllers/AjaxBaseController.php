@@ -8,6 +8,8 @@ use Yii;
 use yii\web\Controller;
 use yii\helpers\Json;
 
+header("Access-Control-Allow-Origin:*");
+
 class AjaxBaseController extends Controller {
 	// 关闭Post安全验证
 	public $enableCsrfValidation = false;

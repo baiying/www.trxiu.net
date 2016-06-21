@@ -6,6 +6,8 @@ namespace app\controllers;
 use Yii;
 use app\controllers\AjaxBaseController;
 
+header("Access-Control-Allow-Origin:*");
+
 class AjaxBallotController extends AjaxBaseController {
     /**
      * get-valid-ballot
