@@ -49,4 +49,56 @@ class AjaxBallotController extends AjaxBaseController {
             'anchors' => $anchors
         ]);
     }
+    /**
+     * ballot-info
+     * 获取指定活动的基本信息
+     * @param number $ballot_id     活动ID
+     */
+    public function actionBallotInfo() {
+        $rule = [
+            'ballot_id' => ['type'=>'int', 'required'=>true]
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        // 获取活动基本信息
+        $res = Yii::$app->api->get('ballot/info', $args);
+        if($res['code'] != 200) {
+            $this->export('fail', $res['message']);
+        }
+        $this->export('success', $res['message'], $res['data']);
+    }
+    /**
+     * anchor-in-ballot
+     * 获取活动中主播信息
+     * @param number $ballot_id     活动ID
+     * @param number $anchor_id     主播ID
+     */
+    public function actionAnchorInBallot() {
+        $rule = [
+            'ballot_id' => ['type' => 'int', 'required' => TRUE],
+            'anchor_id' => ['type' => 'int', 'required' => TRUE]
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $res = Yii::$app->api->get('ballot/anchor-in-ballot', $args);
+        if($res['code'] == 200) {
+            $this->export('success', $res['message'], $res['data']);
+        } else {
+            $this->export('fail', $res['message']);
+        }
+    }
+    /**
+     * ballot-prize
+     * 获取活动奖项设置
+     */
+    public function actionBallotPrize() {
+        $rule = [
+            'ballot_id' => ['type'=>'int', 'required'=>true]
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        // 获取活动奖项设置
+        $res = Yii::$app->api->get('ballot-prize/search', $args);
+        if($res['code'] != 200 || empty($res['data'])) {
+            $this->export('fail', $res['message']);
+        }
+        $this->export('success', $res['message'], $res['data']);
+    }
 }
