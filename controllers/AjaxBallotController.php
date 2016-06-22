@@ -103,4 +103,67 @@ class AjaxBallotController extends AjaxBaseController {
         }
         $this->export('success', $res['message'], $res['data']);
     }
+    /**
+     * ballot-add-votes
+     * 投票
+     */
+    public function actionBallotAddVotes() {
+        $rule = [
+            'ballot_id' => ['type' => 'int', 'required' => TRUE],//活动ID
+            'anchor_id' => ['type' => 'int', 'required' => TRUE],//主播ID
+            'fans_id' => ['type' => 'int', 'required' => TRUE],//粉丝ID
+            'votes' => ['type' => 'int', 'required' => FALSE],//投票票数
+            'is_canvass' => ['type' => 'int', 'required' => TRUE],//是否被拉票
+            'canvass_id' => ['type' => 'int', 'required' => FALSE],//拉票ID
+            'amount' => ['type' => 'int', 'required' => FALSE],//拉票金额
+            'url' => ['type' => 'string', 'required' => TRUE],//拉票分享地址
+            'status' => ['type' => 'int', 'required' => TRUE],//状态，1 有效，2 待支付，3 无效
+            'active_time' => ['type' => 'int', 'required' => FALSE],//拉票生效时间
+            'end_time' => ['type' => 'int', 'required' => TRUE],//拉票结束时间
+            'new_fans' => ['type' => 'int', 'required' => FALSE,'default' => 2],//是否是新粉丝
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        // 获取活动奖项设置
+        $res = Yii::$app->api->get('ballot/add-votes', $args);
+        if($res['code'] != 200 || empty($res['data'])) {
+            $this->export('fail', $res['message']);
+        }
+        $this->export('success', $res['message'], $res['data']);
+    }
+    /**
+     * get-red-packet
+     * 领取红包
+     */
+    public function actionGetRedPacket() {
+        $rule = [
+            'ballot_id' => ['type' => 'int', 'required' => TRUE],//活动ID
+            'anchor_id' => ['type' => 'int', 'required' => TRUE],//主播ID
+            'fans_id' => ['type' => 'int', 'required' => TRUE],//粉丝ID
+            'canvass_id' => ['type' => 'string', 'required' => TRUE],//拉票ID
+            'new_fans' => ['type' => 'int', 'required' => FALSE,'default'=>2],
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        // 获取活动奖项设置
+        $res = Yii::$app->api->get('ballot/get-red-packet', $args);
+        if($res['code'] != 200 || empty($res['data'])) {
+            $this->export('fail', $res['message']);
+        }
+        $this->export('success', $res['message'], $res['data']);
+    }
+    /**
+     * check-red-packet
+     * 查看红包
+     */
+    public function actionCheckRedPacket() {
+        $rule = [
+            'canvass_id' => ['type' => 'string', 'required' => TRUE],//拉票ID
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        // 获取活动奖项设置
+        $res = Yii::$app->api->get('ballot/check-red-packet', $args);
+        if($res['code'] != 200 || empty($res['data'])) {
+            $this->export('fail', $res['message']);
+        }
+        $this->export('success', $res['message'], $res['data']);
+    }
 }
