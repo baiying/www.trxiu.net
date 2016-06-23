@@ -258,8 +258,8 @@ body{background: #fc2d8e;}
 .zbshowpage .line{width: 100%; height: 1px; margin: 25px 0; background: #d2d2d2; position: relative;}
 .zbshowpage .line::after{ width: 54px; height: 19px; line-height: 19px; content: "主播动态"; color: #fc2d8e; position: absolute; left: 50%; top: 50%; 
 border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #fff; border-radius: 10px; font-size: 9px; text-align: center;}
-.zbshowpage .dongtai{ padding: 10px; }
-.zbshowpage .dongtai .li{}
+.zbshowpage .dongtai{ padding: 10px; overflow: hidden; }
+.zbshowpage .dongtai .li{ border-bottom: 1px solid #cccccc; margin: 5px 0 10px 0;}
 .zbshowpage .dongtai .li .liheader{width: 100%; height: 40px;  display:flex; flex-flow: row;}
 .zbshowpage .dongtai .li .liheader .pic{width: 40px; height: 40px; line-height: 20px; border-radius: 50%; overflow: hidden;}
 .zbshowpage .dongtai .li .liheader .pic img{width: 40px; height: 40px; }
@@ -269,6 +269,18 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .zbshowpage .dongtai .li .litext{width: 100%; color: #999999;  padding: 10px 0; line-height: 18px; font-size: 12px;}
 .zbshowpage .dongtai .li .liimages{ display:flex; flex-flow: row; flex-wrap:wrap;  justify-content:space-between;}
 .zbshowpage .dongtai .li .liimages img{width: 30%; height: 30%; margin:10px 0;}
+.zbshowpage .dongtai .li .lifooter{ width: 100%; height: 20px;  padding-bottom: 5px; color: #999999;  line-height: 20px; position: relative; overflow: hidden;}
+.zbshowpage .dongtai .li .lifooter dl{width: 80px; }
+.zbshowpage .dongtai .li .lifooter dd{position: absolute;  height: 20px; right: 0; top: 0;}
+.zbshowpage .dongtai .li .lifooter dd::after{ width: 20px; height: 20px; position: absolute; left: -25px; top: 0; background-size: 20px;  content: "";
+ background-position:  center;  background-repeat: no-repeat; background-image: url(../img/ic_pinglun.png);  }
+.zbshowpage .dongtai .li .lipinglun{background: #ececec; padding:5px; margin: 5px 0; position: relative; }
+.zbshowpage .dongtai .li .lipinglun::after{width: 10px; height: 10px; position: absolute; content: ""; transform:rotate(45deg); -webkit-transform:rotate(45deg);
+ right: 20px; top: -5px; background: #ececec; }
+.zbshowpage .dongtai .li .lipinglun .pli{ line-height: 16px; padding: 2px; }
+.zbshowpage .dongtai .li .lipinglun .pli font{color:#888888;  }
+.zbshowpage .dongtai .li .lipinglun .pli span{color: #333333; }
+
 .zbshowpage .header .zhubopic.n1 .pic img{border-color: #fc2d8e;}
 .zbshowpage .header .zhubopic.n1 .pic::after{background-image:url(../img/ic_guanjun.png); }
 .zbshowpage .header .zhubopic.n2 .pic img{border-color: #a16eff;}

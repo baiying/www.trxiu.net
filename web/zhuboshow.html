@@ -11,6 +11,41 @@
 	<title>盟主派对</title>
 	<script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js"></script>
+
+<script id="tplEventItem" type="text/template">
+	<div class="li">
+		<div class="liheader">
+			<div class="pic"><img src="uploads/111.jpg"/></div>
+			<div class="pright">
+				<div class="nickname">LiLian</div>
+				<div class="datetime">十分钟前</div>
+			</div>
+			
+		</div>
+		<div class="litext">{{content}}</div>
+		<div class="liimages">
+			<img src="uploads/111.jpg"/>
+			<img src="uploads/111.jpg"/>
+			<img src="uploads/111.jpg"/>
+			<img src="uploads/111.jpg"/>
+			<img src="uploads/111.jpg"/>
+			<img src="uploads/111.jpg"/>
+		</div>
+		<div class="lifooter">
+			<dl>{{day}}</dl>
+			<dd>{{comments}}</dd>
+		</div>
+		<div class="lipinglun">
+			<div class="pli">
+				<font>小王：</font>
+				<span>美美哒</span>
+			</div>
+		</div>
+	</div>
+</script>
+
+
+
 </head>
 <body>
 	<div id="loading" class="loading"><div><i></i></div></div>
@@ -39,7 +74,7 @@
 				<div class="btnzhibo">直播间</div>
 			</div>
 			<div class="line"></div>
-			<div class="dongtai">
+			<div id="divDongtai" class="dongtai">
 				<div class="li">
 					<div class="liheader">
 						<div class="pic"><img src="uploads/111.jpg"/></div>
@@ -57,9 +92,19 @@
 						<img src="uploads/111.jpg"/>
 						<img src="uploads/111.jpg"/>
 						<img src="uploads/111.jpg"/>
-
+					</div>
+					<div class="lifooter">
+						<dl>昨天</dl>
+						<dd>345</dd>
+					</div>
+					<div class="lipinglun">
+						<div class="pli">
+							<font>小王：</font>
+							<span>美美哒</span>
+						</div>
 					</div>
 				</div>
+
 			</div>
 
 		</div>

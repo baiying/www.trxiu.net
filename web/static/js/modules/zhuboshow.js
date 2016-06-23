@@ -42,25 +42,71 @@ require(["zepto","util","navigation"],function($,util,nav){
         });
     }
 
+    //绑定主播基础信息
     function  bindInfo(dataInfo){
 
         $("#divThumb").html('<img src="'+dataInfo.thumb+'" />');
         $("#divAnchorName").html(dataInfo.anchor_name);
         $("#divPlatform").html(dataInfo.platform);
         $("#divDescription").html(dataInfo.description);
+    }
+
+
+
+    function bindEventData(dataList){
+        var listHtml="";
+
+        for(var i=0;i<dataList.length;i++){
+            var dataInfo=dataList[i];
+            var html=$("#tplEventItem").html();
+            html=html.replace("{{content}}",dataInfo.content);
+            html=html.replace("{{comments}}",dataInfo.comments);
+
 
         
+            listHtml+=html;
+        }
+
+        $("#divDongtai").append(listHtml);
+
+        //return html;
     }
+
+    //获取主播动态
+    function getEvents(page){
+         $.ajax({  
+            type : "get",  
+            //url : config.apiHost+"news/getanchornews",
+            url : config.apiHost+"json/getanchornews.aspx",
+            data:{
+                anchor_id: util.getParams()["id"],
+            },
+            dataType:"json",
+            success : function(resp) {
+                if(resp.code==200){
+                    bindEventData(resp.data.list)
+                }
+                else{
+                    util.alert(resp.message);
+                }
+                
+            }
+        });
+    }
+
+
+
+
 
 
     function main(){
         getAjaxData(function(){
             $("#loading").hide();
             $(".page").show();
-
+            getEvents(0)
             nav.bind("zhubo");
         })
-        bindInfo();
+
     }
 
     main();
