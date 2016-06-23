@@ -25,6 +25,8 @@ class AjaxBallotController extends AjaxBaseController {
             $this->export('fail', '目前没有进行中的活动');
         }
         $ballot = $res['data']['list'][0];
+        $ballot['votes'] += $ballot['votes_amend'];
+        unset($ballot['votes_amend']);
         // 获取本活动的信息及关联的主播信息
         $res = Yii::$app->api->get('ballot/get-ballot-detail', [
             'ballot_id' => $ballot['ballot_id']
@@ -38,13 +40,13 @@ class AjaxBallotController extends AjaxBaseController {
         // 整理参加活动的主播数据，使数据更易读
         $anchors = [];
         foreach($res['data']['anchorList'] as $item) {
-            $item['Information']['votes'] = $item['votes'];
+            $item['Information']['votes'] = $item['votes'] + $item['votes_amend'];
             $anchors[] = $item['Information'];
         }
         // 按照票数多少进行排序
         usort($anchors, function($a, $b) {
             if($a['votes'] == $b['votes']) return 0;
-            return $a['votes'] > $b['votes'] ? 1 : -1;
+            return $a['votes'] < $b['votes'] ? 1 : -1;
         });
         $this->export('success', '投票活动数据获取成功', [
             'ballot' => $ballot,
