@@ -45,8 +45,8 @@ class AjaxBallotController extends AjaxBaseController {
         }
         // 按照票数多少进行排序
         usort($anchors, function($a, $b) {
-            if($a['votes'] == $b['votes']) return 0;
-            return $a['votes'] < $b['votes'] ? 1 : -1;
+            if($a['news_time'] == $b['news_time']) return 0;
+            return $a['news_time'] < $b['news_time'] ? 1 : -1;
         });
         $this->export('success', '投票活动数据获取成功', [
             'ballot' => $ballot,
