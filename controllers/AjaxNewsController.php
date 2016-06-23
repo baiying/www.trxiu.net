@@ -92,7 +92,7 @@ class AjaxNewsController extends AjaxBaseController {
             'images' => ['type' => 'string', 'required' => FALSE],
             'status' => ['type' => 'int', 'required' => FALSE, 'default' => 1],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         // 获取活动基本信息
         // 获取当前有效的活动
         $res = Yii::$app->api->post('news/add-anchor-news', $args);
@@ -115,7 +115,7 @@ class AjaxNewsController extends AjaxBaseController {
             'parent_comment_id' => ['type' => 'int', 'required' => FALSE],
             'status' => ['type' => 'int', 'required' => FALSE, 'default' => 1],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         // 获取活动基本信息
         // 获取当前有效的活动
         $res = Yii::$app->api->post('news/news-comment', $args);
@@ -135,7 +135,7 @@ class AjaxNewsController extends AjaxBaseController {
             'news_id' => ['type' => 'int', 'required' => TRUE],
             'anchor_id' => ['type' => 'int', 'required' => TRUE],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         $res = Yii::$app->api->post('news/del-news', $args);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
@@ -153,7 +153,7 @@ class AjaxNewsController extends AjaxBaseController {
             'comment_id' => ['type' => 'int', 'required' => TRUE],
             'fans_id' => ['type' => 'int', 'required' => TRUE],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         $res = Yii::$app->api->post('news/del-news-comment', $args);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
