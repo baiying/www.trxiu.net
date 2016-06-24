@@ -97,9 +97,15 @@ require(["zepto","util","navigation"],function($,util,nav){
 
     function bindPageEvents(){
 
-        //拉票
-        $(".btntoupiao").click(function(){
+        //投票
+        $("#btnTouPiao").click(function(){
             location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+        })
+
+
+        //我要拉票
+        $("#btnLaPiao").click(function(){
+            
         })
     }
 

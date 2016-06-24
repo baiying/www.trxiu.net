@@ -225,7 +225,7 @@ body{background: #fc2d8e;}
 .lapiaopage .selecter span{ width: 40%; height: 30px; color: #fff; border-radius: 5px; line-height: 30px; margin: 10px 5% ; text-align: center;  background: #c9c9c9; display: inline-block; }
 .lapiaopage .selecter span:nth-child(2n){ margin-right: 0;}
 .lapiaopage .selecter span.on{background: #fca72d}
-.lapiaopage .btnsubmit{ height: 36px; margin:0 8%; background: #43c121; border-radius: 18px; }
+.lapiaopage .btnsubmit{ height: 36px; line-height: 36px; margin:0 8%; text-align: center; color: #fff; background: #43c121; border-radius: 18px; }
 .lapiaopage .desc{ padding: 10%; color: #999999;  font-size: 12px; line-height: 20px;}
 .lapiaopage .btntoupiao{ height: 36px; font-size: 14px; line-height: 36px; text-align: center; color:#fc2d8e;  margin:0 8%; border: 2px solid #fc2d8e; border-radius: 18px;}
 .lapiaopage .erweima{width: 107px; height: 107px; margin: 10px auto;  border: 2px solid #fc2d8e; border-radius: 38px;}
