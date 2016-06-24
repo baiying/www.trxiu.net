@@ -95,7 +95,13 @@ require(["zepto","util","navigation"],function($,util,nav){
     }
 
 
+    function bindPageEvents(){
 
+        //拉票
+        $(".btntoupiao").click(function(){
+            location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+        })
+    }
 
 
 
@@ -106,7 +112,7 @@ require(["zepto","util","navigation"],function($,util,nav){
             getEvents(0)
             nav.bind("zhubo");
         })
-
+        bindPageEvents();
     }
 
     main();
