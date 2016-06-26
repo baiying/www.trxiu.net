@@ -24,7 +24,7 @@ require(["zepto","util"],function($,util){
     function bindPageEvents(){
 
         $("#btnTouPiao").click(function(){
-            location.href="lapiao.html?zhuboid="+util.getParams()["zhuboid"];;
+            location.href="zhuboshow.html?zhuboid="+util.getParams()["zhuboid"];;
         })
 
 
