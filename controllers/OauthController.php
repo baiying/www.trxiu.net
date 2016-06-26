@@ -57,8 +57,4 @@ class OauthController extends Controller {
         }
         return $this->render('index', $renderArgs);
     }
-    
-    public function actionTest() {
-        var_dump($_COOKIE);exit;
-    }
 }

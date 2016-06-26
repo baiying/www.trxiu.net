@@ -8,63 +8,22 @@ use Yii;
 use yii\web\Controller;
 use yii\helpers\Json;
 
-class BaseController extends Controller {
-    // 设置布局文件
-	public $layout = "main";
+header("Access-Control-Allow-Origin:*");
+
+class AjaxBaseController extends Controller {
 	// 关闭Post安全验证
 	public $enableCsrfValidation = false;
-	// 页面中引用的JS文件
-	public $js = [];
-	// 页面中引用的CSS文件
-	public $css = [];
-	// 需要执行的JS对象
-	public $jsObject = [];
 	// 控制器中的错误信息
 	public $errors = [];
     // 运行环境
     public $env = '';
-    // 当前访客fansid
-    public $fans = null;
 	
 	public function init() {
-	    // 根据应用名称判断当前是生产环境还是测试环境
-	    if(strpos(Yii::$app->name, "TEST") > 0) {
-	        $this->env = 'test';
-	    } else {
-	        $this->env = 'product';
+	    /*
+	    if(!Yii::$app->request->isAjax) {
+	        exit(Json::encode(['status'=>'fail', 'message'=>'请使用ajax方式调用接口', 'data'=>[]]));
 	    }
-	    // 如果cookie中已存在fans
-        if(Yii::$app->cookie->has('fans')) {
-            list($openid, $name, $thumb, $fansid) = explode("|", Yii::$app->cookie->getValue('fans'));
-            $arr = [
-                'openid' => $openid,
-                'fansid' => $fansid,
-                'thumb'  => $thumb,
-                'name'   => $name,
-            ];
-            $this->fans = (object)$arr;
-            
-        } else {
-            // 生成授权地址，并自动跳转到该地址上
-            $redirect = [
-                'redirect_url' => Yii::$app->homeUrl.'/oauth/get-user-info/',
-                'state'=>'oauth-redirect',
-                'scope'=>'snsapi_userinfo'
-            ];
-            $res = Yii::$app->api->get('weixin/get-oauth-redirect-url', $redirect);
-            if($res['code'] == 200) {
-                // 跳转到授权页面前，记录跳转前的页面地址，方便授权后返回
-                Yii::$app->cookie->setValue([
-                    'name' => 'backurl',
-                    'value' => Yii::$app->request->url,
-                    'expire' => time() + 60
-                ]);
-                header("Location:".$res['data']['authUrl']);
-                exit;
-            } else {
-                exit('api error: weixin::get-oauth-redirect-url '.$res['message']);
-            }
-        }
+	    */
     }
 	/**
      * 获取请求参数
@@ -76,7 +35,7 @@ class BaseController extends Controller {
         $result = array();
         foreach($rule as $key=>$value) {
             if(!isset($data[$key]) && isset($value['required']) && $value['required'] == TRUE) {
-                $this->renderJson(ApiCode::ERROR_API_DENY, 'Lost parameter: '.$key);
+                exit(Json::encode(['status'=>'fail', 'message'=>'Lost parameter: '.$key, 'data'=>[]]));
             }
             switch($value['type']) {
                 case 'int':
@@ -129,6 +88,15 @@ class BaseController extends Controller {
 	        }
 	    }
 	    return $url;
+	}
+	/**
+	 * 规范输出ajax调用结果
+	 * @param string $status   执行结果，success 表示执行成功，fail 表示执行失败
+	 * @param string $message  描述信息，用于描述成功提示信息或错误原因
+	 * @param unknown $data    数据结果
+	 */
+	public function export($status = 'fail', $message = "", $data = []) {
+	    exit(Json::encode(['status'=>$status, 'message'=>$message, 'data'=>$data]));
 	}
 }
 

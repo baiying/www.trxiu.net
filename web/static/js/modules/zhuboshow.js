@@ -77,13 +77,15 @@ require(["zepto","util","navigation"],function($,util,nav){
 
         //投票
         $("#btnTouPiao").click(function(){
-            location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+            location.href="lapiao.html?zhuboid="+ util.getParams()["id"];
         })
 
 
         //我要拉票
         $("#btnLaPiao").click(function(){
-            
+
+            //弹出遮罩层，分享如下页面
+            //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
         })
     }
 
