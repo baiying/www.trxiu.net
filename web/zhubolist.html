@@ -10,21 +10,18 @@
     <script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js"></script>
 	<title>盟主派对</title>
-
 	<script id="tplItem" type="text/template">
-		<a href="zhuboshow.html?id={{id}}" class="li {{index}}">
+		<a href="zhuboshow.html?ballot_id={{ballot_id}}&anchor_id={{anchor_id}}" class="li {{index}}">
 			<dd class="pic"><img src="{{thumb}}"/></dd>
 			<dt><span>{{anchor_name}}</span></dt>
-			<dl><span>9905票</span></dl>
+			<dl><span>{{votes}}票</span></dl>
 		</a>
 	</script>
-
-
-
 </head>
 <body>
+	<div id="loading" class="loading"><div><i></i></div></div>
 	<div class="page">
-		<p class="pdate">第一期（5月1日-5月30日）</p>
+		<p id="pHuoDongTitle" class="pdate"></p>
 		<div id="divZhuboList" class="zhubolistpage"></div>
 	</div>
 	<div class="footer"></div>
