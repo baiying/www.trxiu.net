@@ -7,7 +7,6 @@ use yii\web\Controller;
 class QiniuController extends Controller {
     
     public function actionIndex() {
-        
         return $this->render('index');
     }
     
