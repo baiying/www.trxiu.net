@@ -4,6 +4,7 @@ require.config({
         zepto: '../libs/zepto.min',
         util: '../libs/util',
         navigation: '../libs/navigation',
+        imgPreview: '../libs/imgPreview',
     },
     shim:{
         zepto: {exports: '$'}
@@ -11,7 +12,7 @@ require.config({
 });
 
 
-require(["zepto","util","navigation"],function($,util,nav){
+require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPreview){
 
    
 
@@ -61,6 +62,19 @@ require(["zepto","util","navigation"],function($,util,nav){
 
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+        })
+
+
+        //发布动态
+        $("#btnAddEvents").click(function(){
+            location.href="addEvents.html"
+        })
+
+        //预览图片
+
+        $("body").on("click",".liimages img",function(){
+            var url=$(this).attr("src");
+            imgPreview.show(url)
         })
 
 

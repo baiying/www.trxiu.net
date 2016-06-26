@@ -290,6 +290,20 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 
 
 
+/*发布动态页面*/
+.addEventPage{background: #ebebeb;}
+.addEventPage .pcont{width: 100%; background: #fff; padding-bottom: 15px;}
+.addEventPage .pcont textarea{width: 100%; height: 120px; background: none; border:none;}
+.addEventPage .pcont .imgpanel{padding: 15px 10px; overflow: hidden;}
+.addEventPage .pcont .imgpanel .imglist{}
+.addEventPage .pcont .imgpanel img{width:50px; height: 50px; margin: 3px; }
+.addEventPage .pcont .imgpanel .btnadd{width: 48px; height: 48px; border: 1px solid #979797; background-size: 30px; background-position: center; 
+background-image: url(../img/add_image.jpg); border-radius: 2px; margin: 3px; background-repeat: no-repeat; display: inline-block; }
+.addEventPage .pcont .btnPanel{width: 90%; height: 40px; line-height: 40px; text-align: center; color: #ffffff; background: #23b768; margin-left: 5%; }
+
+
+
+
 
 /*loading样式*/
 .loading i {position: absolute; top: 20px; left: 50%;  width: 30px; height: 30px;  margin-left: -15px;  -webkit-border-radius: 100px; 
@@ -315,6 +329,13 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 .mask .pics span.weixin{background-image: url(../img/ic_weixin.png)}
 .mask .pics span.friends{background-image: url(../img/ic_pyq.png)}
 .mask .pics span.qq{background-image: url(../img/ic_qq.png)}
+
+
+/*浏览图片遮罩*/
+.maskimage{width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0,0,0,1); z-index: 9999;  overflow: hidden;
+display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -webkit-box-align: center; box-align: center;}
+.maskimage img{width: 100%;}
+
 
 
 /*兼容iPhone4,iPhone5*/
