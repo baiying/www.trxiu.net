@@ -264,8 +264,8 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .zbshowpage .dongtai .li .liheader .pic{width: 40px; height: 40px; line-height: 20px; border-radius: 50%; overflow: hidden;}
 .zbshowpage .dongtai .li .liheader .pic img{width: 40px; height: 40px; }
 .zbshowpage .dongtai .li .liheader .pright{flex:1; padding-left: 10px;}
-.zbshowpage .dongtai .li .liheader .nickname{width: 220px; height: 20px; font-size: 14px; color: #333333; line-height: 20px; }
-.zbshowpage .dongtai .li .liheader .datetime{width: 220px; height: 20px; color: #999999; line-height: 20px; float: left;}
+.zbshowpage .dongtai .li .liheader .nickname{ height: 20px; font-size: 14px; color: #333333; line-height: 20px; }
+.zbshowpage .dongtai .li .liheader .datetime{ height: 20px; color: #999999; line-height: 20px; float: left;}
 .zbshowpage .dongtai .li .litext{width: 100%; color: #999999;  padding: 10px 0; line-height: 18px; font-size: 12px;}
 .zbshowpage .dongtai .li .liimages{ display:flex; flex-flow: row; flex-wrap:wrap;  justify-content:space-between;}
 .zbshowpage .dongtai .li .liimages img{width: 30%; height: 30%; margin:10px 0;}
@@ -307,10 +307,14 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 100% {-webkit-transform: rotate(360deg); } }
 
 
-
-
-
-
+/*分享遮罩层*/
+.mask{width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.8); z-index: 9999;}
+.mask .pics{width: 100%; text-align: center; padding-top: 80px; }
+.mask .pics span{width: 65px;  padding-top: 70px; margin: 0 8px; display: inline-block; background-size: 100%;
+ background-position: center top; background-repeat: no-repeat; color: #fff;}
+.mask .pics span.weixin{background-image: url(../img/ic_weixin.png)}
+.mask .pics span.friends{background-image: url(../img/ic_pyq.png)}
+.mask .pics span.qq{background-image: url(../img/ic_qq.png)}
 
 
 /*兼容iPhone4,iPhone5*/

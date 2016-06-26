@@ -39,37 +39,9 @@ require(["zepto","util","navigation"],function($,util,nav){
             html=html.replace("{{content}}",dataInfo.content);
             html=html.replace("{{comments}}",dataInfo.comments);
 
-
-        
             listHtml+=html;
         }
-
         $("#divDongtai").append(listHtml);
-
-        //return html;
-    }
-
-    //获取主播动态
-    function getEvents(page){
-
-         $.ajax({  
-            type : "get",  
-            //url : config.apiHost+"news/getanchornews",
-            url : config.apiHost+"json/getanchornews.aspx",
-            data:{
-                anchor_id: util.getParams()["id"],
-            },
-            dataType:"json",
-            success : function(resp) {
-                if(resp.code==200){
-                    bindEventData(resp.data.list)
-                }
-                else{
-                    util.alert(resp.message);
-                }
-                
-            }
-        });
     }
 
 
@@ -84,8 +56,17 @@ require(["zepto","util","navigation"],function($,util,nav){
         //我要拉票
         $("#btnLaPiao").click(function(){
 
+
+            $("#divShare").show();
+
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+        })
+
+
+        //关闭遮罩层
+        $(".mask").click(function(){
+            $(this).hide();
         })
     }
 
@@ -101,7 +82,6 @@ require(["zepto","util","navigation"],function($,util,nav){
             },
             dataType:"json",
             success : function(resp) {
-                console.log(resp)
                 if(resp.status=="success"){
                     bindInfo(resp.data);
                 }
@@ -115,11 +95,32 @@ require(["zepto","util","navigation"],function($,util,nav){
         });
     }
 
+    //获取主播动态信息
+    function getZhuBoEvents(){
+        $.ajax({  
+            type : "get",  
+            url : config.apiHost+"ajax-news/get-anchor-news/",
+            data:{
+                anchor_id: util.getParams()["anchor_id"],
+            },
+            dataType:"json",
+            success : function(resp) {
+                if(resp.code==200){
+                    bindEventData(resp.data.list)
+                }
+                else{
+                    util.alert(resp.message);
+                }
+                
+            }
+        });
+    }
+
     function main(){
         getAjaxData(function(){
             $("#loading").hide();
             $(".page").show();
-           // getEvents(0)
+            getZhuBoEvents();
             nav.bind("zhubo");
         })
         bindPageEvents();
