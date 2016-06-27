@@ -37,8 +37,27 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
         for(var i=0;i<dataList.length;i++){
             var dataInfo=dataList[i];
             var html=$("#tplEventItem").html();
+            html=html.replace("{{zhubopic}}",window.zhubopic);
+            html=html.replace("{{nickName}}",window.zhuboname);
+            html=html.replace("{{addedDate}}",dataInfo.create_time);
+
             html=html.replace("{{content}}",dataInfo.content);
-            html=html.replace("{{comments}}",dataInfo.comments);
+            html=html.replace("{{comments}}",dataInfo.comment_total);
+
+
+            //绑定动态照片列表
+            var imageHtml="";
+            var imageList=$.parseJSON(dataInfo.images);
+            for(var j=0;j<imageList.length;j++){
+                imageHtml+='<img src="'+imageList[j]+'"/>';
+            }
+            if(!!imageHtml){
+                imageHtml='<div class="liimages">'+imageHtml+'</div>';
+            }
+            html=html.replace("{{imageHtml}}",imageHtml);
+
+
+
 
             listHtml+=html;
         }
@@ -97,6 +116,8 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
             dataType:"json",
             success : function(resp) {
                 if(resp.status=="success"){
+                    window.zhubopic=resp.data.thumb;
+                    window.zhuboname=resp.data.name;
                     bindInfo(resp.data);
                 }
                 else{
@@ -111,6 +132,7 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
     //获取主播动态信息
     function getZhuBoEvents(){
+
         $.ajax({  
             type : "get",  
             url : config.apiHost+"ajax-news/get-anchor-news/",
@@ -119,7 +141,7 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
             },
             dataType:"json",
             success : function(resp) {
-                if(resp.code==200){
+                if(resp.status=="success"){
                     bindEventData(resp.data.list)
                 }
                 else{

@@ -2,112 +2,136 @@ require.config({
     baseUrl: 'static/js/modules/',
     paths: {
         zepto: '../libs/zepto.min',
-        util: '../libs/util',
-        imgPreview: '../libs/imgPreview',
-        moxie:'../libs/moxie',
-        plupload:'../libs/plupload.dev',
+        moxie: '../libs/moxie',
+        plupload: '../libs/plupload.min',
         qiniu: '../libs/qiniu.min',
     },
     shim:{
         zepto: {exports: '$'},
-        qiniu: {exports: 'qiniu'},
-        plupload: {exports: 'plupload'},
-        moxie: {exports: 'moxie'},
-
-
-        
+        plupload: ["moxie"]
     }       
 });
 
 
-require(["zepto","util","imgPreview","moxie","plupload","qiniu"],function($,util,imgPreview,moxie,plupload,qiniu){
+require(["zepto","moxie","plupload","qiniu"],function($,moxie,plupload,qiniu){
 
-
-
-       //引入Plupload 、qiniu.js后
+    
+    //绑定上传事件
+    function bindUploadEvents(){
         var uploader = Qiniu.uploader({
-        runtimes: 'html5,flash,html4',    //上传模式,依次退化
-        browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
-        uptoken_url: '/token',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
-        // uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
-        // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
-        // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
-        domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
-        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
-        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
-        max_file_size: '100mb',           //最大文件体积限制
-        flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
-        max_retries: 3,                   //上传失败最大重试次数
-        dragdrop: true,                   //开启可拖曳上传
-        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-        chunk_size: '4mb',                //分块上传时，每片的体积
-        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
-        init: {
-            'FilesAdded': function(up, files) {
-                plupload.each(files, function(file) {
-                    // 文件添加进队列后,处理相关的事情
-                });
-            },
-            'BeforeUpload': function(up, file) {
-                   // 每个文件上传前,处理相关的事情
-            },
-            'UploadProgress': function(up, file) {
-                   // 每个文件上传时,处理相关的事情
-            },
-            'FileUploaded': function(up, file, info) {
-                   // 每个文件上传成功后,处理相关的事情
-                   // 其中 info 是文件上传成功后，服务端返回的json，形式如
-                   // {
-                   //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                   //    "key": "gogopher.jpg"
-                   //  }
-                   // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+            runtimes: 'html5',
+            browse_button: 'pickfiles',
+            container: 'container',
+            drop_element: 'container',
+            max_file_size: '1000mb',
+            flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+            dragdrop: true,
+            chunk_size: '4mb',
+            multi_selection: true,
+            uptoken_url: 'http://wechat.trxiu.net/qiniu/ajax/?act=token',
+            domain: 'http://o8syigvwe.bkt.clouddn.com/',
+            get_new_uptoken: false,
+            unique_names: true,
+            auto_start: true,
+            log_level: 5,
+            init: {
+                // 添加文件时的触发事件
+                'FilesAdded': function(up, files) {
 
-                   // var domain = up.getOption('domain');
-                   // var res = parseJSON(info);
-                   // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
-            },
-            'Error': function(up, err, errTip) {
-                   //上传出错时,处理相关的事情
-            },
-            'UploadComplete': function() {
-                   //队列文件处理完毕后,处理相关的事情
-            },
-            'Key': function(up, file) {
-                // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-                // 该配置必须要在 unique_names: false , save_key: false 时才生效
-
-                var key = "";
-                // do something with key here
-                return key
+                },
+                // 开始上传前的触发事件
+                'BeforeUpload': function(up, file) {
+                    
+                },
+                // 上传进行中
+                'UploadProgress': function(up, file) {
+                    
+                },
+                // 上传结束时触发事件
+                'UploadComplete': function() {
+                   
+                },
+                // 上传结束后触发事件
+                'FileUploaded': function(up, file, info) {
+                   
+                },
+                // 异常事件
+                'Error': function(up, err, errTip) {
+                   
+                }
             }
-        }
         });
+    }
 
 
 
+    //发布动态
+    function addEvents(){
 
+        $("#btnSubmit").click(function(){
+            var imageList=[];
+            $(".imglist img").each(function(){
+                imageList.push($(this).attr("src"));
+            })
+            var content=$("#txtContent").val();
+            $.ajax({  
+                type : "post",  
+                url : config.apiHost+"ajax-news/add-anchor-news/",
+                data:{
+                    anchor_id:window.anchor_id,
+                    content:content,
+                    images:imageList
+    
+                },
+                dataType:"json",
+                success : function(resp) {
+                    if(resp.status=="success"){
+                        console.log(111)
+                    }
+                    else{
+                        util.alert(resp.message);
+                    }
+                },
+                complete:function(){
+                    callback();
+                }
+            });
 
-
-
-
-
-    function bindPageEvents(){
-
-
-        //预览图片
-        $("body").on("click",".imgpanel img",function(){
-            var url=$(this).attr("src");
-            imgPreview.show(url)
         })
+
+        
+        
+    }
+
+
+
+
+    function bindEvents(){
+        //bindUploadEvents();
+        addEvents();
+
+
 
     }
 
-	//
-	function main(){
-		
-		bindPageEvents();
-	}
-	main();
+
+    //页面主入口
+    function main(){
+        bindEvents();
+        
+    }
+    main();
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
