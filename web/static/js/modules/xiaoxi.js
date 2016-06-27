@@ -4,6 +4,7 @@ require.config({
         zepto: '../libs/zepto.min',
         util: '../libs/util',
         navigation: '../libs/navigation',
+        login: '../libs/login',
     },
     shim:{
         zepto: {exports: '$'}
@@ -11,7 +12,7 @@ require.config({
 });
 
 
-require(["zepto","util","navigation"],function($,util,nav){
+require(["zepto","util","navigation","login"],function($,util,nav,login){
 
    
 
