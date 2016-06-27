@@ -351,7 +351,6 @@
 
 
 
-
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js"></script>
