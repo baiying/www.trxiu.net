@@ -79,7 +79,8 @@ class AjaxBallotController extends AjaxBaseController {
     public function actionAnchorInBallot() {
         $rule = [
             'ballot_id' => ['type' => 'int', 'required' => TRUE],
-            'anchor_id' => ['type' => 'int', 'required' => TRUE]
+            'anchor_id' => ['type' => 'int', 'required' => TRUE],
+            'openid' => ['type' => 'string', 'required' => false],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
         $res = Yii::$app->api->get('ballot/anchor-in-ballot', $args);
