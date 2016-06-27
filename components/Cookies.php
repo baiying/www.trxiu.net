@@ -6,7 +6,7 @@ use yii\base\Component;
 
 class Cookies extends Component {
     
-    private $salt = "123";
+    private $salt = "8aCbDfFd92C06000";
     /**
      * 加密
      * @param unknown $value
