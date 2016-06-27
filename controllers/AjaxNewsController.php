@@ -29,6 +29,16 @@ class AjaxNewsController extends AjaxBaseController {
             'size'          => $args['size']
         ]);
         if($res['code'] == 200) {
+            foreach( $res['data']['list'] as $listKey => $listValue){
+                if($listValue['comment_total']!=0){
+                    foreach ($res['data']['list'][$listKey]['comment'] as $commentKey => $commentValue){
+                        $res['data']['list'][$listKey]['comment'][$commentKey]['fans_name'] = $res['data']['list'][$listKey]['comment'][$commentKey]['fans']['wx_name'];
+                        if(isset($res['data']['list'][$listKey]['comment'][$commentKey]['parent_comment_fans'])){
+                            $res['data']['list'][$listKey]['comment'][$commentKey]['parent_fans_name'] = $res['data']['list'][$listKey]['comment'][$commentKey]['parent_comment_fans']['wx_name'];
+                        }
+                    }
+                }
+            }
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
@@ -43,7 +53,7 @@ class AjaxNewsController extends AjaxBaseController {
         $rule = [
             'news_id' => ['type'=>'int', 'required'=>true],
             'page' => ['type'=>'int', 'required'=>false ,'default'=>1],
-            'size' => ['type'=>'int', 'required'=>false,'default'=>20]
+            'size' => ['type'=>'int', 'required'=>false,'default'=>99]
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
         // 获取活动基本信息
@@ -54,6 +64,12 @@ class AjaxNewsController extends AjaxBaseController {
             'size'          => $args['size']
         ]);
         if($res['code'] == 200) {
+            foreach( $res['data']['list'] as $listKey => $listValue){
+                    $res['data']['list'][$listKey]['fans_name'] = $res['data']['list'][$listKey]['fans']['wx_name'];
+                    if(isset($res['data']['list'][$listKey]['parent_comment_fans'])){
+                        $res['data']['list'][$listKey]['parent_fans_name'] = $res['data']['list'][$listKey]['parent_comment_fans']['wx_name'];
+                    }
+            }
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
