@@ -1,31 +1,36 @@
 define(['zepto'],
 function($) {
-    return
+  
     var Logincheck = {
         init: function(callback) {
+            return;
+
             var $this = this;
+            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
+
+
             if ( !! $this.getCookie("DA7F9084C361196F1147D0DE68FEC172")) {
                 var c_openid = $this.getCookie("DA7F9084C361196F1147D0DE68FEC172");
                 callback(c_openid);
             } else {
-                var REDIRECT_URI = location.href;
-                var openurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx92cf60f7577e2d48&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+                var REDIRECT_URI = encodeURIComponent(location.href);
+                var openurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a1799c10d53e3c0&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 
                 if ($this.GetURLParameter('code')) {
+                    var code=$this.GetURLParameter('code');
+                    alert(code)
+                    $.ajax({
+                        url:config.apiHost+"ajax-account/login-by-code/",
+                        type : "post",  
+                        data:{
+                            code:code
+                        },
+                        success:function(resp){
 
-                  $.ajax({
-                    url:config.apiHost+"ajax-account/login-by-code/",
-                    data:{
-                      code:$this.GetURLParameter('code')
-                    },
-                    success:function(resp){
-                      alert(resp)
-                    }
-                  })
-
-
-
-                    $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", _sdata.openid, 30 / 1440);
+                            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
+                            callback(resp)
+                        }
+                    })
 
                 } else {
                     location.href = openurl;

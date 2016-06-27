@@ -1,7 +1,9 @@
 require.config({
     baseUrl: 'static/js/modules/',
+    urlArgs: "bust=" +  (new Date()).getTime(),
     paths: {
         zepto: '../libs/zepto.min',
+        login: '../libs/login',
         moxie: '../libs/moxie',
         plupload: '../libs/plupload.min',
         qiniu: '../libs/qiniu.min',
@@ -13,7 +15,15 @@ require.config({
 });
 
 
-require(["zepto","moxie","plupload","qiniu"],function($,moxie,plupload,qiniu){
+require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plupload,qiniu){
+   
+
+    login.init(function(oid){
+       alert(oid)
+    });
+
+    return;
+
 
     
     //绑定上传事件

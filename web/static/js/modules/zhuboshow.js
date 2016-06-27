@@ -26,7 +26,23 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
         $("#divThumb").html('<img src="'+dataInfo.thumb+'" />');
         $("#divAnchorName").html(dataInfo.name);
         $("#divPlatform").html(dataInfo.platform);
-        $("#divDescription").html(dataInfo.description);
+        $("#divDescription").html(dataInfo.description);   
+
+        $("#btnZhiBoJian").click(function(){
+            location.href=dataInfo.broadcast;
+        })
+
+
+        if(dataInfo.isAnchor==false){   //如果不是主播本人
+            $("#divYoukePanel").show();
+            $("#divZhuboPanel").hide();
+        }
+        else{
+            $("#divYoukePanel").hide();
+            $("#divZhuboPanel").show();
+        }
+
+
     }
 
 
@@ -43,6 +59,8 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
             html=html.replace("{{content}}",dataInfo.content);
             html=html.replace("{{comments}}",dataInfo.comment_total);
+            html=html.replace("{{news_id}}",dataInfo.news_id);
+
 
 
             //绑定动态照片列表
@@ -90,7 +108,6 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
         })
 
         //预览图片
-
         $("body").on("click",".liimages img",function(){
             var url=$(this).attr("src");
             imgPreview.show(url)
@@ -101,6 +118,16 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
         $(".mask").click(function(){
             $(this).hide();
         })
+
+
+        //查看评论
+        $("body").on("click","#divDongtai>.li",function(){
+            var newsId=$(this).attr("news_id");
+            location.href="pinglunshow.html?news_id="+newsId;
+        })
+
+
+
     }
 
     //获取页面数据

@@ -31,8 +31,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
         for(var i=0;i<dataList.length;i++){
             var itemHtml=$("#tplItem").html();
             var indexIcon=""
-            if(i<=2){
-                indexIcon="n"+parseInt(i+1);
+            if(dataList[i].ranking<=3){
+                indexIcon="n"+parseInt(dataList[i].ranking);
             }
             itemHtml=itemHtml.replace("{{index}}",indexIcon);
             itemHtml=itemHtml.replace("{{ballot_id}}",window.ballot_id);

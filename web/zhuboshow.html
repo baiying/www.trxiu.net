@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
 	<title>盟主派对</title>
 	<script src="static/js/config.js"></script>
-    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js?1"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js?2"></script>
 
 <script id="tplEventItem" type="text/template">
-	<div class="li">
+	<div class="li" news_id="{{news_id}}">
 		<div class="liheader">
 			<div class="pic"><img src="{{zhubopic}}"/></div>
 			<div class="pright">
@@ -71,7 +71,7 @@
 			<div class="desc" id="divDescription"></div>
 			<div id="divYoukePanel" class="btnpanel" style="display:none;">
 				<div id="btnTouPiao" class="btntoupiao">投票</div>
-				<div class="btnzhibo">直播间</div>
+				<div id="btnZhiBoJian" class="btnzhibo">直播间</div>
 			</div>
 
 			<div id="divZhuboPanel" class="btnpanel" >
