@@ -43,6 +43,13 @@ class AjaxBallotController extends AjaxBaseController {
             $item['Information']['votes'] = $item['votes'] + $item['votes_amend'];
             $anchors[] = $item['Information'];
         }
+        usort($anchors, function($a, $b) {
+            if($a['votes'] == $b['votes']) return 0;
+            return $a['votes'] < $b['votes'] ? 1 : -1;
+        });
+        foreach ($anchors as $key => $value){
+            $anchors[$key]['ranking'] = $key+1;
+        }
         // 按照票数多少进行排序
         usort($anchors, function($a, $b) {
             if($a['news_time'] == $b['news_time']) return 0;
