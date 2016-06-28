@@ -76,4 +76,17 @@ class AjaxAccountController extends AjaxBaseController {
             $this->export('fail', $res['message']);
         }
     }
+    /**
+     * get-js-sign
+     * 获取微信jsapi签名
+     * @param string $url   请求地址
+     */
+    public function actionGetJsSign() {
+        $rule = [
+            'url' => ['type'=>'string', 'required'=>true]
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $res = Yii::$app->api->get('weixin/js-sign', $args);
+        $this->export('success', '签名获取成功', $res['data']);
+    }
 }
