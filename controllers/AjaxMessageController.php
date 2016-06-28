@@ -20,7 +20,7 @@ class AjaxMessageController extends AjaxBaseController
     public function actionGetMessageList(){
 
         $rule = [
-            'openid' => ['type'=>'int', 'required'=>true],
+            'openid' => ['type'=>'string', 'required'=>true],
             'page' => ['type'=>'int', 'required'=>false,'default'=>1],
             'size' => ['type'=>'int', 'required'=>false,'default'=>20],
         ];
@@ -51,7 +51,7 @@ class AjaxMessageController extends AjaxBaseController
     public function actionGetMessageById(){
 
         $rule = [
-            'openid' => ['type'=>'int', 'required'=>true],
+            'openid' => ['type'=>'string', 'required'=>true],
             'message_id' => ['type'=>'int', 'required'=>true]
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
@@ -80,7 +80,7 @@ class AjaxMessageController extends AjaxBaseController
     public function actionAddMessage(){
 
         $rule = [
-            'openid' => ['type'=>'int', 'required'=>true],
+            'openid' => ['type'=>'string', 'required'=>true],
             'content' => ['type'=>'string', 'required'=>true],
             'receive_fans_id' => ['type'=>'int', 'required'=>true],
         ];
