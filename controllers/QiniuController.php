@@ -4,6 +4,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 
+header("Access-Control-Allow-Origin:*");
 class QiniuController extends Controller {
     
     public function actionIndex() {

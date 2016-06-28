@@ -353,12 +353,11 @@
 
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/plupload/js/moxie.js"></script>
-<script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/plupload/js/plupload.dev.js"></script>
-<!-- <script type="text/javascript" src="bower_components/plupload/js/plupload.full.min.js"></script> -->
+<script type="text/javascript" src="/js/common/moxie.js"></script>
+<script type="text/javascript" src="/js/common/plupload.min.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/bower_components/plupload/js/i18n/zh_CN.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/scripts/ui.js"></script>
-<script type="text/javascript" src="http://jssdk.demo.qiniu.io/src/qiniu.js"></script>
+<script type="text/javascript" src="/js/common/qiniu.js"></script>
 <script type="text/javascript" src="http://jssdk.demo.qiniu.io/scripts/highlight.js"></script>
 <script type="text/javascript" src="/js/qiniu/main.js"></script>
 <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
