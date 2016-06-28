@@ -58,17 +58,19 @@ class AjaxNewsController extends AjaxBaseController {
         $args = $this->getRequestData($rule, Yii::$app->request->get());
         // 获取活动基本信息
         // 获取当前有效的活动
-        $res = Yii::$app->api->get('news/get-news-comment-list', [
+        $res = Yii::$app->api->get('news/get-news-and-comment-list', [
             'news_id'  => $args['news_id'],
             'page'        => $args['page'],
             'size'          => $args['size']
         ]);
         if($res['code'] == 200) {
-            foreach( $res['data']['list'] as $listKey => $listValue){
-                    $res['data']['list'][$listKey]['fans_name'] = $res['data']['list'][$listKey]['fans']['wx_name'];
-                    if(isset($res['data']['list'][$listKey]['parent_comment_fans'])){
-                        $res['data']['list'][$listKey]['parent_fans_name'] = $res['data']['list'][$listKey]['parent_comment_fans']['wx_name'];
-                    }
+            foreach( $res['data']['commentList'] as $listKey => $listValue){
+                if($res['data']['commentTotal']!=0){
+                        $res['data']['commentList'][$listKey]['fans_name'] = $res['data']['commentList'][$listKey]['fans']['wx_name'];
+                        if(isset($res['data']['commentList'][$listKey]['parent_comment_fans'])){
+                            $res['data']['commentList'][$listKey]['parent_fans_name'] = $res['data']['commentList'][$listKey]['parent_comment_fans']['wx_name'];
+                        }
+                }
             }
             $this->export('success', $res['message'], $res['data']);
         } else {
