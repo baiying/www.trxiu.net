@@ -51,6 +51,7 @@ class AjaxCanvassController extends AjaxBaseController {
      * @param number $data['ballot_id']     活动ID
      * @param number $data['anchor_id']     主播ID
      * @param number $data['fans_id']       粉丝ID
+     * @param string $data['source_id']     来源拉票ID
      * @param number $data['charge']        充值金额
      * @param number $data['status']        拉票状态，1 有效，2 待支付，3 无效
      */
@@ -59,6 +60,7 @@ class AjaxCanvassController extends AjaxBaseController {
             'ballot_id'     => ['type'=>'int', 'required'=>true],
             'anchor_id'     => ['type'=>'int', 'required'=>true],
             'fans_id'       => ['type'=>'int', 'required'=>true],
+            'source_id'     => ['type'=>'int', 'required'=>false],
             'charge'        => ['type'=>'float', 'required'=>true],
             'status'        => ['type'=>'int', 'required'=>false, 'default'=>1],
         ];
