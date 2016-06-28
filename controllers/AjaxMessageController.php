@@ -84,7 +84,7 @@ class AjaxMessageController extends AjaxBaseController
             'content' => ['type'=>'string', 'required'=>true],
             'receive_fans_id' => ['type'=>'int', 'required'=>true],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
 
         $openid = $args['openid'];
         $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
@@ -96,7 +96,7 @@ class AjaxMessageController extends AjaxBaseController
         $comment['receive_fans_id'] = $args['receive_fans_id'];
 
         // 获取当前有效的活动
-        $res = Yii::$app->api->get('message/add-message', $comment);
+        $res = Yii::$app->api->post('message/add-message', $comment);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
