@@ -18,11 +18,8 @@ require.config({
 require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plupload,qiniu){
    
 
-    login.init(function(){
-        
-    })
+    
 
-    return;
 
     
     //绑定上传事件

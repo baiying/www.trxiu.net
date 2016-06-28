@@ -11,6 +11,19 @@
 	<title>盟主派对</title>
 	<script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/pinglunshow.js?1"></script>
+<script id="tplReplyBox" type="text/template">
+	<div class="replybox" newsId="{{newsId}}" replyCommentId="{{replyCommentId}}">
+		<div class="innerbox">
+			<div class="replyHeader">
+				<dl class="btnReClose">取消</dl>
+				<dd>评论</dd>
+				<dt class="btnReSave">发布</dt>
+			</div>
+			<textarea class="textbox"></textarea>
+		</div>
+	</div>
+</script>
+    
 </head>
 <body>
 
@@ -22,33 +35,25 @@
 		</div>
 	</div>
 	<div id="loading" class="loading"><div><i></i></div></div>
-	<div class="page" style="display:none;">
+	<div class="page">
 		<div class="zbshowpage">
-
-
-
 
 
 			<div id="divDongtai" class="dongtai">
 				<div class="li">
 					<div class="liheader">
-						<div class="pic"><img src="http://o8syigvwe.bkt.clouddn.com/o_1alrjcolt1nqe1itg17f515kcm0an.jpg"></div>
+						<div id="divZhuboPic" class="pic"></div>
 						<div class="pright">
-							<div class="nickname">美乐蒂</div>
-							<div class="datetime">1466584702</div>
+							<div id="divZhuboName" class="nickname"></div>
+							<div id="divCreateTime" class="datetime">1466584702</div>
 						</div>
 					</div>
-					<div class="litext">今天天真热，来块西瓜吧!</div>
-					<div class="liimages"><img src="http://o8syigvwe.bkt.clouddn.com/o_1alre8fc01ad8grp1n7a1mqv1css9.jpg"></div>
+					<div id="divEventContent" class="litext"></div>
+					<div id="divImageList" class="liimages"></div>
 					<div class="lifooter">
-						<dd>0</dd>
+						<dd id="divCommentCount">0</dd>
 					</div>
-					<div class="lipinglun">
-						<div class="pli">
-							<font>小王：</font>
-							<span>美美哒</span>
-						</div>
-					</div>
+					<div id="divPLHtml" class="lipinglun"></div>
 				</div>
 
 			</div>

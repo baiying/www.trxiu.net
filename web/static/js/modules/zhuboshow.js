@@ -75,6 +75,26 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
             html=html.replace("{{imageHtml}}",imageHtml);
 
 
+            //绑定评论html
+            var pinglunHtml="";
+            var plList=dataInfo.comment;
+            for(var j=0;j<plList.length;j++){
+                pinglunHtml+='  <div class="pli" commentId="'+plList[j].comment_id+'">\
+                                    <font>'+plList[j].fans_name+'：</font>\
+                                    <span>'+plList[j].content+'</span>\
+                                </div>';
+            }
+            if(dataInfo.comment_total>5){
+                pinglunHtml+='<div class="more">查看更多</div>';
+            }
+
+            
+            if(!!pinglunHtml){
+                pinglunHtml='<div class="lipinglun">'+pinglunHtml+'</div>';
+            }
+            html=html.replace("{{pinglunhtml}}",pinglunHtml);
+
+
 
 
             listHtml+=html;
@@ -121,10 +141,95 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
 
         //查看评论
-        $("body").on("click","#divDongtai>.li",function(){
-            var newsId=$(this).attr("news_id");
+        $("body").on("click","#divDongtai>.li .more",function(){
+            var newsId=$(this).closest(".li").attr("news_id");
             location.href="pinglunshow.html?news_id="+newsId;
         })
+
+
+        //关闭回复面板
+        $("body").on("click",".replybox",function(ev){
+
+            if($(ev.srcElement).closest(".innerbox").length==0){
+               $(".replybox").remove();
+            }
+            else if($(ev.srcElement).hasClass("btnReClose")){
+                $(".replybox").remove();
+            }
+        })
+
+
+        //展示评论面板
+        $("body").on("click","#divDongtai>.li .btnshowReplyBox",function(){
+            var newsId=$(this).closest(".li").attr("news_id");
+
+            var replyboxHtml=$("#tplReplyBox").html();
+            var replyCommentId="";
+            replyboxHtml=replyboxHtml.replace("{{newsId}}",newsId);
+            replyboxHtml=replyboxHtml.replace("{{replyCommentId}}",replyCommentId);
+            if($(".replybox").length>0){
+                $(".replybox").remove();
+            }
+            $("body").append(replyboxHtml);
+        })
+
+        //展示回复评论面板
+        $("body").on("click","#divDongtai>.li .pli",function(){
+            var newsId=$(this).closest(".li").attr("news_id");
+            var replyboxHtml=$("#tplReplyBox").html();
+            var replyCommentId=$(this).attr("commentId");
+            replyboxHtml=replyboxHtml.replace("{{newsId}}",newsId);
+            replyboxHtml=replyboxHtml.replace("{{replyCommentId}}",replyCommentId);
+            if($(".replybox").length>0){
+                $(".replybox").remove();
+            }
+            $("body").append(replyboxHtml);
+        })
+
+        
+        //提交评论信息
+        $("body").on("click",".replybox .btnReSave",function(){
+            var $box=$(this).closest(".replybox");
+            var newsId=$box.attr("newsId");
+            var replyCommentId=$box.attr("replyCommentId");
+            var content=$box.find(".textbox").val();
+
+            if(content.length<5){
+                util.alert("评论字数不能少于5个");
+                return;
+            }
+
+            $("#loading").show();
+            $.ajax({  
+                type : "post",  
+                url : config.apiHost+"ajax-news/news-comment/",
+                data:{
+                    news_id:newsId,
+                    openid:window.openid,
+                    parent_comment_id:replyCommentId,
+                    content:content,
+                },
+                dataType:"json",
+                success : function(resp) {
+                    if(resp.status=="success"){
+                        location.reload();
+
+                        $(".replybox").remove();
+                    }
+                    else{
+                        util.alert(resp.message);
+                    }
+                },
+                complete:function(){
+                     $("#loading").hide();
+                }
+            });
+        })
+
+
+
+        
+
 
 
 

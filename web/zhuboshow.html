@@ -7,10 +7,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
-    <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <link rel="stylesheet" type="text/css" href="static/css/page.css?1">
 	<title>盟主派对</title>
 	<script src="static/js/config.js"></script>
-    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js?2"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js?3"></script>
 
 <script id="tplEventItem" type="text/template">
 	<div class="li" news_id="{{news_id}}">
@@ -25,13 +25,22 @@
 		<div class="litext">{{content}}</div>
 		{{imageHtml}}
 		<div class="lifooter">
-			<dd>{{comments}}</dd>
+			<dd class="btnshowReplyBox">{{comments}}</dd>
 		</div>
-		<div class="lipinglun">
-			<div class="pli">
-				<font>小王：</font>
-				<span>美美哒</span>
+		{{pinglunhtml}}
+	</div>
+</script>
+
+
+<script id="tplReplyBox" type="text/template">
+	<div class="replybox" newsId="{{newsId}}" replyCommentId="{{replyCommentId}}">
+		<div class="innerbox">
+			<div class="replyHeader">
+				<dl class="btnReClose">取消</dl>
+				<dd>评论</dd>
+				<dt class="btnReSave">发布</dt>
 			</div>
+			<textarea class="textbox"></textarea>
 		</div>
 	</div>
 </script>
@@ -40,6 +49,10 @@
 
 </head>
 <body>
+
+
+
+
 
 	<div id="divShare" class="mask" style="display:none;">
 		<div class="pics">

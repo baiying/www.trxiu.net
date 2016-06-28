@@ -1,5 +1,6 @@
 require.config({
     baseUrl: 'static/js/modules/',
+    urlArgs: "bust=" +  (new Date()).getTime(),
     paths: {
         zepto: '../libs/zepto.min',
         login: '../libs/login',
@@ -78,6 +79,11 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 		getAjax();
 		nav.bind("zhubo");
 	}
-	main();
+
+
+    login.init(function(){
+        main();
+    })
+	
 
 })

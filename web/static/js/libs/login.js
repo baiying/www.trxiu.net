@@ -3,14 +3,16 @@ function($) {
   
     var Logincheck = {
         init: function(callback) {
-          
+            
+            callback({d:111});
+            return;
             var $this = this;
             $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
 
 
             if ( !! $this.getCookie("DA7F9084C361196F1147D0DE68FEC172")) {
-                var c_openid = $this.getCookie("DA7F9084C361196F1147D0DE68FEC172");
-                callback(c_openid);
+                var userInfo = $this.getCookie("DA7F9084C361196F1147D0DE68FEC172");
+                callback($.parseJSON(userInfo));
             } else {
                 var REDIRECT_URI = encodeURIComponent(location.href);
                 var openurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a1799c10d53e3c0&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
@@ -24,11 +26,18 @@ function($) {
                         data:{
                             code:code
                         },
+                        dataType:"json",
                         success:function(resp){
-                
-                            var value=JSON.stringify(resp);
-                            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", value, 1440);
-                            callback(resp)
+                            
+                            if(resp.status=="success"){
+                                var value=JSON.stringify(resp.data);
+                                $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", value, 1440);
+                                callback(resp.data);
+                            }
+                            else{
+                                alert(resp.message);
+                            }
+                            
                         }
                     })
 
