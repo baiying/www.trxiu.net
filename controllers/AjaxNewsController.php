@@ -105,15 +105,27 @@ class AjaxNewsController extends AjaxBaseController {
      */
     public function actionAddAnchorNews() {
         $rule = [
-            'anchor_id' => ['type' => 'int', 'required' => TRUE],
+            'openid' => ['type' => 'string', 'required' => TRUE],
             'content' => ['type' => 'string', 'required' => TRUE],
             'images' => ['type' => 'string', 'required' => FALSE],
-            'status' => ['type' => 'int', 'required' => FALSE, 'default' => 1],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
-        // 获取活动基本信息
-        // 获取当前有效的活动
-        $res = Yii::$app->api->post('news/add-anchor-news', $args);
+
+        //获取用户信息，提取主播ID
+        $openid = $args['openid'];
+        $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
+        if($code['code'] != 200) {
+            $this->export('fail', $code['message']);
+        }
+        $fans = $code['data'];
+        if(!isset($fans['anchor'])){
+            $this->export('fail', '您还不是主播，不能发布动态');
+        }
+        $news['content'] = $args['content'];
+        isset($args['images']) && $news['images'] = $args['images'];
+        $news['anchor_id'] = $fans['anchor']['anchor_id'];
+
+        $res = Yii::$app->api->post('news/add-anchor-news', $news);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
@@ -128,15 +140,25 @@ class AjaxNewsController extends AjaxBaseController {
     public function actionNewsComment() {
         $rule = [
             'news_id' => ['type' => 'int', 'required' => TRUE],
-            'fans_id' => ['type' => 'int', 'required' => TRUE],
+            'openid' => ['type' => 'string', 'required' => TRUE],
             'content' => ['type' => 'string', 'required' => TRUE],
             'parent_comment_id' => ['type' => 'int', 'required' => FALSE],
-            'status' => ['type' => 'int', 'required' => FALSE, 'default' => 1],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
-        // 获取活动基本信息
-        // 获取当前有效的活动
-        $res = Yii::$app->api->post('news/news-comment', $args);
+
+
+        //获取用户信息，提取粉丝ID
+        $openid = $args['openid'];
+        $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
+        if($code['code'] != 200) {
+            $this->export('fail', $code['message']);
+        }
+        $comment['fans_id'] = $code['data']['fans_id'];
+        $comment['news_id'] = $args['news_id'];
+        $comment['content'] = $args['content'];
+        isset($args['parent_comment_id']) && $comment['parent_comment_id'] = $args['parent_comment_id'];
+
+        $res = Yii::$app->api->post('news/news-comment', $comment);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
@@ -151,10 +173,24 @@ class AjaxNewsController extends AjaxBaseController {
     public function actionDelNews() {
         $rule = [
             'news_id' => ['type' => 'int', 'required' => TRUE],
-            'anchor_id' => ['type' => 'int', 'required' => TRUE],
+            'openid' => ['type' => 'string', 'required' => TRUE],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
-        $res = Yii::$app->api->post('news/del-news', $args);
+
+        //获取用户信息，提取主播ID
+        $openid = $args['openid'];
+        $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
+        if($code['code'] != 200) {
+            $this->export('fail', $code['message']);
+        }
+        $fans = $code['data'];
+        if(!isset($fans['anchor'])){
+            $this->export('fail', '您还不是主播，不能发布动态');
+        }
+        $news['news_id'] = $args['news_id'];
+        $news['anchor_id'] = $fans['anchor']['anchor_id'];
+
+        $res = Yii::$app->api->post('news/del-news', $news);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
@@ -169,10 +205,20 @@ class AjaxNewsController extends AjaxBaseController {
     public function actionDelNewsComment() {
         $rule = [
             'comment_id' => ['type' => 'int', 'required' => TRUE],
-            'fans_id' => ['type' => 'int', 'required' => TRUE],
+            'openid' => ['type' => 'string', 'required' => TRUE],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
-        $res = Yii::$app->api->post('news/del-news-comment', $args);
+
+        //获取用户信息，提取粉丝ID
+        $openid = $args['openid'];
+        $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
+        if($code['code'] != 200) {
+            $this->export('fail', $code['message']);
+        }
+        $comment['fans_id'] = $code['data']['fans_id'];
+        $comment['comment_id'] = $args['comment_id'];
+
+        $res = Yii::$app->api->post('news/del-news-comment', $comment);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
