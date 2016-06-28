@@ -18,12 +18,11 @@ require.config({
 require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plupload,qiniu){
    
 
-    login.init(function(oid){
-       alert(oid)
-    });
+    login.init(function(){
+        
+    })
 
     return;
-
 
     
     //绑定上传事件
@@ -117,7 +116,7 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
 
 
     function bindEvents(){
-        //bindUploadEvents();
+        bindUploadEvents();
         addEvents();
 
 

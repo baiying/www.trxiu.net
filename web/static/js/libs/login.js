@@ -3,8 +3,7 @@ function($) {
   
     var Logincheck = {
         init: function(callback) {
-            return;
-
+          
             var $this = this;
             $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
 
@@ -26,8 +25,9 @@ function($) {
                             code:code
                         },
                         success:function(resp){
-
-                            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
+                
+                            var value=JSON.stringify(resp);
+                            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", value, 1440);
                             callback(resp)
                         }
                     })
