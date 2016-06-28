@@ -14,7 +14,7 @@ class QiniuController extends Controller {
     public function actionAjax() {
         if(!Yii::$app->request->get('act')) {
             $json = ['status'=>'fail', 'message'=>'缺少act参数'];
-            exit(Json::encode($json));
+            exit(json_encode($json));
         }
         $act = Yii::$app->request->get('act');
         switch($act) {
