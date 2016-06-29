@@ -40,7 +40,7 @@ class AjaxAccountController extends AjaxBaseController {
         $rule = [
             'code' => ['type'=>'string', 'required'=>TRUE]
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         // 用code换取access_token
         $res = Yii::$app->api->get('weixin/oauth-access-token', $args);
         if($res['code'] == 200) {
