@@ -19,7 +19,6 @@ class OauthController extends Controller {
         $args = [
             'code' => Yii::$app->request->get('code')
         ];
-        var_dump($args);exit;
         // 用code换取access_token
         $res = Yii::$app->api->get('weixin/oauth-access-token', $args);
         if($res['code'] == 200) {
