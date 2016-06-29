@@ -363,7 +363,8 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 @media only screen and (max-device-width:320px),(max-device-width:480px) and (-webkit-device-pixel-ratio:1.5)
 {
 	.page .pdate{ margin-top: 180px;}
-	.zhubolistpage,.jiangpinglistpage,.guizepage,.huojianglistpage,.lapiaopage{top: 205px;}
+	.zhubolistpage,.jiangpinglistpage,.huojianglistpage,.lapiaopage{top: 205px;}
+	.guizepage{top:20px;}
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 195px;}
 }

@@ -37,7 +37,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                 type : "post",  
                 url : config.apiHost+"ajax-vote/vote/",
                 data:{
-                    ballot_id:params["ballot_id"],
+                    ballot_id:util.getCookie("ballot_id"),
                     anchor_id:params["anchor_id"],
                     fans_id: window.userInfo.openid
                 },

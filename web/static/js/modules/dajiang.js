@@ -56,6 +56,9 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                 else{
                     util.alert(resp.message);
                 }
+            },
+            complete:function(){
+                $("#loading").hide();
             }
         });
     }

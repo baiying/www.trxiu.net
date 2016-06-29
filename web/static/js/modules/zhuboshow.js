@@ -240,7 +240,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             type : "post",  
             url : config.apiHost+"ajax-ballot/anchor-in-ballot/",
             data:{
-                ballot_id:params["ballot_id"],
+                ballot_id:util.getCookie("ballot_id"),
                 anchor_id: params["anchor_id"],
                 openid:window.userInfo.openid
             },
