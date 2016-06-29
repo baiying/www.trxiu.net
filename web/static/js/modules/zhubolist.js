@@ -60,6 +60,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 
                 if(resp.status=="success"){
                     window.ballot_id=resp.data.ballot.ballot_id;
+                    
+                    util.setCookie("ballot_id",resp.data.ballot.ballot_id,30);
                     bindBaseInfo(resp.data.ballot);
                     bindZhuBoList(resp.data.anchors)
                 }

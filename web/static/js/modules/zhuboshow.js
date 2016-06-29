@@ -34,11 +34,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             location.href=dataInfo.broadcast;
         })
 
-
-        $("#divYoukePanel").hide();
-        $("#divZhuboPanel").show();
-        return;
-
         if(dataInfo.isAnchor==false){   //如果不是主播本人
             $("#divYoukePanel").show();
             $("#divZhuboPanel").hide();

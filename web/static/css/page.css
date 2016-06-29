@@ -27,7 +27,7 @@ body{background: #fc2d8e;}
 .comjiangping .li .title{ height: 20px; font-size: 16px; color: #fff; background-image:url(../img/logo_apple.png); background-repeat: no-repeat;
  background-position: right center; background-size: 24px; padding: 15px 25px 15px 15px; }
 .comjiangping .li .jpname{font-size: 10px; height: 20px; padding: 15px; margin-left: 10px; line-height: 24px;  color: #fff; }
-.comjiangping .li .product img{ height: 64px; border:none;  position: absolute; right: 0px; top: -10px;}
+.comjiangping .li .product img{ height: 55px; border:none;  position: absolute; right: 0px; top: -10px;}
 .comjiangping .li.n1 { background: #fb2d8e; }
 .comjiangping .li.n2 { background: #a16eff; }
 .comjiangping .li.n2 .title{ background-image:url(../img/logo_mi.png);}
@@ -48,7 +48,10 @@ body{background: #fc2d8e;}
 
 
 /*规则页*/
-.guizepage{position: absolute; top: 240px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.guizepage{position: absolute; top: 20px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.guizepage ol{ list-style-type: disc}
+.guizepage li{padding: 5px 0;}
+.guizepage .case{ height: 12px; line-height: 12px; color: #666666; border-left: 3px solid #fc1f8c; padding-left: 5px;}
 .guizepage .desc{padding: 10px 0;}
 .guizepage .desc p{padding: 5px 0;}
 
@@ -101,7 +104,7 @@ body{background: #fc2d8e;}
 .xiaoxipage .li dd .icon.end{ background-image:url(../img/icon_jieshu.png); }
 .xiaoxipage .li dd .msg{flex:1; padding-left: 10px; }
 .xiaoxipage .li dd .msg .mtitle{font-size: 11px; padding-bottom: 5px; color: #666666;}
-.xiaoxipage .li dd .msg .mcontent{ width: 60%;  background: #fc2d8e; padding:12px; color: #fff; border-radius: 5px; position: relative;}
+.xiaoxipage .li dd .msg .mcontent{ width: 86%;  background: #fc2d8e; padding:12px; color: #fff; border-radius: 5px; position: relative;}
 .xiaoxipage .li dd .msg .mcontent::after{ border-bottom: 20px solid #fc2d8e; border-left: 10px solid transparent;
  border-right: 10px solid transparent; display: block; content: ""; position: absolute;left: -10px; top: 10px; 
  transform:rotate(-90deg); -webkit-transform:rotate(-90deg);  }

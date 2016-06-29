@@ -11,32 +11,23 @@
     <script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/xiaoxi.js"></script>
 	<title>盟主派对</title>
+	<script id="tplItem" type="text/template">
+		<div class="li">
+			<dt><span>{{create_time}}</span></dt>
+			<dd>
+				<div class="icon"></div>
+				<div class="msg">
+					<div class="mtitle">系统消息</div>
+					<div class="mcontent">{{content}}</div>
+				</div>
+			</dd>
+		</div>
+	</script>
+
 </head>
 <body>
 	<div class="page">
-		<div class="xiaoxipage">
-			<div class="li">
-				<dt><span>6月20日 12:22</span></dt>
-				<dd>
-					<div class="icon"></div>
-					<div class="msg">
-						<div class="mtitle">系统消息</div>
-						<div class="mcontent">恭喜你，抽奖获得大礼包恭喜你，抽奖获得大礼包恭喜你，抽奖获得大礼包恭喜你，抽奖获得大礼包</div>
-					</div>
-				</dd>
-			</div>
-			<div class="li">
-				<dt><span>6月20日 12:22</span></dt>
-				<dd>
-					<div class="icon end"></div>
-					<div class="msg">
-						<div class="mtitle">系统消息</div>
-						<div class="mcontent">恭喜你，抽奖获得大礼包</div>
-					</div>
-				</dd>
-			</div>
-
-		</div>
+		<div id="divXiaoXiList" class="xiaoxipage"></div>
 	</div>
 	<div class="footer"></div>
 </body>
