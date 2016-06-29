@@ -40,7 +40,7 @@ class AjaxAccountController extends AjaxBaseController {
         $rule = [
             'code' => ['type'=>'string', 'required'=>TRUE]
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
         // 用code换取access_token
         $res = Yii::$app->api->get('weixin/oauth-access-token', $args);
         if($res['code'] == 200) {
@@ -56,7 +56,7 @@ class AjaxAccountController extends AjaxBaseController {
             $data['expires_in'] = $expiresIn;
             unset($data['privilege']);
             // 用户信息入库，如果用户已注册为粉丝，则接口会直接返回粉丝ID
-            $resReg = Yii::$app->api->post('fans/register', $data);
+            $resReg = Yii::$app->api->post('debug/fans/register', $data);
             $fansId = $resReg['data']['fans_id'];
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
