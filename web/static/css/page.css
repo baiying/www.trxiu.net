@@ -280,10 +280,10 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .zbshowpage .dongtai .li .lipinglun{background: #ececec; padding:5px; margin: 5px 0; position: relative; }
 .zbshowpage .dongtai .li .lipinglun::after{width: 10px; height: 10px; position: absolute; content: ""; transform:rotate(45deg); -webkit-transform:rotate(45deg);
  right: 20px; top: -5px; background: #ececec; }
-.zbshowpage .dongtai .li .lipinglun .pli{ line-height: 16px; padding: 2px; }
+.zbshowpage .dongtai .li .lipinglun .pli{ line-height: 16px; padding: 2px; cursor: pointer;}
 .zbshowpage .dongtai .li .lipinglun .pli font{color:#888888;  }
 .zbshowpage .dongtai .li .lipinglun .pli span{color: #333333; word-break:break-all;}
-.zbshowpage .dongtai .li .lipinglun .more{ width: 100%; text-align: center; padding: 5px 0; margin-bottom: 5px; background: #ccc; color: #666;}
+.zbshowpage .dongtai .li .lipinglun .more{ width: 100%; text-align: center; padding: 5px 0; margin-bottom: 5px; background: #ccc; color: #666; cursor: pointer;}
 .zbshowpage .header .zhubopic.n1 .pic img{border-color: #fc2d8e;}
 .zbshowpage .header .zhubopic.n1 .pic::after{background-image:url(../img/ic_guanjun.png); }
 .zbshowpage .header .zhubopic.n2 .pic img{border-color: #a16eff;}
@@ -343,6 +343,10 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 .mask .pics span.weixin{background-image: url(../img/ic_weixin.png)}
 .mask .pics span.friends{background-image: url(../img/ic_pyq.png)}
 .mask .pics span.qq{background-image: url(../img/ic_qq.png)}
+
+
+
+
 
 
 /*浏览图片遮罩*/

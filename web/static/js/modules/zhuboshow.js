@@ -2,9 +2,11 @@ require.config({
     baseUrl: 'static/js/modules/',
     paths: {
         zepto: '../libs/zepto.min',
+        login: '../libs/login',
         util: '../libs/util',
         navigation: '../libs/navigation',
         imgPreview: '../libs/imgPreview',
+        jweixin:'../libs/jweixin-1.0.0'
     },
     shim:{
         zepto: {exports: '$'}
@@ -12,7 +14,7 @@ require.config({
 });
 
 
-require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPreview){
+require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,login,util,nav,imgPreview,wx){
 
    
 
@@ -32,6 +34,10 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
             location.href=dataInfo.broadcast;
         })
 
+
+        $("#divYoukePanel").hide();
+        $("#divZhuboPanel").show();
+        return;
 
         if(dataInfo.isAnchor==false){   //如果不是主播本人
             $("#divYoukePanel").show();
@@ -107,7 +113,8 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
         //投票
         $("#btnTouPiao").click(function(){
-            location.href="lapiao.html?zhuboid="+ util.getParams()["id"];
+            var params=util.getParams();
+            location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
         })
 
 
@@ -124,7 +131,8 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
         //发布动态
         $("#btnAddEvents").click(function(){
-            location.href="addEvents.html"
+            var params=util.getParams();
+            location.href="addEvents.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
         })
 
         //预览图片
@@ -205,7 +213,7 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
                 url : config.apiHost+"ajax-news/news-comment/",
                 data:{
                     news_id:newsId,
-                    openid:window.openid,
+                    openid:window.userInfo.openid,
                     parent_comment_id:replyCommentId,
                     content:content,
                 },
@@ -228,11 +236,6 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
 
 
 
-        
-
-
-
-
     }
 
     //获取页面数据
@@ -244,6 +247,7 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
             data:{
                 ballot_id:params["ballot_id"],
                 anchor_id: params["anchor_id"],
+                openid:window.userInfo.openid
             },
             dataType:"json",
             success : function(resp) {
@@ -279,12 +283,60 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
                 else{
                     util.alert(resp.message);
                 }
-                
             }
         });
     }
 
+
+    //绑定分享信息
+    function bindShareInfo(){
+        var params=util.getParams();
+        $.ajax({  
+            type : "get",  
+            url : config.apiHost+"ajax-account/get-js-sign/",
+            data:{
+                url:location.href,
+            },
+            dataType:"json",
+            success : function(resp) {
+                console.log(resp)
+                console.log(resp.data.signature)
+
+                if(resp.status=="success"){
+                    wx.config({
+                        beta: true, // 必填，开启内测接口调用，注入wx.invoke和wx.on方法       
+                        debug: true,//如果在测试环境可以设置为true，会在控制台输出分享信息； 
+                        appId:resp.data.appId, // 必填，公众号的唯一标识
+                        timestamp:resp.data.timestamp , // 必填，生成签名的时间戳
+                        nonceStr:resp.data.nonceStr, // 必填，生成签名的随机串
+                        signature:resp.data.signature,// 必填
+                        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','hideMenuItems','hideAllNonBaseMenuItem','playVoice'] // 必填
+                    });
+                    wx.ready(function(res){
+
+                        wx.onMenuShareTimeline({
+                            title : "盟主派对",
+                            link :"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
+                            imgUrl :window.userInfo.thumb
+                        });
+                    })
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            }
+        });
+    }
+
+
+
+
+
+
+
+
     function main(){
+        bindShareInfo();
         getAjaxData(function(){
             $("#loading").hide();
             $(".page").show();
@@ -294,7 +346,11 @@ require(["zepto","util","navigation","imgPreview"],function($,util,nav,imgPrevie
         bindPageEvents();
     }
 
-    main();
+    login.init(function(userInfo){
+        window.userInfo=userInfo;
+        main();
+    })
+
 
 
 })

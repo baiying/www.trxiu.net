@@ -2,6 +2,7 @@ require.config({
     baseUrl: 'static/js/modules/',
     paths: {
         zepto: '../libs/zepto.min',
+        login: '../libs/login',
         util: '../libs/util',
         navigation: '../libs/navigation',
     },
@@ -11,7 +12,7 @@ require.config({
 });
 
 
-require(["zepto","util","navigation"],function($,util,nav){
+require(["zepto","login","util","navigation"],function($,login,util,nav){
 
     
 
@@ -174,6 +175,10 @@ require(["zepto","util","navigation"],function($,util,nav){
         bindPageEvents();
 		nav.bind("zhubo");
 	}
-	main();
+	
+    login.init(function(userInfo){
+        window.userInfo=userInfo;
+        main();
+    })
 
 })

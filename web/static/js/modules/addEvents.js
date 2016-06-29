@@ -4,6 +4,7 @@ require.config({
     paths: {
         zepto: '../libs/zepto.min',
         login: '../libs/login',
+        util: '../libs/util',
         moxie: '../libs/moxie',
         plupload: '../libs/plupload.min',
         qiniu: '../libs/qiniu.min',
@@ -15,7 +16,7 @@ require.config({
 });
 
 
-require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plupload,qiniu){
+require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,util,moxie,plupload,qiniu){
    
 
     
@@ -34,7 +35,8 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
             dragdrop: true,
             chunk_size: '4mb',
             multi_selection: true,
-            uptoken_url: 'http://wechat.trxiu.net/qiniu/ajax/?act=token',
+            //uptoken_url: 'http://wechat.trxiu.net/qiniu/ajax/?act=token',
+            uptoken:$("#uptoken").val(),
             domain: 'http://o8syigvwe.bkt.clouddn.com/',
             get_new_uptoken: false,
             unique_names: true,
@@ -43,7 +45,7 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
             init: {
                 // 添加文件时的触发事件
                 'FilesAdded': function(up, files) {
-
+                    $("#loading").show();
                 },
                 // 开始上传前的触发事件
                 'BeforeUpload': function(up, file) {
@@ -59,6 +61,12 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
                 },
                 // 上传结束后触发事件
                 'FileUploaded': function(up, file, info) {
+
+                    var imgHtml='<img src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'" />';
+                    $(".imglist").append(imgHtml)
+                     $("#loading").hide();
+                    
+   
                    
                 },
                 // 异常事件
@@ -71,10 +79,12 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
 
 
 
-    //发布动态
-    function addEvents(){
+    function bindPageEvents(){
 
+        var params=util.getParams();
+        //发布动态
         $("#btnSubmit").click(function(){
+
             var imageList=[];
             $(".imglist img").each(function(){
                 imageList.push($(this).attr("src"));
@@ -84,49 +94,49 @@ require(["zepto","login","moxie","plupload","qiniu"],function($,login,moxie,plup
                 type : "post",  
                 url : config.apiHost+"ajax-news/add-anchor-news/",
                 data:{
-                    anchor_id:window.anchor_id,
+                    openid: window.userInfo.openid,
                     content:content,
-                    images:imageList
-    
+                    images:JSON.stringify(imageList)
                 },
                 dataType:"json",
                 success : function(resp) {
                     if(resp.status=="success"){
-                        console.log(111)
+                        location.href="zhuboshow.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
                     }
                     else{
                         util.alert(resp.message);
                     }
-                },
-                complete:function(){
-                    callback();
                 }
             });
-
         })
-
-        
-        
     }
 
 
-
-
-    function bindEvents(){
-        bindUploadEvents();
-        addEvents();
-
-
-
+    function getUpdateParams(){
+        $.ajax({  
+            type : "get",  
+            url : "http://wechat.trxiu.net/qiniu/ajax/?act=token",
+            dataType:"json",
+            success : function(resp) {
+                $("#uptoken").val(resp.uptoken);
+                bindUploadEvents();
+            }
+        });
     }
+
 
 
     //页面主入口
     function main(){
-        bindEvents();
-        
+        getUpdateParams();
+        bindPageEvents();
     }
-    main();
+    
+
+    login.init(function(userInfo){
+        window.userInfo=userInfo;
+        main();
+    })
 
 })
 

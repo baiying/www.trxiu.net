@@ -3,9 +3,11 @@ function($) {
   
     var Logincheck = {
         init: function(callback) {
-            
-            callback({d:111});
+            callback({
+                openid:"1111111"
+            })
             return;
+
             var $this = this;
             $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
 
@@ -19,7 +21,7 @@ function($) {
 
                 if ($this.GetURLParameter('code')) {
                     var code=$this.GetURLParameter('code');
-                    alert(code)
+                   
                     $.ajax({
                         url:config.apiHost+"ajax-account/login-by-code/",
                         type : "post",  
@@ -35,7 +37,11 @@ function($) {
                                 callback(resp.data);
                             }
                             else{
-                                alert(resp.message);
+                                //alert(resp.message);
+                                callback({
+                                    openid:"1111111"
+                                })
+
                             }
                             
                         }

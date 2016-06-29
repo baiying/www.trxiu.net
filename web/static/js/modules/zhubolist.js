@@ -18,7 +18,6 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 
 
 
-
     //绑定页面基础信息
     function bindBaseInfo(data){
         var title=data.ballot_name+"("+data.begin_time+"-"+data.end_time+")";
@@ -81,7 +80,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 	}
 
 
-    login.init(function(){
+    login.init(function(userInfo){
+        window.userInfo=userInfo;
         main();
     })
 	
