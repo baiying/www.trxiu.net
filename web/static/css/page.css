@@ -65,6 +65,17 @@ body{background: #fc2d8e;}
 .lapiaodetail .mbox .mcont.zhuboinfo{ margin-bottom:60px; margin-top: 10px; display:flex; flex-flow: row;}
 .lapiaodetail .mbox .mcont.zhuboinfo .imgpanel{flex:1; position: relative;}
 .lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd{width: 80%; margin:0 10%; border:3px solid #fc2d8e; border-radius: 50%; position: relative;}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd::after{width: 36px; height: 42px; content: ""; position: absolute; right: 0px; bottom: 0; background-size: 32px; 
+background-repeat: no-repeat; background-position: center; }
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n1{ border-color:#fc2d8e;}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n1::after{background-image:url(../img/ic_guanjun.png);}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n2{ border-color:#a16eff;}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n2::after{background-image:url(../img/ic_yajun.png);}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n3{ border-color:#ff921c;}
+.lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd.n3::after{background-image:url(../img/ic_jijun.png);}
+
+
+
 .lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd .img{width: 100%;  border-radius: 50%; }
 .lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dd .icon{width: 36px;  position: absolute; right: 0px; bottom: 0;}
 .lapiaodetail .mbox .mcont.zhuboinfo .imgpanel dl{ width: 100%; height: 20px; bottom: -25px; font-size: 13px; line-height: 20px; text-align: center; color: #74274b; position: absolute; }

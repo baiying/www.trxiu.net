@@ -71,7 +71,7 @@ function($) {
         setCookie: function(NameOfCookie, value, expiredays) {
             var ExpireDate = new Date();
             ExpireDate.setTime(ExpireDate.getTime() + (expiredays * 24 * 3600 * 1000));
-            document.cookie = NameOfCookie + "=" + escape(value) + ((expiredays == null) ? "": "; expires=" + ExpireDate.toGMTString()) + ";domain=.wepiao.com;";
+            document.cookie = NameOfCookie + "=" + escape(value) + ((expiredays == null) ? "": "; expires=" + ExpireDate.toGMTString()) + ";";
         },
         getCookie: function(NameOfCookie) {
             if (document.cookie.length > 0) {

@@ -300,7 +300,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                 if(resp.status=="success"){
                     wx.config({
                         beta: true, // 必填，开启内测接口调用，注入wx.invoke和wx.on方法       
-                        debug: true,//如果在测试环境可以设置为true，会在控制台输出分享信息； 
+                        debug: false,//如果在测试环境可以设置为true，会在控制台输出分享信息； 
                         appId:resp.data.appId, // 必填，公众号的唯一标识
                         timestamp:resp.data.timestamp , // 必填，生成签名的时间戳
                         nonceStr:resp.data.nonceStr, // 必填，生成签名的随机串
@@ -310,8 +310,8 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                     wx.ready(function(res){
 
                         wx.onMenuShareTimeline({
-                            title : "盟主派对",
-                            link :"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
+                            title : "盟主派对22",
+                            link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
                             imgUrl :window.userInfo.thumb
                         });
                     })
@@ -322,10 +322,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             }
         });
     }
-
-
-
-
 
 
 
