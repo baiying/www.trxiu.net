@@ -107,13 +107,26 @@ class AjaxBallotController extends AjaxBaseController {
         $rule = [
             'ballot_id' => ['type'=>'int', 'required'=>true]
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $ballotResult = Yii::$app->api->get('ballot/get-ballot-detail', $args);
+        if($ballotResult['code'] != 200 || empty($ballotResult['data'])) {
+            $this->export('fail', $ballotResult['message']);
+        }
+        if(isset($ballotResult['data']['anchorList'])){
+            unset($ballotResult['data']['anchorList']);
+        }
+        $ballot = $ballotResult['data'];
+        $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
+        $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         // 获取活动奖项设置
         $res = Yii::$app->api->get('ballot-prize/search', $args);
         if($res['code'] != 200 || empty($res['data'])) {
             $this->export('fail', $res['message']);
         }
-        $this->export('success', $res['message'], $res['data']);
+        $parizeList = $res['data'];
+        $ballot['parizeList'] = $parizeList;
+
+        $this->export('success', $res['message'], $ballot);
     }
     /**
      * ballot-add-votes
