@@ -26,6 +26,8 @@ class AjaxBallotController extends AjaxBaseController {
         }
         $ballot = $res['data']['list'][0];
         $ballot['votes'] += $ballot['votes_amend'];
+        $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
+        $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         unset($ballot['votes_amend']);
         // 获取本活动的信息及关联的主播信息
         $res = Yii::$app->api->get('ballot/get-ballot-detail', [
