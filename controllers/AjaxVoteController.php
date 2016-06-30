@@ -23,6 +23,7 @@ class AjaxVoteController extends AjaxBaseController {
             'fans_id'   => ['type'=>'int', 'required'=>TRUE],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args['votes'] = 1;
         $res = Yii::$app->api->post('vote/add', $args);
         if($res['code'] == 200) {
             $this->export('success', $res['message']);
