@@ -8,21 +8,23 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/hongbao.js"></script>
 	<title>盟主派对</title>
 </head>
 <body>
 	<div class="page">
-		<p class="pdate">第一期（5月1日-5月30日）</p>
+		<p id="pHuoDongTitle" class="pdate"></p>
 		<div class="hongbaopage">
 			<div class="innerBox">
 				<div class="iconhongbao"></div>
 				<div class="total">
-					<h3>1000.00</h3>
+					<h3 id="divTotal"></h3>
 					<h4>元</h4>
 				</div>
 				<p>转发后可领取红包</p>
 				<div class="btn">
-					<span>立即领取</span>
+					<span id="btnReceive">立即领取</span>
 				</div>
 			</div>
 

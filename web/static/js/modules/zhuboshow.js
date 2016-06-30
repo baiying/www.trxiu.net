@@ -310,7 +310,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                     wx.ready(function(res){
 
                         wx.onMenuShareTimeline({
-                            title : "盟主派对22",
+                            title : "盟主派对",
                             link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
                             imgUrl :window.userInfo.thumb
                         });
