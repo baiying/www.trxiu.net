@@ -5,6 +5,7 @@ require.config({
         login: '../libs/login',
         util: '../libs/util',
         navigation: '../libs/navigation',
+        jweixin:'../libs/jweixin-1.0.0'
     },
     shim:{
         zepto: {exports: '$'}
@@ -12,11 +13,13 @@ require.config({
 });
 
 
-require(["zepto","login","util","navigation"],function($,login,util,nav){
+require(["zepto","login","util","navigation","jweixin"],function($,login,util,nav,wx){
+
+    var params=util.getParams();
 
 
 
-
+    //绑定页面事件
     function bindPageEvents(){
 
         //选择拉票金额
@@ -24,11 +27,6 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
              $("#divAmountTotal>span").removeClass("on");
              $(this).addClass("on");
         })
-
-
-
-
-
 
         //免费投一票
         $("#btnFreeSubmit").click(function(){
@@ -53,10 +51,120 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
             });
         })
     }
+
+
+
+    /*
+
+
+ballot_id 活动ID
+anchor_id 主播ID
+fans_id 发起拉票的粉丝ID
+source_id 来源拉票ID
+charge 充值金额，以分为单位的整数
+status 拉票状态，1 有效，2 待支付，3 无效
+
+    */
+
+    //支付结果通知
+    function payResultEvent(total){
+        $.ajax({  
+            type : "post",  
+            url : config.apiHost+"ajax-canvass/create/",
+            data:{
+                ballot_id:util.getCookie("ballot_id"),
+                anchor_id:params["anchor_id"],
+                fans_id: window.userInfo.openid,
+                source_id:params["source_id"],
+                charge:total,
+                status:1
+            },
+            dataType:"json",
+            success : function(resp) {
+                if(resp.status=="success"){
+                    location.href="paysuccess.html";
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            }
+        });
+    }
    
 
-    //
+    //绑定支付事件
+    function bindPayEvent(){
+        //选择金额去拉票
+        $("#btnPay").click(function(){
+            var total=$("#divAmountTotal .on").attr("data-value");
+            $.ajax({  
+                type : "post",  
+                url : config.apiHost+"ajax-pay/wx-prepay/",
+                data:{
+                    fans_id: window.userInfo.fansid,
+                    openid:window.userInfo.openid,
+                    ballot_id:params["ballot_id"],
+                    anchor_id:params["anchor_id"],
+                    total:parseInt(total)*100
+                },
+                dataType:"json",
+                success : function(resp) {
+                    if(resp.status=="success"){
+                        wx.ready(function () {
+                            wx.chooseWXPay({
+                               timestamp: resp.data.timestamp, 
+                               nonceStr: resp.data.nonceStr, 
+                               package:resp.data.package, 
+                               signType: resp.data.signType, 
+                               paySign: resp.data.paySign, 
+                               success: function (res) {
+                                    payResultEvent(parseInt(total)*100);
+                               }
+                           });
+                        });
+                    }
+                    else{
+                        util.alert(resp.message);
+                    }
+                }
+            });
+        })
+    }
+
+
+    //绑定微信jsapi配置信息
+    function bindWXConfig(){
+        $.ajax({  
+            type : "post",  
+            url : config.apiHost+"ajax-account/get-js-sign/",
+            data:{
+                url:location.href,
+            },
+            dataType:"json",
+            success : function(resp) {
+
+                if(resp.status=="success"){
+                    wx.config({
+                        beta: true, // 必填，开启内测接口调用，注入wx.invoke和wx.on方法       
+                        debug: false,//如果在测试环境可以设置为true，会在控制台输出分享信息； 
+                        appId:resp.data.appId, // 必填，公众号的唯一标识
+                        timestamp:resp.data.timestamp , // 必填，生成签名的时间戳
+                        nonceStr:resp.data.nonceStr, // 必填，生成签名的随机串
+                        signature:resp.data.signature,// 必填
+                        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','hideMenuItems','hideAllNonBaseMenuItem','playVoice','chooseWXPay'] // 必填
+                    });
+                    bindPayEvent();
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            }
+        });
+    }
+
+
     function main(){
+        bindWXConfig();
         bindPageEvents();
         nav.bind("zhubo");
     }
