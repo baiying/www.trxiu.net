@@ -287,7 +287,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
     function bindShareInfo(){
         var params=util.getParams();
         $.ajax({  
-            type : "get",  
+            type : "post",  
             url : config.apiHost+"ajax-account/get-js-sign/",
             data:{
                 url:location.href,

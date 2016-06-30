@@ -56,7 +56,7 @@ class AjaxAccountController extends AjaxBaseController {
             $data['expires_in'] = $expiresIn;
             unset($data['privilege']);
             // 用户信息入库，如果用户已注册为粉丝，则接口会直接返回粉丝ID
-            $resReg = Yii::$app->api->post('debug/fans/register', $data);
+            $resReg = Yii::$app->api->post('fans/register', $data);
             $fansId = $resReg['data']['fans_id'];
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
@@ -82,11 +82,8 @@ class AjaxAccountController extends AjaxBaseController {
      * @param string $url   请求地址
      */
     public function actionGetJsSign() {
-        $rule = [
-            'url' => ['type'=>'string', 'required'=>true]
-        ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
-        $res = Yii::$app->api->get('weixin/js-sign', $args);
+        $url = urldecode(Yii::$app->request->post('url'));
+        $res = Yii::$app->api->post('weixin/js-sign', ['url'=>$url]);
         $this->export('success', '签名获取成功', $res['data']);
     }
 }
