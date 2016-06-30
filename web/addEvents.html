@@ -9,26 +9,22 @@
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
     <script src="static/js/config.js"></script>
-    <script src="static/js/require.js" data-main="static/js/modules/xiaoxi.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/addEvents.js?3"></script>
 	<title>盟主派对</title>
-	<script id="tplItem" type="text/template">
-		<div class="li">
-			<dt><span>{{create_time}}</span></dt>
-			<dd>
-				<div class="icon"></div>
-				<div class="msg">
-					<div class="mtitle">系统消息</div>
-					<div class="mcontent">{{content}}</div>
-				</div>
-			</dd>
-		</div>
-	</script>
-
 </head>
-<body>
-	<div class="page">
-		<div id="divXiaoXiList" class="xiaoxipage"></div>
+<body class="addEventPage">
+
+	<input id="uptoken" type="hidden"  /> 
+	<div id="loading" class="loading" style="display:none;"><div><i></i></div></div>
+	<div class="pcont">
+		<textarea id="txtContent"></textarea>
+		<div class="imgpanel" id="container">
+			
+			
+			<span  id="pickfiles"  class="btnadd"></span>
+			<span class="imglist"></span>
+		</div>
+		<div id="btnSubmit" class="btnPanel">确定发布</div>
 	</div>
-	<div class="footer"></div>
 </body>
 </html>

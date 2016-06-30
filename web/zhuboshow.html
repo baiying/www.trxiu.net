@@ -7,12 +7,60 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
-    <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <link rel="stylesheet" type="text/css" href="static/css/page.css?2">
 	<title>盟主派对</title>
 	<script src="static/js/config.js"></script>
-    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/zhuboshow.js?4"></script>
+
+<script id="tplEventItem" type="text/template">
+	<div class="li" news_id="{{news_id}}">
+		<div class="liheader">
+			<div class="pic"><img src="{{zhubopic}}"/></div>
+			<div class="pright">
+				<div class="nickname">{{nickName}}</div>
+				<div class="datetime">{{addedDate}}</div>
+			</div>
+			
+		</div>
+		<div class="litext">{{content}}</div>
+		{{imageHtml}}
+		<div class="lifooter">
+			<dd class="btnshowReplyBox">{{comments}}</dd>
+		</div>
+		{{pinglunhtml}}
+	</div>
+</script>
+
+
+<script id="tplReplyBox" type="text/template">
+	<div class="replybox" newsId="{{newsId}}" replyCommentId="{{replyCommentId}}">
+		<div class="innerbox">
+			<div class="replyHeader">
+				<dl class="btnReClose">取消</dl>
+				<dd>评论</dd>
+				<dt class="btnReSave">发布</dt>
+			</div>
+			<textarea class="textbox"></textarea>
+		</div>
+	</div>
+</script>
+
+
+
 </head>
 <body>
+
+
+
+
+
+	<div id="divShare" class="mask" style="display:none;">
+		<div class="pics">
+			<span class="weixin">微信</span>
+			<span class="friends">朋友圈</span>
+			<span class="qq">QQ好友</span>
+		</div>
+	</div>
 	<div id="loading" class="loading"><div><i></i></div></div>
 	<div class="page" style="display:none;">
 		<p class="pdate">第一期（5月1日-5月30日）</p>
@@ -34,34 +82,18 @@
 			</div>
 			<div class="case">主播介绍</div>
 			<div class="desc" id="divDescription"></div>
-			<div class="btnpanel">
-				<div class="btntoupiao">投票</div>
-				<div class="btnzhibo">直播间</div>
+			<div id="divYoukePanel" class="btnpanel" style="display:none;">
+				<div id="btnTouPiao" class="btntoupiao">投票</div>
+				<div id="btnZhiBoJian" class="btnzhibo">直播间</div>
 			</div>
+
+			<div id="divZhuboPanel" class="btnpanel" >
+				<div id="btnLaPiao" class="btntoupiao">我要拉票</div>
+				<div id="btnAddEvents" class="btnzhibo">发布动态</div>
+			</div>
+			<div class="desc" style="padding:15px 15px 0 15px; text-align: center;">发布动态可以让自己显示在首页更靠前的位置哦~</div>
 			<div class="line"></div>
-			<div class="dongtai">
-				<div class="li">
-					<div class="liheader">
-						<div class="pic"><img src="uploads/111.jpg"/></div>
-						<div class="pright">
-							<div class="nickname">LiLian</div>
-							<div class="datetime">十分钟前</div>
-						</div>
-						
-					</div>
-					<div class="litext">今天天气真是不错，出来走走非常好，好久没有看到这样的天气了，嘻嘻嘻~</div>
-					<div class="liimages">
-						<img src="uploads/111.jpg"/>
-						<img src="uploads/111.jpg"/>
-						<img src="uploads/111.jpg"/>
-						<img src="uploads/111.jpg"/>
-						<img src="uploads/111.jpg"/>
-						<img src="uploads/111.jpg"/>
-
-					</div>
-				</div>
-			</div>
-
+			<div id="divDongtai" class="dongtai"></div>
 		</div>
 	</div>
 	<div class="footer"></div>
