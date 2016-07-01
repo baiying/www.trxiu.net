@@ -18,8 +18,8 @@ class AjaxCanvassController extends AjaxBaseController {
         $rule = [
             'canvass_id' => ['type'=>'string', 'required'=>TRUE],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
-        $res = Yii::$app->api->post('canvass/info', $args);
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $res = Yii::$app->api->get('canvass/info', $args);
         if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
