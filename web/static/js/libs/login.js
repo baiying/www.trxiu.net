@@ -3,21 +3,13 @@ function($) {
   
     var Logincheck = {
         init: function(callback) {
-            callback({
-                openid:"1111111"
-            })
-            return;
-
             var $this = this;
-            $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", "", 0);
-
-
             if ( !! $this.getCookie("DA7F9084C361196F1147D0DE68FEC172")) {
                 var userInfo = $this.getCookie("DA7F9084C361196F1147D0DE68FEC172");
                 callback($.parseJSON(userInfo));
             } else {
                 var REDIRECT_URI = encodeURIComponent(location.href);
-                var openurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcbfa7f22b7956568&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+                var openurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcbfa7f22b7956568&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 
                 if ($this.GetURLParameter('code')) {
                     var code=$this.GetURLParameter('code');
@@ -30,18 +22,14 @@ function($) {
                         },
                         dataType:"json",
                         success:function(resp){
-                            alert(JSON.stringify(resp));
+                            //alert(JSON.stringify(resp));
                             if(resp.status=="success"){
                                 var value=JSON.stringify(resp.data);
-                                $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", value, 1440);
+                                $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", value, 30);
                                 callback(resp.data);
                             }
                             else{
-                                //alert(resp.message);
-                                callback({
-                                    openid:"1111111"
-                                })
-
+                                alert(resp.message);
                             }
                             
                         }
