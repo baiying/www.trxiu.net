@@ -57,7 +57,12 @@ class AjaxAccountController extends AjaxBaseController {
             unset($data['privilege']);
             // 用户信息入库，如果用户已注册为粉丝，则接口会直接返回粉丝ID
             $resReg = Yii::$app->api->post('fans/register', $data);
-            $fansId = $resReg['data']['fans_id'];
+            if($resReg['code'] == 200) {
+                $fansId = $resReg['data']['fans_id'];
+            } else {
+                $this->export('fail', $resReg['message'], $resReg['data']);
+            }
+            
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
                 'name'    => 'fans',
