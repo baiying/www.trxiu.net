@@ -96,9 +96,9 @@ status 拉票状态，1 有效，2 待支付，3 无效
     function bindPayEvent(){
         //选择金额去拉票
         $("#btnPay").click(function(){
-            var total=$("#divAmountTotal .on").attr("data-value");
+            var total=20;
             $.ajax({  
-                type : "post",  
+                type : "get",  
                 url : config.apiHost+"ajax-pay/wx-prepay/",
                 data:{
                     fans_id: window.userInfo.fansid,
@@ -110,13 +110,14 @@ status 拉票状态，1 有效，2 待支付，3 无效
                 dataType:"json",
                 success : function(resp) {
                     if(resp.status=="success"){
+                        var payInfo=$.parseJSON(resp.data);
                         wx.ready(function () {
                             wx.chooseWXPay({
-                               timestamp: resp.data.timestamp, 
-                               nonceStr: resp.data.nonceStr, 
-                               package:resp.data.package, 
-                               signType: resp.data.signType, 
-                               paySign: resp.data.paySign, 
+                               timestamp: payInfo.timestamp, 
+                               nonceStr: payInfo.nonceStr, 
+                               package:payInfo.package, 
+                               signType:payInfo.signType, 
+                               paySign: payInfo.paySign, 
                                success: function (res) {
                                     payResultEvent(parseInt(total)*100);
                                }

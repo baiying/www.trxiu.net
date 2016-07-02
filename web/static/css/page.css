@@ -243,7 +243,8 @@ background-repeat: no-repeat; background-position: center; }
 .lapiaopage .btnsubmit{ height: 36px; line-height: 36px; margin:0 8%; text-align: center; color: #fff; background: #43c121; border-radius: 18px; }
 .lapiaopage .desc{ padding: 10%; color: #999999;  font-size: 12px; line-height: 20px;}
 .lapiaopage .btntoupiao{ height: 36px; font-size: 14px; line-height: 36px; text-align: center; color:#fc2d8e;  margin:0 8%; border: 2px solid #fc2d8e; border-radius: 18px;}
-.lapiaopage .erweima{width: 107px; height: 107px; margin: 10px auto;  border: 2px solid #fc2d8e; border-radius: 38px;}
+.lapiaopage .erweima{width: 107px; height: 107px; margin: 10px auto; text-align: center;}
+.lapiaopage .erweima img{widows: 107px; height: 107px;}
 .lapiaopage .spmark{width: 100%; font-size: 14px; text-align: center; color: #74274b; }
 
 
