@@ -23,7 +23,7 @@ define(['zepto','util'],function($,util){
 			guizehtml='<a href="guize.html" class="focus"><span class="guize">规则</span></a>';
 		}
 
-		var navhtml=zhubohtml+xiaoxihtml+dajianghtml+guizehtml;
+		var navhtml=zhubohtml+dajianghtml+guizehtml+xiaoxihtml;
 		$(".footer").html(navhtml);
 
 	}
