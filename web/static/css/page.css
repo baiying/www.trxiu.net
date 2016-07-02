@@ -48,7 +48,7 @@ body{background: #fc2d8e;}
 
 
 /*规则页*/
-.guizepage{position: absolute; top: 20px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.guizepage{position: absolute; top: 10px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .guizepage ol{ list-style-type: disc}
 .guizepage li{padding: 5px 0;}
 .guizepage .case{ height: 12px; line-height: 12px; color: #666666; border-left: 3px solid #fc1f8c; padding-left: 5px;}
@@ -105,7 +105,7 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*消息页*/
-.xiaoxipage{position: absolute; top: 23px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.xiaoxipage{position: absolute; top: 10px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .xiaoxipage .li{ padding: 10px 0;}
 .xiaoxipage .li dt{ width: 100%; padding-bottom: 5px; text-align: center; }
 .xiaoxipage .li dt span{ height: 15px; padding: 0 6px; border-radius: 15px; color: #666666; line-height: 15px; background: #ececec; display: inline-block; font-size: 9px; }
@@ -174,7 +174,7 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*主播列表页*/
-.zhubolistpage{position: absolute; top: 240px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.zhubolistpage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .zhubolistpage .li{width: 40%; margin: 5%; display: inline-block; }
 .zhubolistpage .li:nth-child(2n){ margin-right: 0;}
 .zhubolistpage .li .pic{width: 100px; height: 100px; position: relative; float: left; }
@@ -196,7 +196,7 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*获奖列表页*/
-.huojianglistpage{position: absolute; top: 240px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.huojianglistpage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .huojianglistpage p{width: 100%; color: #333333; font-size: 14px; text-align: center; padding:10px 0 20px 0;}
 .huojianglistpage .li{ height: 50px; padding: 15px 0; border-bottom: 1px solid #e6e6e6; display:flex; flex-flow: row;}
 .huojianglistpage .li .touxiang{ margin-left: 10px; width: 50px; height: 50px; position: relative;}
@@ -228,12 +228,12 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*奖品列表页*/
-.jiangpinglistpage{position: absolute; top: 240px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.jiangpinglistpage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .jiangpinglistpage p{width: 100%; color: #333333; font-size: 14px; text-align: center; padding:10px 0 20px 0;}
 
 
 /*拉票页面*/
-.lapiaopage{position: absolute; top: 240px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.lapiaopage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .lapiaopage h1{width: 100%; text-align: center; font-size: 14px; color: #333333; padding: 5px  0;  }
 .lapiaopage h2{width: 100%; text-align: center; font-size: 12px; color: #999999;  font-weight: normal;  padding: 5px  0;  }
 .lapiaopage .selecter{width: 90%; padding: 5%; }
@@ -248,7 +248,7 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*主播详情页*/
-.zbshowpage{position: absolute; top: 20px; bottom: 66px; left:19px; right:19px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.zbshowpage{position: absolute; top: 10px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .zbshowpage .header{ width: 100%; padding-bottom: 10px; display:flex; flex-flow: row;}
 .zbshowpage .header .zhubopic{margin: 10px; flex:1;}
 .zbshowpage .header .zhubopic .pic{width: 80%; margin: 10%; height: auto; position: relative;}
