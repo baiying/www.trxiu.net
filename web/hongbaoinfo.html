@@ -8,6 +8,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/hongbaoinfo.js"></script>
 	<title>盟主派对</title>
 </head>
 <body class="bfff">
@@ -17,13 +19,13 @@
 			<div class="logo">
 				<span><img src="../uploads/111.jpg"/></span>
 			</div>
-			<h3>Afro</h3>
-			<h4>发的红包100元</h4>
+			<h3 id="h3FansName">Afro</h3>
+			<h4>发的红包<font id="fTotal"></font>元</h4>
 		</div>
 		<div class="hinfo">
 			<p>您获得了</p>
 			<dd>
-				<span>100.00</span>
+				<span id="sgetTotal"></span>
 				<font>元</font>
 			</dd>
 			<dl>在微信服务通知中领取</dl>

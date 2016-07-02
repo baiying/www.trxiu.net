@@ -5,6 +5,7 @@ require.config({
         util: '../libs/util',
         navigation: '../libs/navigation',
         login: '../libs/login',
+        jweixin:'../libs/jweixin-1.0.0'
     },
     shim:{
         zepto: {exports: '$'}
@@ -12,7 +13,7 @@ require.config({
 });
 
 
-require(["zepto","util","login"],function($,util,login){
+require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
 
     var params=util.getParams();
