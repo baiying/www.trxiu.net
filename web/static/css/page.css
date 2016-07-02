@@ -372,11 +372,22 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 
 
 /*兼容iPhone4,iPhone5*/
-@media only screen and (max-device-width:320px),(max-device-width:480px) and (-webkit-device-pixel-ratio:1.5)
+@media only screen and (device-width:320px)
 {
 	.page .pdate{ margin-top: 180px;}
 	.zhubolistpage,.jiangpinglistpage,.huojianglistpage,.lapiaopage{top: 205px;}
-	.guizepage{top:20px;}
+
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 195px;}
+}
+
+
+/*兼容iPhone6 Plus*/
+@media only screen and (device-width:414px)
+{
+	.page .pdate{ margin-top: 230px;}
+	.zhubolistpage,.jiangpinglistpage,.huojianglistpage,.lapiaopage{top: 255px;}
+
+	.huojianglistpage .li .descstr dl{width: 36px;}
+	.hongbaopage{margin-top: 250px;}
 }
