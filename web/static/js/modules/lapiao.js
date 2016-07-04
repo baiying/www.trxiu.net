@@ -99,7 +99,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
             var total= 20;
 
             $.ajax({  
-                type : "get",  
+                type : "post",  
                 url : config.apiHost+"ajax-pay/wx-prepay/",
                 data:{
                     fans_id: window.userInfo.fansid,
@@ -111,7 +111,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                 dataType:"json",
                 success : function(resp) {
                     if(resp.status=="success"){
-                        var payInfo=$.parseJSON(resp.data);
+                        var payInfo=resp.data;
                         wx.ready(function () {
                             wx.chooseWXPay({
                                'timestamp': resp.data.timeStamp, 
