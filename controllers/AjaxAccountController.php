@@ -42,7 +42,7 @@ class AjaxAccountController extends AjaxBaseController {
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
         // 用code换取access_token
-        $res = Yii::$app->api->get('weixin/oauth-access-token', $args);
+        $res = Yii::$app->api->get('debug/weixin/oauth-access-token', $args);
         if($res['code'] == 200) {
             $accessToken = $res['data']['access_token'];
             $openId = $res['data']['openid'];
@@ -62,7 +62,6 @@ class AjaxAccountController extends AjaxBaseController {
             } else {
                 $this->export('fail', $resReg['message'], $resReg['data']);
             }
-            
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
                 'name'    => 'fans',

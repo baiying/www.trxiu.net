@@ -16,11 +16,6 @@ require.config({
 
 require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,login,util,nav,imgPreview,wx){
 
-   
-
-
-
-    
 
     //绑定主播基础信息
     function  bindInfo(dataInfo){
@@ -42,10 +37,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             $("#divYoukePanel").hide();
             $("#divZhuboPanel").show();
         }
-
-
     }
-
 
 
     function bindEventData(dataList){
@@ -63,7 +55,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             html=html.replace("{{news_id}}",dataInfo.news_id);
 
 
-
             //绑定动态照片列表
             var imageHtml="";
             var imageList=$.parseJSON(dataInfo.images);
@@ -74,7 +65,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                 imageHtml='<div class="liimages">'+imageHtml+'</div>';
             }
             html=html.replace("{{imageHtml}}",imageHtml);
-
 
             //绑定评论html
             var pinglunHtml="";
@@ -94,10 +84,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                 pinglunHtml='<div class="lipinglun">'+pinglunHtml+'</div>';
             }
             html=html.replace("{{pinglunhtml}}",pinglunHtml);
-
-
-
-
             listHtml+=html;
         }
         $("#divDongtai").append(listHtml);
@@ -112,13 +98,11 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
         })
 
-
         //我要拉票
         $("#btnLaPiao").click(function(){
 
 
             $("#divShare").show();
-
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
         })
@@ -283,6 +267,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
     }
 
 
+
     //绑定分享信息
     function bindShareInfo(){
         var params=util.getParams();
@@ -341,7 +326,5 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         window.userInfo=userInfo;
         main();
     })
-
-
-
+    
 })

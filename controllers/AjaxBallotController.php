@@ -91,9 +91,10 @@ class AjaxBallotController extends AjaxBaseController {
             'anchor_id' => ['type' => 'int', 'required' => TRUE],
             'openid' => ['type' => 'string', 'required' => false],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
         $res = Yii::$app->api->get('ballot/anchor-in-ballot', $args);
         if($res['code'] == 200) {
+            $res['data']['backSharetitle'] = "分享标题";
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
