@@ -27,10 +27,10 @@ class AjaxPayController extends AjaxBaseController {
             'openid'    => ['type'=>'string', 'required'=>true],
             'total'     => ['type'=>'int', 'required'=>true],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $args = $this->getRequestData($rule, Yii::$app->request->post());
         $res = Yii::$app->api->post('weixin/unified-order', $args);
         if($res['code'] == 200) {
-            $this->export('success', '支付参数获取成功', $res['data']);
+            $this->export('success', '支付参数获取成功', json_decode($res['data'], true));
         } else {
             $this->export('fail', $res['message']);
         }
