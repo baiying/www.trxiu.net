@@ -8,6 +8,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/guize.js?1"></script>
 	<title>盟主派对</title>
 </head>
 <body>
@@ -16,29 +18,12 @@
 		<p class="pdate">第一期（5月1日-5月30日）</p>
 		<div class="guizepage">
 			<div class="case">投票规则</div>
-			<div class="desc">
-				<p>1.本次活动时间为2016年6月1日——2016年6月30日</p>
-				<p>2.您可以选择免费投票，也可以选择为主博拉票，两者不冲突</p>
-				<p>3.免费投票每天只能投一次</p>
-				<p>4.拉票时您选择发出多少金额的红包，就会给主播投多少票</p>
-				<p>5.拉票后，您可以将投票转发至朋友圈，好友可以来领取</p>
-				<p>6.当有三个人通过你转发的连接来给主播投票并且也使用</p>
-				<p>7.返现红包会通过微信服务通知发放</p>
-				<p>8.本活动最终解释权归唐人秀所有</p>
-			</div>
+			<div class="desc" id="divTouPiao"></div>
 			<div class="case">抢红包规则</div>
-			<div class="desc">
-				<p>1.本次活动时间为2016年6月1日——2016年6月30日</p>
-				<p>2.您可以选择免费投票，也可以选择为主博拉票，两者不冲突</p>
-			</div>
+			<div class="desc" id="divHongbao"></div>
 		</div>
 	</div>
-	<div class="footer">
-		<a ><span class="zhubo">主播</span></a>
-		<a class="focus"><span class="xiaoxi">消息</span></a>
-		<a><span class="dajiang">大奖</span></a>
-		<a><span class="guize">规则</span></a>
-	</div>
+	<div class="footer"></div>
 
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,23 +9,32 @@
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
     <script src="static/js/config.js"></script>
-    <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js?6"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/dajiang.js"></script>
 	<title>盟主派对</title>
-	<script id="tplItem" type="text/template">
-		<a href="zhuboshow.html?ballot_id={{ballot_id}}&anchor_id={{anchor_id}}" class="li {{index}}">
-			<dd class="pic"><img src="{{thumb}}"/></dd>
-			<dt><span>{{anchor_name}}</span></dt>
-			<dl><span>{{votes}}票</span></dl>
-		</a>
+
+
+	<script id="tplItem1" type="text/template">
+		<div class="li {{sort}}">
+			<div class="title">{{level}}</div>
+			<div class="jpname">{{title}}</div>
+			<div class="product"><img src="{{image}}" /></div>
+		</div>
 	</script>
+
+
+
 </head>
 <body>
 	<div id="loading" class="loading"><div><i></i></div></div>
 	<div class="page">
-		<p id="pHuoDongTitle" class="pdate"></p>
-		<div id="divZhuboList" class="zhubolistpage"></div>
+		<p class="pdate">第一期（5月1日-5月30日）</p>
+		<div class="jiangpinglistpage comjiangping">
+			<!-- <p>本期评选已结束，共有3位主播获奖</p> -->
+			<div id="divList"></div>
+		</div>
 	</div>
 	<div class="footer"></div>
+
 
 </body>
 </html>

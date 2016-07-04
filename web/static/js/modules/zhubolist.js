@@ -1,9 +1,12 @@
 require.config({
     baseUrl: 'static/js/modules/',
+    urlArgs: "bust=" +  (new Date()).getTime(),
     paths: {
         zepto: '../libs/zepto.min',
+        login: '../libs/login',
         util: '../libs/util',
         navigation: '../libs/navigation',
+
     },
     shim:{
         zepto: {exports: '$'}
@@ -11,17 +14,43 @@ require.config({
 });
 
 
-require(["zepto","util","navigation"],function($,util,nav){
-
-   
-	//绑定主播列表信息
-	function bindDataList(){
+require(["zepto","login","util","navigation"],function($,login,util,nav){
 
 
-		 $.ajax({  
+
+    //绑定页面基础信息
+    function bindBaseInfo(data){
+        var title=data.ballot_name+"("+data.begin_time+"-"+data.end_time+")";
+        $("#pHuoDongTitle").html(title);
+    }
+
+    //绑定主播列表信息
+    function bindZhuBoList(data){
+        var listHtml="";
+        var dataList=data;
+        for(var i=0;i<dataList.length;i++){
+            var itemHtml=$("#tplItem").html();
+            var indexIcon=""
+            if(dataList[i].ranking<=3){
+                indexIcon="n"+parseInt(dataList[i].ranking);
+            }
+            itemHtml=itemHtml.replace("{{index}}",indexIcon);
+            itemHtml=itemHtml.replace("{{ballot_id}}",window.ballot_id);
+            itemHtml=itemHtml.replace("{{anchor_id}}",dataList[i].anchor_id);
+            itemHtml=itemHtml.replace("{{thumb}}",dataList[i].thumb);
+            itemHtml=itemHtml.replace("{{anchor_name}}",dataList[i].anchor_name);
+            itemHtml=itemHtml.replace("{{votes}}",dataList[i].votes);
+            listHtml+=itemHtml;
+        }
+        $("#divZhuboList").append(listHtml);
+    }
+
+
+    //获取ajax数据
+    function getAjax(){
+        $.ajax({  
             type : "get",  
-            //url : config.apiHost+"anchor/getanchorlist/",
-            url : config.apiHost+"json/zhubolist.aspx",
+            url : config.apiHost+"ajax-ballot/get-valid-ballot/",
             data:{
                 page:1,
                 size:10
@@ -29,35 +58,34 @@ require(["zepto","util","navigation"],function($,util,nav){
             dataType:"json",
             success : function(resp) {
 
-                if(resp.code==200){
-                	var listHtml="";
-                	var dataList=resp.data.list;
-                	for(var i=0;i<dataList.length;i++){
-                		var itemHtml=$("#tplItem").html();
-                		var indexIcon=""
-                		if(i<=2){
-                			indexIcon="n"+parseInt(i+1);
-                		}
-                		itemHtml=itemHtml.replace("{{index}}",indexIcon);
-                		itemHtml=itemHtml.replace("{{id}}",dataList[i].anchor_id);
-                		itemHtml=itemHtml.replace("{{thumb}}",dataList[i].thumb);
-                		itemHtml=itemHtml.replace("{{anchor_name}}",dataList[i].anchor_name);
-                		listHtml+=itemHtml;
-                	}
-                	$("#divZhuboList").append(listHtml);
+                if(resp.status=="success"){
+                    window.ballot_id=resp.data.ballot.ballot_id;
+                    
+                    util.setCookie("ballot_id",resp.data.ballot.ballot_id,30);
+                    bindBaseInfo(resp.data.ballot);
+                    bindZhuBoList(resp.data.anchors)
                 }
                 else{
-                	util.alert(resp.message);
+                    util.alert(resp.message);
                 }
+            },
+            complete:function(){
+                $("#loading").hide();
             }
         });
-	}
+    }
 
-	//
 	function main(){
-		bindDataList();
+
+		getAjax();
 		nav.bind("zhubo");
 	}
-	main();
+
+
+    login.init(function(userInfo){
+        window.userInfo=userInfo;
+        main();
+    })
+	
 
 })

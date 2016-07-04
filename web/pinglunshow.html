@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="static/css/page.css">
+	<title>盟主派对</title>
+	<script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/pinglunshow.js?1"></script>
+<script id="tplReplyBox" type="text/template">
+	<div class="replybox" newsId="{{newsId}}" replyCommentId="{{replyCommentId}}">
+		<div class="innerbox">
+			<div class="replyHeader">
+				<dl class="btnReClose">取消</dl>
+				<dd>评论</dd>
+				<dt class="btnReSave">发布</dt>
+			</div>
+			<textarea class="textbox"></textarea>
+		</div>
+	</div>
+</script>
+    
+</head>
+<body>
+
+	<div id="divShare" class="mask" style="display:none;">
+		<div class="pics">
+			<span class="weixin">微信</span>
+			<span class="friends">朋友圈</span>
+			<span class="qq">QQ好友</span>
+		</div>
+	</div>
+	<div id="loading" class="loading"><div><i></i></div></div>
+	<div class="page">
+		<div class="zbshowpage">
+
+
+			<div id="divDongtai" class="dongtai">
+				<div class="li">
+					<div class="liheader">
+						<div id="divZhuboPic" class="pic"></div>
+						<div class="pright">
+							<div id="divZhuboName" class="nickname"></div>
+							<div id="divCreateTime" class="datetime">1466584702</div>
+						</div>
+					</div>
+					<div id="divEventContent" class="litext"></div>
+					<div id="divImageList" class="liimages"></div>
+					<div class="lifooter">
+						<dd id="divCommentCount">0</dd>
+					</div>
+					<div id="divPLHtml" class="lipinglun"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+
+</body>
+</html>

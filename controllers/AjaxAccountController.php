@@ -42,7 +42,7 @@ class AjaxAccountController extends AjaxBaseController {
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
         // 用code换取access_token
-        $res = Yii::$app->api->get('weixin/oauth-access-token', $args);
+        $res = Yii::$app->api->get('debug/weixin/oauth-access-token', $args);
         if($res['code'] == 200) {
             $accessToken = $res['data']['access_token'];
             $openId = $res['data']['openid'];
@@ -57,10 +57,11 @@ class AjaxAccountController extends AjaxBaseController {
             unset($data['privilege']);
             // 用户信息入库，如果用户已注册为粉丝，则接口会直接返回粉丝ID
             $resReg = Yii::$app->api->post('fans/register', $data);
-            if($resReg['code'] != 200) {
-                $this->export('fail', $resReg['message']);
+            if($resReg['code'] == 200) {
+                $fansId = $resReg['data']['fans_id'];
+            } else {
+                $this->export('fail', $resReg['message'], $resReg['data']);
             }
-            $fansId = $resReg['data']['fans_id'];
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
                 'name'    => 'fans',
@@ -85,11 +86,8 @@ class AjaxAccountController extends AjaxBaseController {
      * @param string $url   请求地址
      */
     public function actionGetJsSign() {
-        $rule = [
-            'url' => ['type'=>'string', 'required'=>true]
-        ];
-        $args = $this->getRequestData($rule, Yii::$app->request->get());
-        $res = Yii::$app->api->get('weixin/js-sign', $args);
+        $url = urldecode(Yii::$app->request->post('url'));
+        $res = Yii::$app->api->post('weixin/js-sign', ['url'=>$url]);
         $this->export('success', '签名获取成功', $res['data']);
     }
 }

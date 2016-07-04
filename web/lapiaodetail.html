@@ -8,26 +8,32 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="telephone=no" name="format-detection">
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/require.js" data-main="static/js/modules/lapiaodetail.js"></script>
 	<title>盟主派对</title>
+	<script id="tplItem1" type="text/template">
+		<div class="li {{sort}}">
+			<div class="title" style="background-image:url({{logo}})">{{level}}</div>
+			<div class="jpname">{{title}}</div>
+			<div class="product"><img src="{{image}}" /></div>
+		</div>
+	</script>
 </head>
 <body>
 	<div class="page">
-		<p class="pdate">第一期（5月1日-5月30日）</p>
+		<p id="pHuoDongTitle" class="pdate"></p>
 		<div class="lapiaodetail">
 			<div class="mbox">
 				<div class="mtitle">拉票主播</div>
 				<div class="mcont zhuboinfo">
 					<div class="imgpanel">
-						<dd>
-							<img class="img" src="uploads/111.jpg" />
-							<img src="static/img/ic_guanjun.png" class="icon" />
-						</dd>
-						<dl>LiLian</dl>
-						<dt><span>9905票</span></dt>
+						<dd id="divZhuboPic"></dd>
+						<dl id="divZhuboName"></dl>
+						<dt><span id="divVoteCount"></span></dt>
 					</div>
 					<div class="btnpanel">
 						<div>
-							<div class="button">投票</div>
+							<div id="btnTouPiao" class="button">投票</div>
 							<span>投票有红包，么么哒</span>
 						</div>
 						
@@ -44,21 +50,7 @@
 			<div class="mbox">
 				<div class="mtitle">评选大奖</div>
 				<div class="mcont jiangping comjiangping">
-					<div class="li n1">
-						<div class="title">一等奖</div>
-						<div class="jpname">iPhone6 Plus</div>
-						<div class="product"><img src="uploads/img_pingguo.png" /></div>
-					</div>
-					<div class="li n2">
-						<div class="title">二等奖</div>
-						<div class="jpname">红米 Note</div>
-						<div class="product"><img src="uploads/img_note.png" /></div>
-					</div>
-					<div class="li n3">
-						<div class="title">三等奖</div>
-						<div class="jpname">小米充电宝</div>
-						<div class="product"><img src="uploads/img_chongdianqi.png" /></div>
-					</div>
+					<div id="divList"></div>
 				</div>
 			</div>
 

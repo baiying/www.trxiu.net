@@ -1,4 +1,5 @@
 var config={
-	apiHost:"/"
+	currentDomain:"http://test.trxiu.net/",
+	apiHost:"http://wechat.trxiu.net/"
 
 }

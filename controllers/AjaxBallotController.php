@@ -26,6 +26,8 @@ class AjaxBallotController extends AjaxBaseController {
         }
         $ballot = $res['data']['list'][0];
         $ballot['votes'] += $ballot['votes_amend'];
+        $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
+        $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         unset($ballot['votes_amend']);
         // 获取本活动的信息及关联的主播信息
         $res = Yii::$app->api->get('ballot/get-ballot-detail', [
@@ -89,9 +91,10 @@ class AjaxBallotController extends AjaxBaseController {
             'anchor_id' => ['type' => 'int', 'required' => TRUE],
             'openid' => ['type' => 'string', 'required' => false],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
         $res = Yii::$app->api->get('ballot/anchor-in-ballot', $args);
         if($res['code'] == 200) {
+            $res['data']['backSharetitle'] = "分享标题";
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
@@ -105,13 +108,26 @@ class AjaxBallotController extends AjaxBaseController {
         $rule = [
             'ballot_id' => ['type'=>'int', 'required'=>true]
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+        $ballotResult = Yii::$app->api->get('ballot/get-ballot-detail', $args);
+        if($ballotResult['code'] != 200 || empty($ballotResult['data'])) {
+            $this->export('fail', $ballotResult['message']);
+        }
+        if(isset($ballotResult['data']['anchorList'])){
+            unset($ballotResult['data']['anchorList']);
+        }
+        $ballot = $ballotResult['data'];
+        $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
+        $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         // 获取活动奖项设置
         $res = Yii::$app->api->get('ballot-prize/search', $args);
         if($res['code'] != 200 || empty($res['data'])) {
             $this->export('fail', $res['message']);
         }
-        $this->export('success', $res['message'], $res['data']);
+        $parizeList = $res['data'];
+        $ballot['parizeList'] = $parizeList;
+
+        $this->export('success', $res['message'], $ballot);
     }
     /**
      * ballot-add-votes
