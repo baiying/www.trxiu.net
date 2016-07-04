@@ -30,6 +30,7 @@ class AjaxNewsController extends AjaxBaseController {
         ]);
         if($res['code'] == 200) {
             foreach( $res['data']['list'] as $listKey => $listValue){
+                $res['data']['list'][$listKey]['create_time'] = date('Y年m月d日 H:i:s',$res['data']['list'][$listKey]['create_time']);
                 if($listValue['comment_total']!=0){
                     foreach ($res['data']['list'][$listKey]['comment'] as $commentKey => $commentValue){
                         $res['data']['list'][$listKey]['comment'][$commentKey]['fans_name'] = $res['data']['list'][$listKey]['comment'][$commentKey]['fans']['wx_name'];
