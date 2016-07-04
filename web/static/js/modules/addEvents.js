@@ -90,6 +90,13 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
                 imageList.push($(this).attr("src"));
             })
             var content=$("#txtContent").val();
+
+            if(content.length>140){
+                util.alert("最多只能输入140个字符");
+                return;
+            }
+
+
             $.ajax({  
                 type : "post",  
                 url : config.apiHost+"ajax-news/add-anchor-news/",
@@ -109,6 +116,18 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
                 }
             });
         })
+        
+        $("#txtContent").on("input",function(){
+            var value=$(this).val();
+            if(value.length>140){
+                alert("最多只能输入140个字符");
+                $(this).val(value.substring(0,140))
+
+            }
+
+        })
+
+
     }
 
 

@@ -18,15 +18,15 @@ html,body{height:100%;}
 body{background: #fc2d8e;}
 .bfff{background: #fff;}
 .page{width: 100%; min-height: 100%; background-image:url(../img/bg.png);  background-size: 100%;   background-position: 0 top; background-repeat: no-repeat;  position: absolute; top: 0;}
-.pdate{width: 100%; position: absolute; font-size: 10px; text-align: center; margin-top: 210px; color: #fff;  }
+.pdate{width: 100%; position: absolute; font-size: 14px; text-align: center; margin-top: 210px; color: #fff;  }
 
 
 
 /*奖品列表*/
 .comjiangping .li{ height: 50px; margin:15px 0; background: red; border-radius: 5px; display:flex; flex-flow: row; position: relative;}
 .comjiangping .li .title{ height: 20px; font-size: 16px; color: #fff;  background-repeat: no-repeat;
- background-position: right center; background-size: 24px; padding: 15px 25px 15px 15px; }
-.comjiangping .li .jpname{font-size: 10px; height: 20px; padding: 15px; margin-left: 10px; line-height: 24px;  color: #fff; }
+ background-position: right center; background-size: 24px; padding: 15px 5px 15px 15px; }
+.comjiangping .li .jpname{font-size: 10px; height: 20px; padding: 15px;  line-height: 24px;  color: #fff; }
 .comjiangping .li .product img{ height: 55px; border:none;  position: absolute; right: 0px; top: -10px;}
 .comjiangping .li.n1 { background: #fb2d8e; }
 .comjiangping .li.n2 { background: #a16eff; }
@@ -51,7 +51,7 @@ body{background: #fc2d8e;}
 .guizepage{position: absolute; top: 10px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .guizepage ol{ list-style-type: disc}
 .guizepage li{padding: 5px 0;}
-.guizepage .case{ height: 12px; line-height: 12px; color: #666666; border-left: 3px solid #fc1f8c; padding-left: 5px;}
+.guizepage .case{ height: 12px; font-size: 14px; line-height: 12px; color: #666666; border-left: 3px solid #fc1f8c; padding-left: 5px;}
 .guizepage .desc{padding: 10px 0;}
 .guizepage .desc p{padding: 5px 0;}
 
@@ -233,7 +233,7 @@ background-repeat: no-repeat; background-position: center; }
 
 
 /*拉票页面*/
-.lapiaopage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
+.lapiaopage{position: absolute; top: 10px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
 .lapiaopage h1{width: 100%; text-align: center; font-size: 14px; color: #333333; padding: 5px  0;  }
 .lapiaopage h2{width: 100%; text-align: center; font-size: 12px; color: #999999;  font-weight: normal;  padding: 5px  0;  }
 .lapiaopage .selecter{width: 90%; padding: 5%; }
@@ -241,7 +241,7 @@ background-repeat: no-repeat; background-position: center; }
 .lapiaopage .selecter span:nth-child(2n){ margin-right: 0;}
 .lapiaopage .selecter span.on{background: #fca72d}
 .lapiaopage .btnsubmit{ height: 36px; line-height: 36px; margin:0 8%; text-align: center; color: #fff; background: #43c121; border-radius: 18px; }
-.lapiaopage .desc{ padding: 10%; color: #999999;  font-size: 12px; line-height: 20px;}
+.lapiaopage .desc{ padding: 10%; color: #999999;  font-size: 14px; line-height: 20px;}
 .lapiaopage .btntoupiao{ height: 36px; font-size: 14px; line-height: 36px; text-align: center; color:#fc2d8e;  margin:0 8%; border: 2px solid #fc2d8e; border-radius: 18px;}
 .lapiaopage .erweima{width: 107px; height: 107px; margin: 10px auto; text-align: center;}
 .lapiaopage .erweima img{widows: 107px; height: 107px;}
@@ -265,7 +265,7 @@ background-repeat: no-repeat; background-position: center; }
 .zbshowpage .header .erweima .pic img{width: 100%; padding: 3px; border-radius: 50%;}
 .zbshowpage .header .erweima .desc{width: 100%; padding: 0 0; font-size: 14px; color: #74274b; text-align: center;}
 .zbshowpage .header .erweima .desc2{width: 100%;  font-size: 14px; color: #74274b; text-align: center;}
-.zbshowpage .case{margin-left: 10px;}
+.zbshowpage .case{margin-left: 10px; font-size: 14px;}
 .zbshowpage .desc{padding: 10px;}
 .zbshowpage .desc p{padding: 5px 0;}
 .zbshowpage .btnpanel{width: 100%; height: 36px; line-height: 36px; color: #fff; text-align: center; display:flex; flex-flow: row;}
@@ -376,7 +376,7 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 @media only screen and (device-width:320px)
 {
 	.page .pdate{ margin-top: 180px;}
-	.zhubolistpage,.jiangpinglistpage,.huojianglistpage,.lapiaopage{top: 205px;}
+	.zhubolistpage,.jiangpinglistpage,.huojianglistpage{top: 205px;}
 
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 195px;}
@@ -387,7 +387,7 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 @media only screen and (device-width:414px)
 {
 	.page .pdate{ margin-top: 230px;}
-	.zhubolistpage,.jiangpinglistpage,.huojianglistpage,.lapiaopage{top: 255px;}
+	.zhubolistpage,.jiangpinglistpage,.huojianglistpage{top: 255px;}
 
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 250px;}

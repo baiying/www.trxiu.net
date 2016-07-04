@@ -21,30 +21,10 @@ require(["zepto","login","util"],function($,login,util){
     function bindPageInfo(){
 
 
-        //绑定活动信息
-        $.ajax({  
-            type : "post",  
-            url : config.apiHost+"ajax-ballot/ballot-info/",
-            data:{
-                ballot_id: params["ballot_id"]
-            },
-            dataType:"json",
-            success : function(resp) {
-                console.log(resp)
-                if(resp.status=="success"){
-                    var html=resp.data.ballot_name+'（'+resp.data.begin_time+'-'+resp.data.end_time+'）';
-                    $("#pHuoDongTitle").html(html);
-                }
-                else{
-                    util.alert(resp.message);
-                }
-            }
-        });
-
 
         //绑定主播信息
         $.ajax({  
-            type : "post",  
+            type : "get",  
             url : config.apiHost+"ajax-ballot/anchor-in-ballot/",
             data:{
                 ballot_id: params["ballot_id"],
@@ -68,7 +48,7 @@ require(["zepto","login","util"],function($,login,util){
 
         //绑定大奖信息
         $.ajax({  
-            type : "post",  
+            type : "get",  
             url : config.apiHost+"ajax-ballot/ballot-prize/",
             data:{
                 ballot_id: params["ballot_id"]
@@ -78,8 +58,9 @@ require(["zepto","login","util"],function($,login,util){
 
                 if(resp.status=="success"){
 
-
-                    var dataList=resp.data;
+                    var html=resp.data.ballot_name+'（'+resp.data.begin_time+'-'+resp.data.end_time+'）';
+                    $("#pHuoDongTitle").html(html);
+                    var dataList=resp.data.parizeList;
                     var listHtml="";
                     for(var i=0;i<dataList.length;i++){
                         var itemHtml=$("#tplItem1").html();

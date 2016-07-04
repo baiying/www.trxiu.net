@@ -37,12 +37,18 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
         $("#divList").html(listHtml);
     }
 
+    function bindInfo(dataInfo){
+
+        var title=dataInfo.ballot_name+"("+dataInfo.begin_time+"-"+dataInfo.end_time+")";
+        $("#pHuoDongTitle").html(title);
+    }
+
 
     function getAjax(){
 
         var ballot_id= util.getCookie("ballot_id");
         $.ajax({  
-            type : "post",  
+            type : "get",  
             url : config.apiHost+"ajax-ballot/ballot-prize/",
             data:{
                 ballot_id:ballot_id
@@ -51,7 +57,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
             success : function(resp) {
                 
                 if(resp.status=="success"){
-                    bindList1(resp.data);
+                    bindInfo(resp.data);
+                    bindList1(resp.data.parizeList);
                 }
                 else{
                     util.alert(resp.message);

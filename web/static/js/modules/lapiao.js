@@ -105,7 +105,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                     openid:window.userInfo.openid,
                     ballot_id:params["ballot_id"],
                     anchor_id:params["anchor_id"],
-                    total:parseInt(total)*100
+                    total:parseInt(total)
                 },
                 dataType:"json",
                 success : function(resp) {
@@ -119,7 +119,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                                signType:payInfo.signType, 
                                paySign: payInfo.paySign, 
                                success: function (res) {
-                                    payResultEvent(parseInt(total)*100);
+                                    payResultEvent(parseInt(total));
                                }
                            });
                         });
