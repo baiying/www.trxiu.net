@@ -153,68 +153,7 @@ define(function()
         }
     }
 
-    util.isWeixn=function(){
-        var ua = navigator.userAgent.toLowerCase();
-        if(ua.match(/MicroMessenger/i)=="micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    util.isWepiao=function() {
-         var $this = this;
-         var UA = navigator.userAgent;
-         var isAndroid = UA.indexOf('Android') > -1 || UA.indexOf('Adr') > -1;
-         var isiOS = !!UA.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-          
-         var _wepiao = UA.match(/wepiao\/([\d\.]+)/i);
-         var _idfa = UA.match(/idfa\/([\d\-\w]+)/i);
-         var _imei = UA.match(/imei\/([\d\-\w]+)/i);
-         var _deviceid = UA.match(/deviceid\/([\d\-\w]+)/i);
-         var _flag = !_wepiao ? false : _wepiao[1];
-         var data = {
-            wepiao:_flag
-         }
-         if(isiOS){
-             data.system = "iOS";
-         }else if(isAndroid){
-             data.system = "Android";
-         }
-         if( _flag != false ){
-            if(isiOS){
-                data.idfa = _idfa[1];
-            }else if(isAndroid){
-                data.imei = _imei[1];
-                data.deviceid = _deviceid[1];
-            }
-            return data;
-         }else{
-             if(data.system == "iOS" || data.system == "Android"){
-                if(!$this.isWeixn() && !$this.isMobileQQ() && ($this.GetURLParameter("wy")==1) ){
-                  alert("请升级新版本");
-                  window.location.href = "http://promotion.wepiao.com/down/mobile/download.html";
-                }else{
-                    return false
-                }
-             }
-         }
-    }
-
-    util.getChannelId=function(){
-        if(util.isWeixn()){
-            return 3;
-        }
-        else if(util.isWepiao()){
-            var _wepiao = util.isWepiao();
-            if(_wepiao.system == "iOS"){
-                return 8;
-            }
-            if(_wepiao.system == "Android"){
-                return 9;
-            }
-        }
-    }
 
 
 

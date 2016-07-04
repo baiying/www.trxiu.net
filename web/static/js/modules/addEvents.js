@@ -21,7 +21,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
 
     
 
-
+    var canupload=true; //是否可上传图片
     
     //绑定上传事件
     function bindUploadEvents(){
@@ -45,6 +45,10 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
             init: {
                 // 添加文件时的触发事件
                 'FilesAdded': function(up, files) {
+                    if(files.length>3){
+                        return false;
+                    }
+ 
                     $("#loading").show();
                 },
                 // 开始上传前的触发事件
@@ -62,7 +66,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
                 // 上传结束后触发事件
                 'FileUploaded': function(up, file, info) {
 
-                    var imgHtml='<img src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'" />';
+                    var imgHtml='<img  src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'?imageView2/1/w/100/h/100" data-src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'" />';
                     $(".imglist").append(imgHtml)
                      $("#loading").hide();
                     
@@ -85,9 +89,11 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
         //发布动态
         $("#btnSubmit").click(function(){
 
+            
+
             var imageList=[];
             $(".imglist img").each(function(){
-                imageList.push($(this).attr("src"));
+                imageList.push($(this).attr("data-src"));
             })
             var content=$("#txtContent").val();
 

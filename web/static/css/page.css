@@ -175,12 +175,12 @@ background-repeat: no-repeat; background-position: center; }
 
 /*主播列表页*/
 .zhubolistpage{position: absolute; top: 240px; bottom: 56px; left:9px; right:9px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto;}
-.zhubolistpage .li{width: 40%; margin: 5%; display: inline-block; }
+.zhubolistpage .li{width: 40%; margin: 5%; display: inline-block; transform:translate(-6px);   }
 .zhubolistpage .li:nth-child(2n){ margin-right: 0;}
-.zhubolistpage .li .pic{width: 100px; height: 100px; position: relative; float: left; }
+.zhubolistpage .li .pic{width: 100%;  position: relative; text-align: center; }
 .zhubolistpage .li .pic::after{width: 40px; height: 40px; background-size: 24px; background-position: center; background-repeat: no-repeat;
   content: ""; position: absolute; right: -10px; bottom:-2px}
-.zhubolistpage .li .pic img{ width: 94px; height: 94px;  border: 3px solid #a16eff; border-radius: 50%;  display: block; float: left;}
+.zhubolistpage .li .pic img{ width: 100%;   border: 3px solid #a16eff; border-radius: 50%;  display:inline-block; }
 .zhubolistpage .li dt{ width: 100%; height: 20px; padding:5px 0; line-height: 20px; color: #74274b; font-weight: bold; text-align: center; float: left;}
 .zhubolistpage .li dt span{padding-right:5px; font-size: 16px;}
 .zhubolistpage .li dt img{width: 20px; height: 20px; display: inline-block; border-radius: 50%; }
@@ -285,9 +285,9 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .zbshowpage .dongtai .li .litext{width: 100%; color: #999999;  padding: 10px 0; line-height: 18px; font-size: 12px;}
 .zbshowpage .dongtai .li .liimages{ display:flex; flex-flow: row; flex-wrap:wrap;  justify-content:space-between;}
 .zbshowpage .dongtai .li .liimages img{width: 30%; height: 30%; margin:10px 0;}
-.zbshowpage .dongtai .li .lifooter{ width: 100%; height: 30px;  padding-bottom: 5px; color: #999999;  line-height: 20px; position: relative; overflow: hidden;}
-.zbshowpage .dongtai .li .lifooter dl{width: 80px; }
-.zbshowpage .dongtai .li .lifooter dd{position: absolute; padding:5px 5px 5px 25px;  height: 20px; right: 0; top: 0; cursor: pointer;}
+.zbshowpage .dongtai .li .lifooter{ width: 100%; height: 30px; text-align: right; padding-bottom: 5px; color: #999999;  line-height: 20px; position: relative; overflow: hidden;}
+.zbshowpage .dongtai .li .lifooter span{ height: 20px; padding: 5px; margin-right: 10px; text-align:center;  display: inline-block; cursor: pointer; }
+.zbshowpage .dongtai .li .lifooter dd{position: relative; padding:5px 5px 5px 25px;  height: 20px; display: inline-block; cursor: pointer;}
 .zbshowpage .dongtai .li .lifooter dd::after{ width: 20px; height: 20px; position: absolute; left: 0px; top: 5px; background-size: 20px;  content: "";
  background-position:  center;  background-repeat: no-repeat; background-image: url(../img/ic_pinglun.png);  }
 
@@ -316,7 +316,7 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .replybox .replyHeader dd{ color: #3a3a3a;}
 .replybox .replyHeader dt{position: absolute; padding: 10px 20px; right: 0;  top: 0;  color: #adadad; cursor: pointer;}
 .replybox .textbox{ flex:1; margin: 10px; border:1px solid #c4c4c4;}
-
+.replybox .enable{color: #000 !important;}
 
 
 
