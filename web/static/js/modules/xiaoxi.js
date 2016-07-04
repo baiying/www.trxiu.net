@@ -18,7 +18,7 @@ require(["zepto","util","navigation","login"],function($,util,nav,login){
 
     function bindDataList(){
          $.ajax({  
-            type : "post",  
+            type : "get",  
             url : config.apiHost+"ajax-message/get-message-list/",
             data:{
                 openid:window.userInfo.openid,
