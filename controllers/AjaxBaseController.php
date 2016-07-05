@@ -120,7 +120,7 @@ class AjaxBaseController extends Controller
         $show_time = $the_time;
         $dur = $now_time - $show_time;
         if ($dur < 0) {
-            return date("Y年m月d日 H:i:s",$the_time);
+            return date("m月d日",$the_time);
         } else
         {
             if ($dur < 60)
@@ -135,11 +135,11 @@ class AjaxBaseController extends Controller
                     {
                         return floor($dur / 3600) . '小时前';
                     } else {
-                        if ($dur < 259200) {//3天内
-                            return floor($dur / 86400) . '天前';
-                        } else {
-                            return date("m月d日 H:i:s",$the_time);
-                        }
+//                        if ($dur < 259200) {//3天内
+//                            return floor($dur / 86400) . '天前';
+//                        } else {
+                            return date("m月d日",$the_time);
+//                        }
                     }
                 }
             }
