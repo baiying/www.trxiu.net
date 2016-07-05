@@ -94,7 +94,9 @@ class AjaxBallotController extends AjaxBaseController {
         $args = $this->getRequestData($rule, Yii::$app->request->get());
         $res = Yii::$app->api->get('ballot/anchor-in-ballot', $args);
         if($res['code'] == 200) {
-            $res['data']['backSharetitle'] = "分享标题";
+            $res['data']['ShareTile'] = "盟主派对";
+            $res['data']['ShareDescripion'] = "我参加了盟主排队，快来给我投票吧";
+            $res['data']['ShareImg'] = "http://o8syigvwe.bkt.clouddn.com/o_1amdi1me5l8c16jc18bq1d6hdrgn.png";
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
