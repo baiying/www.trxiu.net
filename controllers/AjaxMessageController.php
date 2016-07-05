@@ -38,6 +38,10 @@ class AjaxMessageController extends AjaxBaseController
         // 获取当前有效的活动
         $res = Yii::$app->api->get('message/get-message-list-by-fans-id', $commentWhere);
         if($res['code'] == 200) {
+            foreach ($res['data']['list'] as $key => $value){
+                $res['data']['list'][$key]['create_time'] = date('m月d日 H:i',$res['data']['list'][$key]['create_time']);
+                $res['data']['list'][$key]['receive_time'] = date('m月d日 H:i',$res['data']['list'][$key]['receive_time']);
+            }
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
@@ -67,6 +71,9 @@ class AjaxMessageController extends AjaxBaseController
         // 获取当前有效的活动
         $res = Yii::$app->api->get('message/get-message-by-id', $commentWhere);
         if($res['code'] == 200) {
+            $res['data']['create_time'] = date('Y年m月d日 H:i:s',$res['data']['create_time']);
+            $res['data']['receive_time'] = date('Y年m月d日 H:i:s',$res['data']['receive_time']);
+
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
