@@ -50,12 +50,16 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
     function bindEvents(){
 
         $("#btnReceive").click(function(){
+
+            $("#divShare").show();
+
+
             // if(shared==false){
             //     util.alert("必须先分享后才能领取");
             //     return;
             // }
             $.ajax({  
-                type : "get",  
+                type : "post",  
                 url : config.apiHost+"ajax-canvass/receive-redpackage/",
                 data:{
                     ballot_id: params["ballot_id"],
@@ -75,6 +79,11 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
             });
         })
 
+
+         //关闭遮罩层
+        $(".mask").click(function(){
+            $(this).hide();
+        })
 
 
         $.ajax({  

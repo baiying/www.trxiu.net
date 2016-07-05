@@ -1,12 +1,12 @@
 require.config({
     baseUrl: 'static/js/modules/',
-    urlArgs: "bust=" +  (new Date()).getTime(),
     paths: {
         zepto: '../libs/zepto.min',
         login: '../libs/login',
         util: '../libs/util',
         navigation: '../libs/navigation',
-
+        imgPreview: '../libs/imgPreview',
+        jweixin:'../libs/jweixin-1.0.0'
     },
     shim:{
         zepto: {exports: '$'}
@@ -14,12 +14,37 @@ require.config({
 });
 
 
-require(["zepto","login","util","navigation"],function($,login,util,nav){
+require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,imgPreview,wx){
 
 
     var params=util.getParams();
 
-
+    //获取页面数据
+    function getAjaxData(callback){
+        $.ajax({  
+            type : "get",  
+            url : config.apiHost+"ajax-ballot/anchor-in-ballot/",
+            data:{
+                ballot_id:util.getCookie("ballot_id"),
+                anchor_id: params["anchor_id"],
+                openid:window.userInfo.openid
+            },
+            dataType:"json",
+            success : function(resp) {
+                if(resp.status=="success"){
+                    window.shareImage=resp.data.ShareImg;
+                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareDescripion=resp.data.ShareDescripion;
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            },
+            complete:function(){
+                callback();
+            }
+        });
+    }
 
     //绑定分享信息
     function bindShareInfo(){
@@ -50,7 +75,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 
                         wx.onMenuShareTimeline({
                             title : window.ShareDescripion,
-                            link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
+                            link :config.currentDomain+"hongbao.html?canvass_id=",
                             imgUrl :window.shareImage
                         });
 
@@ -58,7 +83,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                         wx.onMenuShareAppMessage({
                             title :window.ShareTile,
                             desc : window.ShareDescripion,
-                            link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
+                            link :config.currentDomain+"hongbao.html?canvass_id=",
                             imgUrl:window.shareImage
                         }); 
                     })
@@ -72,7 +97,10 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 
 
 	function main(){
+        getAjaxData(function(){
+            bindShareInfo();
 
+        });
 		
 	}
 
