@@ -42,7 +42,8 @@ require(["zepto","login","util","navigation","jweixin"],function($,login,util,na
                 dataType:"json",
                 success : function(resp) {
                     if(resp.status=="success"){
-                        util.alert(resp.message);
+                        //util.alert(resp.message);
+                        $("#divMskSuccess").show();
                     }
                     else{
                         util.alert(resp.message);
@@ -50,6 +51,21 @@ require(["zepto","login","util","navigation","jweixin"],function($,login,util,na
                 }
             });
         })
+
+
+        //隐藏成功面板
+        $("body").on("click",".btnCancel",function(){
+            //跳到主播详情页
+            location.href=config.currentDomain+"zhuboshow.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+            
+        })
+
+        //隐藏成功面板
+        $("body").on("click",".btnConfirm",function(){
+            $("#divMskSuccess").hide();
+        })
+
+
     }
 
 
@@ -82,7 +98,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
             dataType:"json",
             success : function(resp) {
                 if(resp.status=="success"){
-                    location.href="paysuccess.html";
+                    location.href="paysuccess.html?anchor_id=";
                 }
                 else{
                     util.alert(resp.message);
@@ -120,6 +136,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                                'signType': resp.data.signType, 
                                'paySign': resp.data.paySign, 
                                success: function (res) {
+
                                     payResultEvent(parseInt(total));
                                }
                            });

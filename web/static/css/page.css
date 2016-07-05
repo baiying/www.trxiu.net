@@ -362,7 +362,23 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 .mask .pics span.qq{background-image: url(../img/ic_qq.png)}
 
 
+/*投票成功提示层*/
+.mask .subox{ width: 100%; position: absolute;  top: 20%;}
+.mask .subox>img{width: 100%; border:none;}
+.mask .subox>span{width: 100%;  position: absolute; left: 0; top: 50%; text-align: center; color: #ff528b; font-size: 12px;}
+.mask .subox  .btnCancel{width: 100px; position: absolute; bottom: 0px; left: 50px; cursor: pointer;}
+.mask .subox  .btnCancel>img{width: 100%; border:none;}
+.mask .subox  .btnCancel>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #ff528b; position: absolute; left: 0; top: 50%; margin-top: -8px;}
+.mask .subox  .btnConfirm{width: 100px; position: absolute; bottom: 0px; right: 50px; cursor: pointer;}
+.mask .subox  .btnConfirm>img{width: 100%; border:none;}
+.mask .subox  .btnConfirm>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #fff; position: absolute; left: 0; top: 50%; margin-top: -8px;}
 
+
+/*分享层*/
+.mask .share1{width: 100%;  height: 100%; position: absolute; left: 0; background-size: 80%; 
+background-image: url(../img/share1.png); background-repeat: no-repeat; background-position: center 50px; }
+.mask .share2{width: 100%;  height: 100%; position: absolute; left: 0; background-size: 80%; 
+background-image: url(../img/share2.png); background-repeat: no-repeat; background-position: center 50px; }
 
 
 

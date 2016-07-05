@@ -117,7 +117,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         $("#btnLaPiao").click(function(){
 
 
-           // $("#divShare").show();
+            $("#divShare").show();
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
         })
