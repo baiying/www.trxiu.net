@@ -37,9 +37,13 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
         var pinglunHtml="";
         var plList=dataInfo.commentList;
         for(var j=0;j<plList.length;j++){
+            var replyText="";
+            if(!!plList[j].parent_fans_name){
+                replyText="<font style='color:#aaa'>回复"+plList[j].parent_fans_name+"</font>"
+            }
             pinglunHtml+='  <div class="pli" commentId="'+plList[j].comment_id+'">\
                                 <font>'+plList[j].fans_name+'：</font>\
-                                <span>'+plList[j].content+'</span>\
+                                <span>'+replyText+plList[j].content+'</span>\
                             </div>';
         }
 
@@ -125,6 +129,11 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
         
         //提交评论信息
         $("body").on("click",".replybox .btnReSave",function(){
+
+            if(!$(this).hasClass("enable")){
+                return;
+            }
+
             var $box=$(this).closest(".replybox");
             var newsId=$box.attr("newsId");
             var replyCommentId=$box.attr("replyCommentId");
@@ -141,7 +150,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                 url : config.apiHost+"ajax-news/news-comment/",
                 data:{
                     news_id:newsId,
-                    openid:window.openid,
+                    openid:window.userInfo.openid,
                     parent_comment_id:replyCommentId,
                     content:content,
                 },
@@ -161,6 +170,17 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                 }
             });
         })
+
+        $("body").on("input",".textbox",function(){
+            var value=$(this).val();
+            if(value.length>=5){
+                $(".replybox .btnReSave").addClass("enable");
+            }
+            else{
+                $(".replybox .btnReSave").removeClass("enable");
+            }
+        })
+
 
 
     }

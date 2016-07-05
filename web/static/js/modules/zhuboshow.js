@@ -16,11 +16,8 @@ require.config({
 
 require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,login,util,nav,imgPreview,wx){
 
-   
 
-
-
-    
+    var isSelf=false;
 
     //绑定主播基础信息
     function  bindInfo(dataInfo){
@@ -39,13 +36,11 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             $("#divZhuboPanel").hide();
         }
         else{
+            isSelf=true;
             $("#divYoukePanel").hide();
             $("#divZhuboPanel").show();
         }
-
-
     }
-
 
 
     function bindEventData(dataList){
@@ -62,7 +57,11 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             html=html.replace("{{comments}}",dataInfo.comment_total);
             html=html.replace("{{news_id}}",dataInfo.news_id);
 
-
+            var deleteHtml="";
+            if(isSelf==true){
+                deleteHtml='<span class="btnDeleteNews">删除</span>';
+            }
+            html=html.replace("{{deleteHtml}}",deleteHtml);
 
             //绑定动态照片列表
             var imageHtml="";
@@ -75,14 +74,19 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             }
             html=html.replace("{{imageHtml}}",imageHtml);
 
-
             //绑定评论html
             var pinglunHtml="";
             var plList=dataInfo.comment;
             for(var j=0;j<plList.length;j++){
+
+                var replyText="";
+                if(!!plList[j].parent_fans_name){
+                    replyText="<font style='color:#aaa'>回复"+plList[j].parent_fans_name+"</font>"
+                }
+
                 pinglunHtml+='  <div class="pli" commentId="'+plList[j].comment_id+'">\
                                     <font>'+plList[j].fans_name+'：</font>\
-                                    <span>'+plList[j].content+'</span>\
+                                    <span>'+replyText+plList[j].content+'</span>\
                                 </div>';
             }
             if(dataInfo.comment_total>5){
@@ -94,10 +98,6 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                 pinglunHtml='<div class="lipinglun">'+pinglunHtml+'</div>';
             }
             html=html.replace("{{pinglunhtml}}",pinglunHtml);
-
-
-
-
             listHtml+=html;
         }
         $("#divDongtai").append(listHtml);
@@ -112,13 +112,11 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
         })
 
-
         //我要拉票
         $("#btnLaPiao").click(function(){
 
 
             $("#divShare").show();
-
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
         })
@@ -128,6 +126,36 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         $("#btnAddEvents").click(function(){
             var params=util.getParams();
             location.href="addEvents.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+        })
+
+        //删除动态
+        $("body").on("click",".btnDeleteNews",function(){
+            var newsId=$(this).closest(".li").attr("news_id");
+            if(window.confirm("确定要删除吗？")){
+                 $("#loading").show();
+                $.ajax({  
+                    type : "post",  
+                    url : config.apiHost+"ajax-news/del-news/",
+                    data:{
+                        news_id:newsId,
+                        openid:window.userInfo.openid
+                    },
+                    dataType:"json",
+                    success : function(resp) {
+                        if(resp.status=="success"){
+                            location.reload();
+                        }
+                        else{
+                            util.alert(resp.message);
+                        }
+                    },
+                    complete:function(){
+                         $("#loading").hide();
+                    }
+                });
+            }
+
+            
         })
 
         //预览图片
@@ -192,6 +220,9 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         
         //提交评论信息
         $("body").on("click",".replybox .btnReSave",function(){
+            if(!$(this).hasClass("enable")){
+                return;
+            }
             var $box=$(this).closest(".replybox");
             var newsId=$box.attr("newsId");
             var replyCommentId=$box.attr("replyCommentId");
@@ -229,6 +260,16 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             });
         })
 
+        $("body").on("input",".textbox",function(){
+            var value=$(this).val();
+            if(value.length>=5){
+                $(".replybox .btnReSave").addClass("enable");
+            }
+            else{
+                $(".replybox .btnReSave").removeClass("enable");
+            }
+        })
+
 
 
     }
@@ -237,7 +278,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
     function getAjaxData(callback){
         var params=util.getParams();
         $.ajax({  
-            type : "post",  
+            type : "get",  
             url : config.apiHost+"ajax-ballot/anchor-in-ballot/",
             data:{
                 ballot_id:util.getCookie("ballot_id"),
@@ -281,6 +322,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             }
         });
     }
+
 
 
     //绑定分享信息
@@ -341,7 +383,5 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         window.userInfo=userInfo;
         main();
     })
-
-
-
+    
 })

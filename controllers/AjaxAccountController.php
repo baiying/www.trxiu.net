@@ -62,7 +62,6 @@ class AjaxAccountController extends AjaxBaseController {
             } else {
                 $this->export('fail', $resReg['message'], $resReg['data']);
             }
-            
             // 将用户资料存入到cookie中
             Yii::$app->cookie->setValue([
                 'name'    => 'fans',

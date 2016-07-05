@@ -3,6 +3,13 @@ function($) {
   
     var Logincheck = {
         init: function(callback) {
+            // callback({
+            //     openid: "o5keCwvdLM1rseZdqpclWbBi5idg",
+            //     name: "风一样的男子",
+            //     fansid: 41,
+            //     thumb: "http://wx.qlogo.cn/mmopen/kT0qibicf86iaYPfRibkCFIg…YAJ3gibntVXcovoTKXe4srjjiccBX9xZOA8W9b5icklOluU/0"
+            // });
+            // return;
             var $this = this;
             if ( !! $this.getCookie("DA7F9084C361196F1147D0DE68FEC172")) {
                 var userInfo = $this.getCookie("DA7F9084C361196F1147D0DE68FEC172");
