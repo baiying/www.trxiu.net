@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/page.css">
     <script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js?6"></script>
-	<title>盟主派对</title>
+	<title>萌主派对</title>
 	<script id="tplItem" type="text/template">
 		<a href="zhuboshow.html?ballot_id={{ballot_id}}&anchor_id={{anchor_id}}" class="li">
 			<dd class="pic"><img src="{{thumb}}"/></dd>
@@ -20,10 +20,10 @@
 </head>
 <body>
 	<div id="loading" class="loading"><div><i></i></div></div>
-	<div class="page">
+	<div class="page" style="position:fixed;">
 		<p id="pHuoDongTitle" class="pdate"></p>
-		<div id="divZhuboList" class="zhubolistpage"></div>
 	</div>
+	<div class="zhuboOuter"><div id="divZhuboList" class="zhubolistpage"></div></div>
 	<div class="footer"></div>
 
 </body>

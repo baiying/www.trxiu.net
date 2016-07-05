@@ -34,7 +34,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
             flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
             dragdrop: true,
             chunk_size: '4mb',
-            multi_selection: true,
+            multi_selection: false,
             //uptoken_url: 'http://wechat.trxiu.net/qiniu/ajax/?act=token',
             uptoken:$("#uptoken").val(),
             domain: 'http://o8syigvwe.bkt.clouddn.com/',
@@ -91,14 +91,21 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
 
             
 
-            var imageList=[];
+            var imageList="";
             $(".imglist img").each(function(){
-                imageList.push($(this).attr("data-src"));
+                imageList+=$(this).attr("data-src")+",";
             })
+            if(!!imageList){
+                imageList=imageList.substring(0,imageList.length-1);
+            }
             var content=$("#txtContent").val();
 
             if(content.length>140){
                 util.alert("最多只能输入140个字符");
+                return;
+            }
+            if(content.length<1){
+                util.alert("请输入动态内容");
                 return;
             }
 

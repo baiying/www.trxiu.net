@@ -39,6 +39,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             isSelf=true;
             $("#divYoukePanel").hide();
             $("#divZhuboPanel").show();
+            $("#divZhuboText").show();
         }
     }
 
@@ -116,7 +117,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         $("#btnLaPiao").click(function(){
 
 
-            $("#divShare").show();
+           // $("#divShare").show();
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
         })
@@ -228,8 +229,8 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             var replyCommentId=$box.attr("replyCommentId");
             var content=$box.find(".textbox").val();
 
-            if(content.length<5){
-                util.alert("评论字数不能少于5个");
+            if(content.length<1){
+                util.alert("评论内容不能为空");
                 return;
             }
 
@@ -262,7 +263,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
 
         $("body").on("input",".textbox",function(){
             var value=$(this).val();
-            if(value.length>=5){
+            if(value.length>=1){
                 $(".replybox .btnReSave").addClass("enable");
             }
             else{
@@ -290,6 +291,12 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                 if(resp.status=="success"){
                     window.zhubopic=resp.data.thumb;
                     window.zhuboname=resp.data.name;
+                    window.shareImage=resp.data.ShareImg;
+                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareDescripion=resp.data.ShareDescripion;
+
+
+
                     bindInfo(resp.data);
                 }
                 else{
@@ -351,11 +358,20 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                     });
                     wx.ready(function(res){
 
+
                         wx.onMenuShareTimeline({
-                            title : "盟主派对",
+                            title : window.ShareDescripion,
                             link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
-                            imgUrl :window.userInfo.thumb
+                            imgUrl :window.shareImage
                         });
+
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title :window.ShareTile,
+                            desc : window.ShareDescripion,
+                            link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
+                            imgUrl:window.shareImage
+                        }); 
                     })
                 }
                 else{
@@ -369,8 +385,9 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
 
 
     function main(){
-        bindShareInfo();
+        
         getAjaxData(function(){
+            bindShareInfo();
             $("#loading").hide();
             $(".page").show();
             getZhuBoEvents();

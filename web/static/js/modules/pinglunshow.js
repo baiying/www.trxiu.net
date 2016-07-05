@@ -139,8 +139,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
             var replyCommentId=$box.attr("replyCommentId");
             var content=$box.find(".textbox").val();
 
-            if(content.length<5){
-                util.alert("评论字数不能少于5个");
+            if(content.length<1){
+                util.alert("评论内容不能为空");
                 return;
             }
 
@@ -173,7 +173,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
 
         $("body").on("input",".textbox",function(){
             var value=$(this).val();
-            if(value.length>=5){
+            if(value.length>=1){
                 $(".replybox .btnReSave").addClass("enable");
             }
             else{
