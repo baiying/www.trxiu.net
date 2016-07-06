@@ -68,7 +68,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             var imageHtml="";
             var imageList=$.parseJSON(dataInfo.images);
             for(var j=0;j<imageList.length;j++){
-                imageHtml+='<img src="'+imageList[j]+'"/>';
+                imageHtml+='<img src="'+imageList[j]+'?imageView2/1/w/500/h/500"/>';
             }
             if(!!imageHtml){
                 imageHtml='<div class="liimages">'+imageHtml+'</div>';

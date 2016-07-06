@@ -4,6 +4,10 @@ define(['zepto','util'],function($,util){
 
 
 	nav.bind=function(item){
+
+
+
+
 		
 		var zhubohtml,xiaoxihtml,dajianghtml,guizehtml;
 		zhubohtml='<a href="zhubolist.html"><span class="zhubo">主播</span></a>';
@@ -26,6 +30,30 @@ define(['zepto','util'],function($,util){
 		var navhtml=zhubohtml+dajianghtml+guizehtml+xiaoxihtml;
 		$(".footer").html(navhtml);
 
+
+
+
+		$.ajax({  
+            type : "get",  
+            url : config.apiHost+"ajax-message/get-count-unread-message/",
+            data:{
+                openid: window.userInfo.openid
+            },
+            dataType:"json",
+            success : function(resp) {
+            	console.log(resp)
+                if(resp.status=="success"){
+                	if(!!resp.data.countUnreadMessage&&resp.data.countUnreadMessage>0){
+                		if($(".footer .xiaoxi").closest(".focus").length==0){
+							$(".footer .xiaoxi").append('<b class="xiaoxiIcon">35</b>');
+						}
+                	}
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            }
+        });
 	}
 	return nav;
 

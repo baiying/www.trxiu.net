@@ -25,6 +25,7 @@ body{background: #fc2d8e;}
 
 
 
+
 /*奖品列表*/
 .comjiangping .li{ height: 50px; margin:15px 0; background: red; border-radius: 5px; display:flex; flex-flow: row; position: relative;}
 .comjiangping .li .title{ height: 20px; font-size: 16px; color: #fff;  background-repeat: no-repeat;
@@ -45,9 +46,15 @@ body{background: #fc2d8e;}
 .footer a.focus{background: #8b23ff;}
 .footer a span{ height: 100%; padding-top: 29px;  display: block; background-position: center 2px; background-repeat: no-repeat; background-size: 28px; }
 .footer a span.zhubo{background-image: url(../img/ic_zhubo.png); }
-.footer a span.xiaoxi{background-image: url(../img/ic_xiaoxi.png); }
+.footer a span.xiaoxi{background-image: url(../img/ic_xiaoxi.png); position: relative;}
 .footer a span.dajiang{background-image: url(../img/ic_dajiang.png); }
 .footer a span.guize{background-image: url(../img/ic_guize.png); }
+.xiaoxiIcon{width: 16px; height: 16px; line-height: 16px; text-align: center; color: #fff; font-size: 8px;
+ background: red; border-radius: 50%; position: absolute;  right: 13px; top: -8px; display: block; font-weight: normal; }
+
+
+
+
 
 
 /*规则页*/

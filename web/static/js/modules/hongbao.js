@@ -26,11 +26,18 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
             type : "get",  
             url : config.apiHost+"ajax-canvass/info/",
             data:{
-                canvass_id: params["canvass_id"]
+                canvass_id: params["canvass_id"],
+                openid:window.userInfo.openid
             },
             dataType:"json",
             success : function(resp) {
                 if(resp.status=="success"){
+
+                    //已经领取过
+                    if(resp.data.isReceive==1){
+                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
+                    }
+
                     window.shareImage=resp.data.ShareImg;
                     window.ShareTitle=resp.data.ShareTitle;
                     window.ShareDescripion=resp.data.ShareDescripion;
