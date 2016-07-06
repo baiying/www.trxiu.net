@@ -19,7 +19,14 @@ require.config({
 require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,util,moxie,plupload,qiniu){
    
 
-    
+     function json2s(o){
+        var result="";
+        for(var a in o){
+            result+=a+":"+o[a]+",";
+        }
+
+        return result;
+     }
 
     var canupload=true; //是否可上传图片
     
@@ -65,13 +72,9 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
                 },
                 // 上传结束后触发事件
                 'FileUploaded': function(up, file, info) {
-
-                    var imgHtml='<img  src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'?imageView2/1/w/100/h/100" data-src="http://o8syigvwe.bkt.clouddn.com/'+file.name+'" />';
+                    var imgHtml='<img  src="http://o8syigvwe.bkt.clouddn.com/'+file.target_name+'?imageView2/1/w/100/h/100" data-src="http://o8syigvwe.bkt.clouddn.com/'+file.target_name+'" />';
                     $(".imglist").append(imgHtml)
-                     $("#loading").hide();
-                    
-   
-                   
+                    $("#loading").hide();
                 },
                 // 异常事件
                 'Error': function(up, err, errTip) {

@@ -30,12 +30,17 @@ require(["zepto","util","login"],function($,util,login){
             success : function(resp) {
                 if(resp.status=="success"){
                     $("#fTotal").html(resp.data.charge);
-                    $("#sgetTotal").html(resp.data.charge);
+                    $("#sgetTotal").html(params["amount"]);
+                    $("#spBestUserImg").html('<img src="'+resp.data.fans_thumb+'" />');
                     $("#h3FansName").html(resp.data.fans_name);
 
+                    $("#bestThumb").html('<img src="'+resp.data.best_user_thumb+'" />');
+                    $("#bsetNickName").html(resp.data.best_user_name);
+                    $("#spBestTotal").html(resp.data.best_amount);
                     
-
-                    
+                    window.ballot_id=resp.data.ballot_id;
+                    window.anchor_id=resp.data.anchor_id;
+                
                     
                     
                 }
@@ -49,10 +54,19 @@ require(["zepto","util","login"],function($,util,login){
         });
     }
 
+    function bindEvents(){
+
+        $(".btn1,.btn2").click(function(){
+            location.href="zhuboshow.html?ballot_id="+ window.ballot_id+"&anchor_id="+window.anchor_id;
+        })
+    }
+
 
 	//
 	function main(){
-		getInfo();
+		getInfo(function(){
+            bindEvents();
+        });
         
 	}
 	login.init(function(userInfo){

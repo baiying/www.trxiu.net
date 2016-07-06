@@ -19,6 +19,9 @@ body{background: #fc2d8e;}
 .bfff{background: #fff;}
 .page{width: 100%; min-height: 100%; background-image:url(../img/bg.png);  background-size: 100%;   background-position: 0 top; background-repeat: no-repeat;  position: absolute; top: 0;}
 .pdate{width: 100%; position: absolute; font-size: 14px; text-align: center; margin-top: 210px; color: #fff;  }
+.endIcon{width: 150px; height: 150px; background-image:url(../img/icon_jieshu2.png); background-size: 100%;  position: absolute; 
+	right: 20px; top: 70px; display: none; }
+
 
 
 
@@ -58,7 +61,7 @@ body{background: #fc2d8e;}
 
 
 /*拉票详情页*/
-.lapiaodetail{ margin-top: 220px; padding: 10px;}
+.lapiaodetail{ margin-top: 220px; padding: 10px; position: relative; z-index: 2;}
 .lapiaodetail .mbox{ border-radius: 5px; margin-top: 10px; background: #fff; overflow:hidden; }
 .lapiaodetail .mbox .mtitle{ height: 20px; padding-left: 5px; font-size: 14px; line-height: 20px; border-left: 6px solid #fc2d8e; margin:10px 10px 0 10px;  }
 .lapiaodetail .mbox .mcont{}
@@ -161,7 +164,7 @@ background-repeat: no-repeat; background-position: center; }
 .hongbaoinfopage .rlist .li dl{width: 44px; height: 44px; padding: 5px 10px; }
 .hongbaoinfopage .rlist .li dl img{width: 44px; height: 44px; border-radius: 50%;}
 .hongbaoinfopage .rlist .li dd{ flex:1; font-size: 10px; color: #000; line-height: 44px; padding: 5px 0;}
-.hongbaoinfopage .rlist .li dt{ width: 60px; padding: 10px 0; line-height: 17px;}
+.hongbaoinfopage .rlist .li dt{ width: 80px; padding: 10px 0; line-height: 17px;}
 .hongbaoinfopage .rlist .li dt span{width: 100%; display: inline-block; font-size: 11px; color: #000;}
 .hongbaoinfopage .rlist .li dt span{width: 100%; display: inline-block; font-size: 11px; color: #ff5b5b;}
 .hongbaoinfopage .btnpanel{ padding: 40px 20px; font-size: 13px;  line-height: 35px; color: #fff;  display:flex; flex-flow: row; overflow:hidden;}
@@ -175,7 +178,7 @@ background-repeat: no-repeat; background-position: center; }
 
 /*主播列表页*/
 .zhuboOuter{width: 100%; height: 100%;  position: absolute; left: 0; top: 0; z-index: 2;  overflow: auto; }
-.zhubolistpage{ margin: 0 9px; margin-bottom: 56px;  margin-top: 205px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto; position: relative;}
+.zhubolistpage{ margin: 0 9px; margin-bottom: 56px;  margin-top: 240px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto; position: relative;}
 .zhubolistpage .li{width: 40%; margin: 5%; display: inline-block; transform:translate(-6px);   }
 .zhubolistpage .li:nth-child(2n){ margin-right: 0;}
 .zhubolistpage .li .pic{width: 100%;  position: relative; text-align: center; }
@@ -366,10 +369,7 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 .mask .subox{ width: 100%; position: absolute;  top: 20%;}
 .mask .subox>img{width: 100%; border:none;}
 .mask .subox>span{width: 100%;  position: absolute; left: 0; top: 50%; text-align: center; color: #ff528b; font-size: 12px;}
-.mask .subox  .btnCancel{width: 100px; position: absolute; bottom: 0px; left: 50px; cursor: pointer;}
-.mask .subox  .btnCancel>img{width: 100%; border:none;}
-.mask .subox  .btnCancel>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #ff528b; position: absolute; left: 0; top: 50%; margin-top: -8px;}
-.mask .subox  .btnConfirm{width: 100px; position: absolute; bottom: 0px; right: 50px; cursor: pointer;}
+.mask .subox  .btnConfirm{width: 100px; position: absolute; bottom: 0px;left: 50%; margin-left: -50px; cursor: pointer;}
 .mask .subox  .btnConfirm>img{width: 100%; border:none;}
 .mask .subox  .btnConfirm>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #fff; position: absolute; left: 0; top: 50%; margin-top: -8px;}
 
@@ -389,14 +389,19 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 
 
 
+
+
 /*兼容iPhone4,iPhone5*/
 @media only screen and (device-width:320px)
 {
 	.page .pdate{ margin-top: 180px;}
 	.jiangpinglistpage,.huojianglistpage{top: 205px;}
 	.zhubolistpage{margin-top: 205px;}
+	
+
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 195px;}
+	.lapiaodetail{margin-top: 195px;}
 }
 
 
