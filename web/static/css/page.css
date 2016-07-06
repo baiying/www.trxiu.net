@@ -19,6 +19,9 @@ body{background: #fc2d8e;}
 .bfff{background: #fff;}
 .page{width: 100%; min-height: 100%; background-image:url(../img/bg.png);  background-size: 100%;   background-position: 0 top; background-repeat: no-repeat;  position: absolute; top: 0;}
 .pdate{width: 100%; position: absolute; font-size: 14px; text-align: center; margin-top: 210px; color: #fff;  }
+.endIcon{width: 150px; height: 150px; background-image:url(../img/icon_jieshu2.png); background-size: 100%;  position: absolute; 
+	right: 20px; top: 70px; display: none; }
+
 
 
 
@@ -58,7 +61,7 @@ body{background: #fc2d8e;}
 
 
 /*拉票详情页*/
-.lapiaodetail{ margin-top: 220px; padding: 10px;}
+.lapiaodetail{ margin-top: 220px; padding: 10px; position: relative; z-index: 2;}
 .lapiaodetail .mbox{ border-radius: 5px; margin-top: 10px; background: #fff; overflow:hidden; }
 .lapiaodetail .mbox .mtitle{ height: 20px; padding-left: 5px; font-size: 14px; line-height: 20px; border-left: 6px solid #fc2d8e; margin:10px 10px 0 10px;  }
 .lapiaodetail .mbox .mcont{}
@@ -175,7 +178,7 @@ background-repeat: no-repeat; background-position: center; }
 
 /*主播列表页*/
 .zhuboOuter{width: 100%; height: 100%;  position: absolute; left: 0; top: 0; z-index: 2;  overflow: auto; }
-.zhubolistpage{ margin: 0 9px; margin-bottom: 56px;  margin-top: 205px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto; position: relative;}
+.zhubolistpage{ margin: 0 9px; margin-bottom: 56px;  margin-top: 240px; padding: 20px 10px; background: #fff; border-radius: 4px; overflow: auto; position: relative;}
 .zhubolistpage .li{width: 40%; margin: 5%; display: inline-block; transform:translate(-6px);   }
 .zhubolistpage .li:nth-child(2n){ margin-right: 0;}
 .zhubolistpage .li .pic{width: 100%;  position: relative; text-align: center; }
@@ -386,14 +389,19 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 
 
 
+
+
 /*兼容iPhone4,iPhone5*/
 @media only screen and (device-width:320px)
 {
 	.page .pdate{ margin-top: 180px;}
 	.jiangpinglistpage,.huojianglistpage{top: 205px;}
 	.zhubolistpage{margin-top: 205px;}
+	
+
 	.huojianglistpage .li .descstr dl{width: 36px;}
 	.hongbaopage{margin-top: 195px;}
+	.lapiaodetail{margin-top: 195px;}
 }
 
 

@@ -76,6 +76,12 @@ require(["zepto","login","util"],function($,login,util){
                         listHtml+=itemHtml;
                     }
                     $("#divList").html(listHtml);
+
+
+                    //活动状态不是1则显示活动结束
+                    if(resp.data.status!=1){
+                        $(".endIcon").show();
+                    }
                 }
                 else{
                     util.alert(resp.message);

@@ -32,7 +32,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
             success : function(resp) {
                 if(resp.status=="success"){
                     window.shareImage=resp.data.ShareImg;
-                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareTitle=resp.data.ShareTitle;
                     window.ShareDescripion=resp.data.ShareDescripion;
                     $("#divTotal").html(resp.data.charge);
                     var pHtml='活动时间（'+resp.data.active_time+'-'+resp.data.end_time+'）';
@@ -116,7 +116,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
                         //分享给朋友
                         wx.onMenuShareAppMessage({
-                            title :window.ShareTile,
+                            title :window.ShareTitle,
                             desc : window.ShareDescripion,
                             link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+params["ballot_id"],
                             imgUrl:window.shareImage,

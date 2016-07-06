@@ -33,7 +33,7 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
             success : function(resp) {
                 if(resp.status=="success"){
                     window.shareImage=resp.data.ShareImg;
-                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareTitle=resp.data.ShareTitle;
                     window.ShareDescripion=resp.data.ShareDescripion;
                 }
                 else{
@@ -76,15 +76,29 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
                         wx.onMenuShareTimeline({
                             title : window.ShareDescripion,
                             link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+util.getCookie("ballot_id"),
-                            imgUrl :window.shareImage
+                            imgUrl :window.shareImage,
+                            success:function(){
+                                $("#divMskSuccess").show();
+                                $("#divShare").hide();
+                            },
+                            cancel:function(){
+                                location.href="zhuboshow.html?ballot_id="+util.getCookie("ballot_id")+"&anchor_id="+ params["anchor_id"];
+                            }
                         });
 
                         //分享给朋友
                         wx.onMenuShareAppMessage({
-                            title :window.ShareTile,
+                            title :window.ShareTitle,
                             desc : window.ShareDescripion,
                             link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+util.getCookie("ballot_id"),
-                            imgUrl:window.shareImage
+                            imgUrl:window.shareImage,
+                            success:function(){
+                                $("#divMskSuccess").show();
+                                $("#divShare").hide();
+                            },
+                            cancel:function(){
+                                location.href="zhuboshow.html?ballot_id="+util.getCookie("ballot_id")+"&anchor_id="+ params["anchor_id"];
+                            }
                         }); 
                     })
                 }
@@ -96,9 +110,19 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
     }
 
 
+
+    function bindEvents(){
+
+        $("body").on("click",".btnConfirm",function(){
+            location.href="zhuboshow.html?ballot_id="+util.getCookie("ballot_id")+"&anchor_id="+ params["anchor_id"];
+        })
+    }
+
+
 	function main(){
         getAjaxData(function(){
             bindShareInfo();
+            bindEvents();
         });
 		
 	}

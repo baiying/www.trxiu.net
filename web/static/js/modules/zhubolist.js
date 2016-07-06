@@ -64,6 +64,11 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                     util.setCookie("ballot_id",resp.data.ballot.ballot_id,30);
                     bindBaseInfo(resp.data.ballot);
                     bindZhuBoList(resp.data.anchors)
+                    
+                    //活动状态不是1则显示活动结束
+                    if(resp.data.ballot.status!=1){
+                        $(".endIcon").show();
+                    }
                 }
                 else{
                     util.alert(resp.message);
