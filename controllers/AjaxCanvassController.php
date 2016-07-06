@@ -37,9 +37,12 @@ class AjaxCanvassController extends AjaxBaseController {
             'canvass_id'    => ['type'=>'string', 'required'=>true],
             'fans_id'       => ['type'=>'int', 'required'=>true],
         ];
-        $args = $this->getRequestData($rule, Yii::$app->request->post());
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
         $res = Yii::$app->api->post('canvass/receive-redpackage', $args);
         if($res['code'] == 200) {
+            $res['data']['ShareTitle'] = "萌主派对第一季，闪亮主播风云榜";
+            $res['data']['ShareDescripion'] = "快来为心仪的主播投票，每天红包领不停！";
+            $res['data']['ShareImg'] = "http://o8syigvwe.bkt.clouddn.com/o_1amdi1me5l8c16jc18bq1d6hdrgn.png";
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
