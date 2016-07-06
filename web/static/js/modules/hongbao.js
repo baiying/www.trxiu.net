@@ -49,30 +49,36 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
         });
     }
 
+
+
+    function getHongbao(){
+        $.ajax({  
+            type : "get",  
+            url : config.apiHost+"ajax-canvass/receive-redpackage/",
+            data:{
+                ballot_id: params["ballot_id"],
+                canvass_id: params["canvass_id"],
+                fans_id: window.userInfo.fansid
+            },
+            dataType:"json",
+            success : function(resp) {
+                if(resp.status=="success"){
+                    location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
+                    
+                }
+                else{
+                    util.alert(resp.message);
+                }
+            }
+        });
+    }
+
     //绑定页面各个事件
     function bindEvents(){
 
         $("#btnReceive").click(function(){
-
-            $.ajax({  
-                type : "get",  
-                url : config.apiHost+"ajax-canvass/receive-redpackage/",
-                data:{
-                    ballot_id: params["ballot_id"],
-                    canvass_id: params["canvass_id"],
-                    fans_id: window.userInfo.fansid
-                },
-                dataType:"json",
-                success : function(resp) {
-                    if(resp.status=="success"){
-                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
-                        
-                    }
-                    else{
-                        util.alert(resp.message);
-                    }
-                }
-            });
+            $("#divShare").show();
+            
         })
 
 
@@ -110,7 +116,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
                             link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+params["ballot_id"],
                             imgUrl :window.shareImage,
                             success:function(){
-                                $("#divShare").hide();
+                                getHongbao();
                             }
                         });
 
@@ -121,7 +127,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
                             link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+params["ballot_id"],
                             imgUrl:window.shareImage,
                             success:function(){
-                                $("#divShare").hide();
+                                getHongbao();
                             }
                         }); 
                     })
