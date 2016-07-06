@@ -31,17 +31,49 @@ class AjaxMessageController extends AjaxBaseController
         if($code['code'] != 200) {
             $this->export('fail', $code['message']);
         }
-        $commentWhere['fans_id'] = $code['data']['fans_id'];
+        $fans_id = $code['data']['fans_id'];
+        $commentWhere['fans_id'] = $fans_id;
         $commentWhere['page'] = $args['page'];
         $commentWhere['size'] = $args['size'];
 
         // 获取当前有效的活动
         $res = Yii::$app->api->get('message/get-message-list-by-fans-id', $commentWhere);
         if($res['code'] == 200) {
+            $fans['fans_id'] = $fans_id;
+            $callbackStatus = Yii::$app->api->get('message/up-message-status', $fans);
+            if($callbackStatus['code']) {
+                $res['data']['callbackStatus'] = $callbackStatus['message'];
+            }
             foreach ($res['data']['list'] as $key => $value){
                 $res['data']['list'][$key]['create_time'] = date('m月d日 H:i',$res['data']['list'][$key]['create_time']);
                 $res['data']['list'][$key]['receive_time'] = date('m月d日 H:i',$res['data']['list'][$key]['receive_time']);
             }
+            $this->export('success', $res['message'], $res['data']);
+        } else {
+            $this->export('fail', $res['message']);
+        }
+    }
+    /**
+     * get-count-unread-message
+     * 获取未读消息列表
+     */
+    public function actionGetCountUnreadMessage(){
+
+        $rule = [
+            'openid' => ['type'=>'string', 'required'=>true],
+        ];
+        $args = $this->getRequestData($rule, Yii::$app->request->get());
+
+        $openid = $args['openid'];
+        $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
+        if($code['code'] != 200) {
+            $this->export('fail', $code['message']);
+        }
+        $commentWhere['fans_id'] = $code['data']['fans_id'];
+
+        // 获取当前有效的活动
+        $res = Yii::$app->api->get('message/get-count-unread-message-by-fans-id', $commentWhere);
+        if($res['code'] == 200) {
             $this->export('success', $res['message'], $res['data']);
         } else {
             $this->export('fail', $res['message']);
