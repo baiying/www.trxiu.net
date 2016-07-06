@@ -112,6 +112,12 @@ class AjaxNewsController extends AjaxBaseController {
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
 
+        if(isset($args['images'])){
+            $arr = explode(",",$args['images']);
+            if(count($arr)>9){
+                $this->export('fail', '发布图片最多九张');
+            }
+        }
         //获取用户信息，提取主播ID
         $openid = $args['openid'];
         $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);
