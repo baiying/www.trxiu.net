@@ -161,7 +161,7 @@ background-repeat: no-repeat; background-position: center; }
 .hongbaoinfopage .rlist .li dl{width: 44px; height: 44px; padding: 5px 10px; }
 .hongbaoinfopage .rlist .li dl img{width: 44px; height: 44px; border-radius: 50%;}
 .hongbaoinfopage .rlist .li dd{ flex:1; font-size: 10px; color: #000; line-height: 44px; padding: 5px 0;}
-.hongbaoinfopage .rlist .li dt{ width: 60px; padding: 10px 0; line-height: 17px;}
+.hongbaoinfopage .rlist .li dt{ width: 80px; padding: 10px 0; line-height: 17px;}
 .hongbaoinfopage .rlist .li dt span{width: 100%; display: inline-block; font-size: 11px; color: #000;}
 .hongbaoinfopage .rlist .li dt span{width: 100%; display: inline-block; font-size: 11px; color: #ff5b5b;}
 .hongbaoinfopage .btnpanel{ padding: 40px 20px; font-size: 13px;  line-height: 35px; color: #fff;  display:flex; flex-flow: row; overflow:hidden;}
@@ -366,10 +366,7 @@ border-radius: 100px; border: 4px solid #ffffff; -webkit-box-sizing: border-box;
 .mask .subox{ width: 100%; position: absolute;  top: 20%;}
 .mask .subox>img{width: 100%; border:none;}
 .mask .subox>span{width: 100%;  position: absolute; left: 0; top: 50%; text-align: center; color: #ff528b; font-size: 12px;}
-.mask .subox  .btnCancel{width: 100px; position: absolute; bottom: 0px; left: 50px; cursor: pointer;}
-.mask .subox  .btnCancel>img{width: 100%; border:none;}
-.mask .subox  .btnCancel>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #ff528b; position: absolute; left: 0; top: 50%; margin-top: -8px;}
-.mask .subox  .btnConfirm{width: 100px; position: absolute; bottom: 0px; right: 50px; cursor: pointer;}
+.mask .subox  .btnConfirm{width: 100px; position: absolute; bottom: 0px;left: 50%; margin-left: -50px; cursor: pointer;}
 .mask .subox  .btnConfirm>img{width: 100%; border:none;}
 .mask .subox  .btnConfirm>span{width: 100%; height: 14px; font-size: 14px; text-align: center; color: #fff; position: absolute; left: 0; top: 50%; margin-top: -8px;}
 

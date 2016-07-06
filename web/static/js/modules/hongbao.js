@@ -18,7 +18,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
     var params=util.getParams();
     var shared=false;   //是否已分享
-    var shareUrl="";
+
     //绑定红包页面基本信息
     function getInfo(callback){
 
@@ -31,10 +31,13 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
             dataType:"json",
             success : function(resp) {
                 if(resp.status=="success"){
+                    window.shareImage=resp.data.ShareImg;
+                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareDescripion=resp.data.ShareDescripion;
                     $("#divTotal").html(resp.data.charge);
                     var pHtml='活动时间（'+resp.data.active_time+'-'+resp.data.end_time+'）';
                     $("#pHuoDongTitle").html(pHtml);
-                    shareUrl=resp.data.url;
+
                 }
                 else{
                     util.alert(resp.message);
@@ -51,15 +54,8 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
         $("#btnReceive").click(function(){
 
-            $("#divShare").show();
-
-
-            // if(shared==false){
-            //     util.alert("必须先分享后才能领取");
-            //     return;
-            // }
             $.ajax({  
-                type : "post",  
+                type : "get",  
                 url : config.apiHost+"ajax-canvass/receive-redpackage/",
                 data:{
                     ballot_id: params["ballot_id"],
@@ -69,8 +65,8 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
                 dataType:"json",
                 success : function(resp) {
                     if(resp.status=="success"){
-                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"];
-                        //util.alert("领取成功，请在微信服务通知中领取");
+                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
+                        
                     }
                     else{
                         util.alert(resp.message);
@@ -110,13 +106,24 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
                     wx.ready(function(res){
 
                         wx.onMenuShareTimeline({
-                            title : "盟主派对",
-                            link :shareUrl,
-                            imgUrl :"",
+                            title : window.ShareDescripion,
+                            link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+params["ballot_id"],
+                            imgUrl :window.shareImage,
                             success:function(){
-                                shared=true;
+                                $("#divShare").hide();
                             }
                         });
+
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title :window.ShareTile,
+                            desc : window.ShareDescripion,
+                            link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+params["ballot_id"],
+                            imgUrl:window.shareImage,
+                            success:function(){
+                                $("#divShare").hide();
+                            }
+                        }); 
                     })
                 }
                 else{

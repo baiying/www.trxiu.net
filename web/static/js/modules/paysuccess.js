@@ -75,7 +75,7 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
 
                         wx.onMenuShareTimeline({
                             title : window.ShareDescripion,
-                            link :config.currentDomain+"hongbao.html?canvass_id=",
+                            link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+util.getCookie("ballot_id"),
                             imgUrl :window.shareImage
                         });
 
@@ -83,7 +83,7 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
                         wx.onMenuShareAppMessage({
                             title :window.ShareTile,
                             desc : window.ShareDescripion,
-                            link :config.currentDomain+"hongbao.html?canvass_id=",
+                            link :config.currentDomain+"hongbao.html?canvass_id="+params["canvass_id"]+"&ballot_id="+util.getCookie("ballot_id"),
                             imgUrl:window.shareImage
                         }); 
                     })
@@ -99,7 +99,6 @@ require(["zepto","login","util","imgPreview","jweixin"],function($,login,util,im
 	function main(){
         getAjaxData(function(){
             bindShareInfo();
-
         });
 		
 	}

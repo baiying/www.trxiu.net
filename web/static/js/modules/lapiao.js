@@ -53,12 +53,7 @@ require(["zepto","login","util","navigation","jweixin"],function($,login,util,na
         })
 
 
-        //隐藏成功面板
-        $("body").on("click",".btnCancel",function(){
-            //跳到主播详情页
-            location.href=config.currentDomain+"zhuboshow.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
-            
-        })
+
 
         //隐藏成功面板
         $("body").on("click",".btnConfirm",function(){
@@ -98,7 +93,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
             dataType:"json",
             success : function(resp) {
                 if(resp.status=="success"){
-                    location.href="paysuccess.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+                    location.href="paysuccess.html?anchor_id="+params["anchor_id"]+"&ballot_id="+params["ballot_id"]+"&canvass_id="+resp.data.canvass_id;
                 }
                 else{
                     util.alert(resp.message);
