@@ -112,6 +112,12 @@ class AjaxNewsController extends AjaxBaseController {
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->post());
 
+        //屏蔽词系统
+        $callBackWord = $this->getBlockWord($args['content']);
+        if ($callBackWord){
+            $this->export('fail', "您所输入的内容不符合网络安全规范，请重新输入");
+        }
+
         if(isset($args['images'])){
             $arr = explode(",",$args['images']);
             if(count($arr)>9){
@@ -154,6 +160,11 @@ class AjaxNewsController extends AjaxBaseController {
         $args = $this->getRequestData($rule, Yii::$app->request->post());
 
 
+        //屏蔽词系统
+        $callBackWord = $this->getBlockWord($args['content']);
+        if ($callBackWord){
+            $this->export('fail', "您所输入的内容不符合网络安全规范，请重新输入");
+        }
         //获取用户信息，提取粉丝ID
         $openid = $args['openid'];
         $code = Yii::$app->api->get('fans/get-fans-info-by-openid',['openid'=>$openid]);

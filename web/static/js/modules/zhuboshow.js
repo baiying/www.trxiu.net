@@ -292,7 +292,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                     window.zhubopic=resp.data.thumb;
                     window.zhuboname=resp.data.name;
                     window.shareImage=resp.data.ShareImg;
-                    window.ShareTile=resp.data.ShareTile;
+                    window.ShareTitle=resp.data.ShareTitle;
                     window.ShareDescripion=resp.data.ShareDescripion;
 
 
@@ -362,15 +362,23 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
                         wx.onMenuShareTimeline({
                             title : window.ShareDescripion,
                             link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
-                            imgUrl :window.shareImage
+                            imgUrl :window.shareImage,
+                            success:function(){
+                                 $("#divShare").hide();
+                            }
                         });
 
                         //分享给朋友
                         wx.onMenuShareAppMessage({
-                            title :window.ShareTile,
+                            title :window.ShareTitle,
                             desc : window.ShareDescripion,
                             link :config.currentDomain+"lapiaodetail.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"],
-                            imgUrl:window.shareImage
+                            imgUrl:window.shareImage,
+                            success:function(){
+                                 $("#divShare").hide();
+                            }
+
+
                         }); 
                     })
                 }
