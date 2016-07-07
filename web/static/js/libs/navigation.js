@@ -45,7 +45,7 @@ define(['zepto','util'],function($,util){
                 if(resp.status=="success"){
                 	if(!!resp.data.countUnreadMessage&&resp.data.countUnreadMessage>0){
                 		if($(".footer .xiaoxi").closest(".focus").length==0){
-							$(".footer .xiaoxi").append('<b class="xiaoxiIcon">35</b>');
+							$(".footer .xiaoxi").append('<b class="xiaoxiIcon">'+resp.data.countUnreadMessage+'</b>');
 						}
                 	}
                 }

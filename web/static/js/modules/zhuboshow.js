@@ -317,6 +317,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             url : config.apiHost+"ajax-news/get-anchor-news/",
             data:{
                 anchor_id: util.getParams()["anchor_id"],
+                size:100
             },
             dataType:"json",
             success : function(resp) {
