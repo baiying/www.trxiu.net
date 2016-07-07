@@ -92,7 +92,11 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
         //发布动态
         $("#btnSubmit").click(function(){
 
-            
+            if( $(".imglist img").length>9){
+                util.alert("最多只可以上传九张图片哦");
+                 return;
+            }
+       
 
             var imageList="";
             $(".imglist img").each(function(){
