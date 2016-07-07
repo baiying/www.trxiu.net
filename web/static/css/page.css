@@ -279,9 +279,9 @@ background-repeat: no-repeat; background-position: center; }
 .zbshowpage .case{margin-left: 10px; font-size: 14px;}
 .zbshowpage .desc{padding: 10px;}
 .zbshowpage .desc p{padding: 5px 0;}
-.zbshowpage .btnpanel{width: 100%; height: 36px; line-height: 36px; color: #fff; text-align: center; display:flex; flex-flow: row;}
-.zbshowpage .btnpanel .btntoupiao{margin: 5px; height: 36px;  background: #fc2d8e; border-radius: 18px; flex:1;}
-.zbshowpage .btnpanel .btnzhibo{margin: 5px;  height: 36px; background: #8b23ff;  border-radius: 18px; flex:1;}
+.zbshowpage .btnpanel{width: 100%; height: 36px; line-height: 36px; color: #fff; text-align: center; }
+.zbshowpage .btnpanel .btntoupiao{margin: 5px; height: 36px;  background: #fc2d8e; border-radius: 18px; }
+.zbshowpage .btnpanel .btnzhibo{margin: 5px;  height: 36px; background: #8b23ff;  border-radius: 18px; }
 .zbshowpage .line{width: 100%; height: 1px; margin: 25px 0; background: #d2d2d2; position: relative;}
 .zbshowpage .line::after{ width: 54px; height: 19px; line-height: 19px; content: "主播动态"; color: #fc2d8e; position: absolute; left: 50%; top: 50%; 
 border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #fff; border-radius: 10px; font-size: 9px; text-align: center;}
@@ -294,8 +294,8 @@ border:1px solid #d2d2d2; margin-left: -27px; margin-top: -10px; background: #ff
 .zbshowpage .dongtai .li .liheader .nickname{ height: 20px; font-size: 14px; color: #333333; line-height: 20px; }
 .zbshowpage .dongtai .li .liheader .datetime{ height: 20px; color: #999999; line-height: 20px; float: left;}
 .zbshowpage .dongtai .li .litext{width: 100%; color: #999999;  padding: 10px 0; line-height: 18px; font-size: 12px;}
-.zbshowpage .dongtai .li .liimages{ display:flex; flex-flow: row; flex-wrap:wrap;  justify-content:space-between;}
-.zbshowpage .dongtai .li .liimages img{width: 30%; height: 30%; margin:10px 0;}
+.zbshowpage .dongtai .li .liimages{ display:flex; flex-flow: row; flex-wrap:wrap;  }
+.zbshowpage .dongtai .li .liimages img{width: 30%; height: 30%; margin:10px 1% 10px 2%; float: left;}
 .zbshowpage .dongtai .li .lifooter{ width: 100%; height: 30px; text-align: right; padding-bottom: 5px; color: #999999;  line-height: 20px; position: relative; overflow: hidden;}
 .zbshowpage .dongtai .li .lifooter span{ height: 20px; padding: 5px; margin-right: 10px; text-align:center;  display: inline-block; cursor: pointer; }
 .zbshowpage .dongtai .li .lifooter dd{position: relative; padding:5px 5px 5px 25px;  height: 20px; display: inline-block; cursor: pointer;}
