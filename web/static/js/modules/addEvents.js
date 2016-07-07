@@ -116,7 +116,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
                 data:{
                     openid: window.userInfo.openid,
                     content:content,
-                    images:JSON.stringify(imageList)
+                    images:imageList
                 },
                 dataType:"json",
                 success : function(resp) {
