@@ -4,6 +4,7 @@
  */
 namespace app\controllers;
 
+use blockword\BlockWord;
 use Yii;
 use yii\web\Controller;
 use yii\helpers\Json;
@@ -18,6 +19,22 @@ class AjaxBaseController extends Controller
     public $errors = [];
     // 运行环境
     public $env = '';
+
+    public function getBlockWord($content){
+        include('../config/blockWord.php');
+        $blockWord = new BlockWord();
+//防止$needle 位于开始的位置
+        $blockWordArr = $blockWord->getBlockWord();
+        $content = trim($content);
+        $content = '-_-!' . $content;
+        foreach ($blockWordArr as $item){
+            if((bool)strpos($content, $item)){
+                return $item;
+            }
+        }
+        return false;
+    }
+
 
     public function init()
     {
