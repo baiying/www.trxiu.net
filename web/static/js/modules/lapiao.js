@@ -85,7 +85,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
             data:{
                 ballot_id:util.getCookie("ballot_id"),
                 anchor_id:params["anchor_id"],
-                fans_id: window.userInfo.openid,
+                fans_id: window.userInfo.fansid,
                 source_id:params["source_id"],
                 charge:total,
                 status:1
