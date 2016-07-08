@@ -28,7 +28,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
         var imageHtml="";
         var imgList=$.parseJSON(dataInfo.images);
         for(var i=0;i<imgList.length;i++){
-            imageHtml+='<img src="'+imgList[i]+'" />'
+            imageHtml+='<img src="'+imgList[i]+'?imageView2/1/w/500/h/500" />'
         }
         $("#divImageList").html(imageHtml);
         $("#divCommentCount").html(dataInfo.comments);

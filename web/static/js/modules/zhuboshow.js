@@ -68,7 +68,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             var imageHtml="";
             var imageList=$.parseJSON(dataInfo.images);
             for(var j=0;j<imageList.length;j++){
-                imageHtml+='<img src="'+imageList[j]+'"/>';
+                imageHtml+='<img src="'+imageList[j]+'?imageView2/1/w/500/h/500"/>';
             }
             if(!!imageHtml){
                 imageHtml='<div class="liimages">'+imageHtml+'</div>';
@@ -317,6 +317,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             url : config.apiHost+"ajax-news/get-anchor-news/",
             data:{
                 anchor_id: util.getParams()["anchor_id"],
+                size:100
             },
             dataType:"json",
             success : function(resp) {

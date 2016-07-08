@@ -41,7 +41,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
             flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
             dragdrop: true,
             chunk_size: '4mb',
-            multi_selection: false,
+            multi_selection: true,
             //uptoken_url: 'http://wechat.trxiu.net/qiniu/ajax/?act=token',
             uptoken:$("#uptoken").val(),
             domain: 'http://o8syigvwe.bkt.clouddn.com/',
@@ -92,7 +92,11 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
         //发布动态
         $("#btnSubmit").click(function(){
 
-            
+            if( $(".imglist img").length>9){
+                util.alert("最多只可以上传九张图片哦");
+                 return;
+            }
+       
 
             var imageList="";
             $(".imglist img").each(function(){
