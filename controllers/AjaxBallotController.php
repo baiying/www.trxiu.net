@@ -192,6 +192,14 @@ class AjaxBallotController extends AjaxBaseController {
         if($res['code'] != 200 || empty($res['data'])) {
             $this->export('fail', $res['message']);
         }
+        if (isset($res['data']['ballot'])){
+            $res['data']['ballot']['begin_time'] = date("m月d日",$res['data']['ballot']['begin_time']);
+            $res['data']['ballot']['end_time'] = date("m月d日",$res['data']['ballot']['end_time']);
+        }
+        if (isset($res['data']['redPacket'])){
+            $res['data']['redPacket']['create_time'] = date("m月d日",$res['data']['redPacket']['create_time']);
+            $res['data']['redPacket']['end_time'] = date("m月d日",$res['data']['redPacket']['end_time']);
+        }
         $this->export('success', $res['message'], $res['data']);
     }
 }
