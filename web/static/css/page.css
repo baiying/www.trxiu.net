@@ -19,8 +19,8 @@ body{background: #fc2d8e;}
 .bfff{background: #fff;}
 .page{width: 100%; min-height: 100%; background-image:url(../img/bg.png);  background-size: 100%;   background-position: 0 top; background-repeat: no-repeat;  position: absolute; top: 0;}
 .pdate{width: 100%; position: absolute; font-size: 14px; text-align: center; margin-top: 210px; color: #fff;  }
-.endIcon{width: 150px; height: 150px; background-image:url(../img/icon_jieshu2.png); background-size: 100%;  position: absolute; 
-	right: 20px; top: 70px; display: none; }
+.endIcon{width: 50px; height: 50px; background-image:url(../img/icon_jieshu2.png); background-size: 100%;  position: absolute; 
+	right: 20px; top: 160px; display: none; }
 
 
 

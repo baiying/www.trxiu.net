@@ -57,7 +57,7 @@ require(["zepto","util","login"],function($,util,login){
     function bindEvents(){
 
         $(".btn1,.btn2").click(function(){
-            location.href="zhuboshow.html?ballot_id="+ window.ballot_id+"&anchor_id="+window.anchor_id;
+            location.href="zhubolist.html";
         })
     }
 
@@ -66,6 +66,7 @@ require(["zepto","util","login"],function($,util,login){
 	function main(){
 		getInfo(function(){
             bindEvents();
+            util.setCookie("source_id",params["canvass_id"]);
         });
         
 	}

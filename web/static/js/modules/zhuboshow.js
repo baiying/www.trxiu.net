@@ -66,14 +66,17 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
 
             //绑定动态照片列表
             var imageHtml="";
-            var imageList=$.parseJSON(dataInfo.images);
-            for(var j=0;j<imageList.length;j++){
-                imageHtml+='<img src="'+imageList[j]+'?imageView2/1/w/500/h/500"/>';
-            }
-            if(!!imageHtml){
-                imageHtml='<div class="liimages">'+imageHtml+'</div>';
+            if(!!dataInfo.images){
+                var imageList=$.parseJSON(dataInfo.images);
+                for(var j=0;j<imageList.length;j++){
+                    imageHtml+='<img src="'+imageList[j]+'?imageView2/1/w/500/h/500"/>';
+                }
+                if(!!imageHtml){
+                    imageHtml='<div class="liimages">'+imageHtml+'</div>';
+                }
             }
             html=html.replace("{{imageHtml}}",imageHtml);
+            
 
             //绑定评论html
             var pinglunHtml="";

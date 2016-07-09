@@ -153,6 +153,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 	function main(){
 		getInfo(function(){
             bindEvents();
+            util.setCookie("source_id",params["canvass_id"]);
         });
         
 	}
