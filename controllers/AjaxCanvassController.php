@@ -36,6 +36,9 @@ class AjaxCanvassController extends AjaxBaseController {
                     }
                 }
             }
+            $res['data']['create_time'] = date("m月d日",$res['data']['create_time']);
+            $res['data']['active_time'] = date("m月d日",$res['data']['active_time']);
+            $res['data']['end_time'] = date("m月d日",$res['data']['end_time']);
             $res['data']['ShareTitle'] = "萌主派对第一季，闪亮主播风云榜";
             $res['data']['ShareDescripion'] = "快来为心仪的主播投票，每天红包领不停！";
             $res['data']['ShareImg'] = "http://o8syigvwe.bkt.clouddn.com/o_1amdi1me5l8c16jc18bq1d6hdrgn.png";

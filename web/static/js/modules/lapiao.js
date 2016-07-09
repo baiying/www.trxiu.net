@@ -85,7 +85,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
             data:{
                 ballot_id:util.getCookie("ballot_id"),
                 anchor_id:params["anchor_id"],
-                fans_id: window.userInfo.openid,
+                fans_id: window.userInfo.fansid,
                 source_id:params["source_id"],
                 charge:total,
                 status:1
@@ -107,8 +107,8 @@ status 拉票状态，1 有效，2 待支付，3 无效
     function bindPayEvent(){
         //选择金额去拉票
         $("#btnPay").click(function(){
-            var total= 20;
-
+            var total= parseInt($(this).attr("data-amount"));
+            var totalPay = 2;
             $.ajax({  
                 type : "post",  
                 url : config.apiHost+"ajax-pay/wx-prepay/",
@@ -117,7 +117,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                     openid:window.userInfo.openid,
                     ballot_id:params["ballot_id"],
                     anchor_id:params["anchor_id"],
-                    total:parseInt(total/10)
+                    total:totalPay
                 },
                 dataType:"json",
                 success : function(resp) {
@@ -131,7 +131,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                                'signType': resp.data.signType, 
                                'paySign': resp.data.paySign, 
                                success: function (res) {
-                                    payResultEvent(parseInt(total));
+                                    payResultEvent(parseInt(total/100));
                                }
                            });
                         });
