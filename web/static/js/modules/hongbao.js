@@ -35,7 +35,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
                     //已经领取过
                     if(resp.data.isReceive==1){
-                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
+                        location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"];
                     }
 
                     window.shareImage=resp.data.ShareImg;

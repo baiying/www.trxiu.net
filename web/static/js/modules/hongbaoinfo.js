@@ -30,7 +30,9 @@ require(["zepto","util","login"],function($,util,login){
             success : function(resp) {
                 if(resp.status=="success"){
                     $("#fTotal").html(resp.data.charge);
-                    $("#sgetTotal").html(params["amount"]);
+                    if(!!resp.data.redInfo){
+                        $("#sgetTotal").html(resp.data.redInfo.amount);
+                    }
                     $("#spBestUserImg").html('<img src="'+resp.data.fans_thumb+'" />');
                     $("#h3FansName").html(resp.data.fans_name);
 
@@ -56,7 +58,11 @@ require(["zepto","util","login"],function($,util,login){
 
     function bindEvents(){
 
-        $(".btn1,.btn2").click(function(){
+        $(".btn1").click(function(){
+            location.href="zhuboshow.html?ballot_id="+window.ballot_id+"&anchor_id="+window.anchor_id;
+        })
+
+        $(".btn2").click(function(){
             location.href="zhubolist.html";
         })
     }

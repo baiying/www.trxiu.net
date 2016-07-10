@@ -37,7 +37,7 @@ require(["zepto","login","util","navigation","jweixin"],function($,login,util,na
                 data:{
                     ballot_id:util.getCookie("ballot_id"),
                     anchor_id:params["anchor_id"],
-                    fans_id: window.userInfo.openid
+                    fans_id: window.userInfo.fansid
                 },
                 dataType:"json",
                 success : function(resp) {
