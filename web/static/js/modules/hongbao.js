@@ -9,7 +9,7 @@ require.config({
     },
     shim:{
         zepto: {exports: '$'}
-    }       
+    }
 });
 
 
@@ -22,8 +22,8 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
     //绑定红包页面基本信息
     function getInfo(callback){
 
-        $.ajax({  
-            type : "get",  
+        $.ajax({
+            type : "get",
             url : config.apiHost+"ajax-canvass/info/",
             data:{
                 canvass_id: params["canvass_id"],
@@ -59,8 +59,8 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
 
     function getHongbao(){
-        $.ajax({  
-            type : "get",  
+        $.ajax({
+            type : "get",
             url : config.apiHost+"ajax-canvass/receive-redpackage/",
             data:{
                 ballot_id: params["ballot_id"],
@@ -71,7 +71,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
             success : function(resp) {
                 if(resp.status=="success"){
                     location.href="hongbaoinfo.html?canvass_id="+params["canvass_id"]+"&amount="+resp.data.amount;
-                    
+
                 }
                 else{
                     util.alert(resp.message);
@@ -85,18 +85,18 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
         $("#btnReceive").click(function(){
             $("#divShare").show();
-            
+
         })
 
 
-         //关闭遮罩层
+        //关闭遮罩层
         $(".mask").click(function(){
             $(this).hide();
         })
 
 
-        $.ajax({  
-            type : "post",  
+        $.ajax({
+            type : "post",
             url : config.apiHost+"ajax-account/get-js-sign/",
             data:{
                 url:location.href,
@@ -108,8 +108,8 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
                 if(resp.status=="success"){
                     wx.config({
-                        beta: true, // 必填，开启内测接口调用，注入wx.invoke和wx.on方法       
-                        debug: false,//如果在测试环境可以设置为true，会在控制台输出分享信息； 
+                        beta: true, // 必填，开启内测接口调用，注入wx.invoke和wx.on方法
+                        debug: false,//如果在测试环境可以设置为true，会在控制台输出分享信息；
                         appId:resp.data.appId, // 必填，公众号的唯一标识
                         timestamp:resp.data.timestamp , // 必填，生成签名的时间戳
                         nonceStr:resp.data.nonceStr, // 必填，生成签名的随机串
@@ -136,7 +136,7 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
                             success:function(){
                                 getHongbao();
                             }
-                        }); 
+                        });
                     })
                 }
                 else{
@@ -149,15 +149,16 @@ require(["zepto","util","login","jweixin"],function($,util,login,wx){
 
 
 
-	//
-	function main(){
-		getInfo(function(){
+    //
+    function main(){
+        util.setCookie("source_id",params["canvass_id"]);
+        getInfo(function(){
             bindEvents();
-            util.setCookie("source_id",params["canvass_id"]);
+
         });
-        
-	}
-	login.init(function(userInfo){
+
+    }
+    login.init(function(userInfo){
         window.userInfo=userInfo;
         main();
     })

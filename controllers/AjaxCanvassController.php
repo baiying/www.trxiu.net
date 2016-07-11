@@ -18,6 +18,7 @@ class AjaxCanvassController extends AjaxBaseController {
         $rule = [
             'canvass_id' => ['type'=>'string', 'required'=>TRUE],
             'openid' => ['type'=>'string', 'required'=>FALSE],
+            'fans_id' => ['type'=>'string', 'required'=>FALSE],
         ];
         $args = $this->getRequestData($rule, Yii::$app->request->get());
         $res = Yii::$app->api->get('canvass/info', $args);
@@ -34,6 +35,15 @@ class AjaxCanvassController extends AjaxBaseController {
                         $res['data']['isReceive'] = 1;
                         $res['data']['redInfo'] = $redResult['data'];
                     }
+                }
+            }elseif (isset($args['fans_id'])){
+                $res['data']['isReceive'] = 0;
+                $red['fans_id'] = $args['fans_id'];
+                $red['canvass_id'] = $args['canvass_id'];
+                $redResult = Yii::$app->api->get('canvass/get-red-by-fans-id', $red);
+                if($redResult['code'] == 200){
+                    $res['data']['isReceive'] = 1;
+                    $res['data']['redInfo'] = $redResult['data'];
                 }
             }
             $res['data']['create_time'] = date("m月d日",$res['data']['create_time']);
@@ -84,7 +94,7 @@ class AjaxCanvassController extends AjaxBaseController {
             'ballot_id'     => ['type'=>'int', 'required'=>true],
             'anchor_id'     => ['type'=>'int', 'required'=>true],
             'fans_id'       => ['type'=>'int', 'required'=>true],
-            'source_id'     => ['type'=>'int', 'required'=>false],
+            'source_id'     => ['type'=>'string', 'required'=>false],
             'charge'        => ['type'=>'float', 'required'=>true],
             'status'        => ['type'=>'int', 'required'=>false, 'default'=>1],
         ];

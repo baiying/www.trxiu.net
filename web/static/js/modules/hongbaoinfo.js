@@ -8,7 +8,7 @@ require.config({
     },
     shim:{
         zepto: {exports: '$'}
-    }       
+    }
 });
 
 
@@ -19,11 +19,11 @@ require(["zepto","util","login"],function($,util,login){
 
     //绑定红包页面基本信息
     function getInfo(callback){
-
-        $.ajax({  
-            type : "get",  
+        $.ajax({
+            type : "get",
             url : config.apiHost+"ajax-canvass/info/",
             data:{
+                openid: window.userInfo.openid,
                 canvass_id: params["canvass_id"]
             },
             dataType:"json",
@@ -39,12 +39,12 @@ require(["zepto","util","login"],function($,util,login){
                     $("#bestThumb").html('<img src="'+resp.data.best_user_thumb+'" />');
                     $("#bsetNickName").html(resp.data.best_user_name);
                     $("#spBestTotal").html(resp.data.best_amount);
-                    
+
                     window.ballot_id=resp.data.ballot_id;
                     window.anchor_id=resp.data.anchor_id;
-                
-                    
-                    
+
+
+
                 }
                 else{
                     util.alert(resp.message);
@@ -68,15 +68,15 @@ require(["zepto","util","login"],function($,util,login){
     }
 
 
-	//
-	function main(){
-		getInfo(function(){
+    //
+    function main(){
+        getInfo(function(){
             bindEvents();
             util.setCookie("source_id",params["canvass_id"]);
         });
-        
-	}
-	login.init(function(userInfo){
+
+    }
+    login.init(function(userInfo){
         window.userInfo=userInfo;
         main();
     })
