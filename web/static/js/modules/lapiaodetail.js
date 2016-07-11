@@ -79,7 +79,7 @@ require(["zepto","login","util"],function($,login,util){
 
 
                     //活动状态不是1则显示活动结束
-                    if(resp.data.status!=1){
+                    if(resp.data.status==3){
                         $(".endIcon").show();
                     }
                 }

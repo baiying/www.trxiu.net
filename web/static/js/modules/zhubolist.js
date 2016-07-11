@@ -66,7 +66,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                     bindZhuBoList(resp.data.anchors)
                     
                     //活动状态不是1则显示活动结束
-                    if(resp.data.ballot.status!=1){
+                    if(resp.data.ballot.status==3){
                         $(".endIcon").show();
                     }
                 }

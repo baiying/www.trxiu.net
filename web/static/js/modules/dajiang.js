@@ -61,7 +61,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                     bindList1(resp.data.parizeList);
 
                     //活动状态不是1则显示活动结束
-                    if(resp.data.status!=1){
+                    if(resp.data.status==3){
                         $(".endIcon").show();
                     }
                 }
