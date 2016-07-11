@@ -24,6 +24,7 @@ require(["zepto","util","login"],function($,util,login){
             type : "get",  
             url : config.apiHost+"ajax-canvass/info/",
             data:{
+                openid: window.userInfo.openid,
                 canvass_id: params["canvass_id"]
             },
             dataType:"json",
