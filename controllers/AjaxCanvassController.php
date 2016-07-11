@@ -94,7 +94,7 @@ class AjaxCanvassController extends AjaxBaseController {
             'ballot_id'     => ['type'=>'int', 'required'=>true],
             'anchor_id'     => ['type'=>'int', 'required'=>true],
             'fans_id'       => ['type'=>'int', 'required'=>true],
-            'source_id'     => ['type'=>'int', 'required'=>false],
+            'source_id'     => ['type'=>'string', 'required'=>false],
             'charge'        => ['type'=>'float', 'required'=>true],
             'status'        => ['type'=>'int', 'required'=>false, 'default'=>1],
         ];
