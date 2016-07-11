@@ -18,7 +18,6 @@ class AjaxBallotController extends AjaxBaseController {
         // 获取当前有效的活动
         $res = Yii::$app->api->get('ballot/get-ballot-list', [
             'current_time'  => time(),
-            'status'        => 1,
             'size'          => 1
         ]);
         if($res['code'] != 200) {
