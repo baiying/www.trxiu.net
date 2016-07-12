@@ -22,7 +22,7 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
     //绑定主播基础信息
     function  bindInfo(dataInfo){
 
-        $("#divThumb").html('<img src="'+dataInfo.thumb+'" />');
+        $("#divThumb").css({'background-image': 'url('+dataInfo.thumb+')'});//微信主播头像
         $("#divAnchorName").html(dataInfo.name);
         $("#divPlatform").html(dataInfo.platform);
         $("#divDescription").html(dataInfo.description);   
@@ -113,16 +113,18 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         //投票
         $("#btnTouPiao").click(function(){
             var params=util.getParams();
-            location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+            // location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+             util.alert('萌主派对投票活动暂未开放，敬请期待!')
         })
 
         //我要拉票
         $("#btnLaPiao").click(function(){
 
 
-            $("#divShare").show();
+            // $("#divShare").show();
             //弹出遮罩层，分享如下页面
             //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+             util.alert('萌主派对投票活动暂未开放，敬请期待!')
         })
 
 

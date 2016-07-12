@@ -439,3 +439,10 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 	content: '';
 	padding-top: 100%;
 }
+/*sj:二维码*/
+.pic-sj img{
+	max-width: 80%;
+    margin: 10%;
+    height: auto;
+}
+

@@ -98,6 +98,7 @@ require(["zepto","login","util"],function($,login,util){
 
         $("#btnTouPiao").click(function(){
             location.href="zhuboshow.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+           
         })
 
 
