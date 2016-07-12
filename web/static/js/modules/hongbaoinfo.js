@@ -59,11 +59,11 @@ require(["zepto","util","login"],function($,util,login){
     function bindEvents(){
 
         $(".btn1").click(function(){
-            location.href="zhuboshow.html?ballot_id="+window.ballot_id+"&anchor_id="+window.anchor_id;
+            location.href="zhubolist.html";
         })
 
         $(".btn2").click(function(){
-            location.href="zhubolist.html";
+            location.href="zhuboshow.html?ballot_id="+window.ballot_id+"&anchor_id="+window.anchor_id;
         })
     }
 
