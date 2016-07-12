@@ -28,7 +28,7 @@ function($) {
                             //alert(JSON.stringify(resp));
                             if(resp.status=="success"){
                                 var value=JSON.stringify(resp.data);
-                                $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", encodeURIComponent(value), 30);
+                                $this.setCookie("DA7F9084C361196F1147D0DE68FEC172", encodeURIComponent(value), 30/1440);
                                 callback(resp.data);
                             }
                             else{
