@@ -10,9 +10,22 @@
     <script src="static/js/config.js"></script>
     <script src="static/js/require.js" data-main="static/js/modules/zhubolist.js?6"></script>
 	<title>萌主派对</title>
+	<style>
+		.pic{
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			border-radius: 50%;
+		}
+		.pic:before{
+			display: block;
+			content: '';
+			padding-top: 100%;
+		}
+	</style>
 	<script id="tplItem" type="text/template">
 		<a href="zhuboshow.html?ballot_id={{ballot_id}}&anchor_id={{anchor_id}}" class="li">
-			<dd class="pic"><img src="{{thumb}}"/></dd>
+			<dd class="pic" style="background-image: url({{thumb}})"></dd>
 			<dt><span>{{anchor_name}}</span></dt>
 			<dl><span>{{votes}}票</span></dl>
 		</a>

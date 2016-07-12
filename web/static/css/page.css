@@ -423,3 +423,19 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 	.hongbaopage{margin-top: 250px;}
 	.maskSpan{font-size: 16px !important;}
 }
+
+
+/*sj:图片长宽相等*/
+
+.pic{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	border: 3px solid #a16eff;
+	}
+.pic:before{
+	display: block;
+	content: '';
+	padding-top: 100%;
+}
