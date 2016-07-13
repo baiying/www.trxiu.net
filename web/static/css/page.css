@@ -448,4 +448,5 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 	content: '';
 	padding-top: 100%;
 }*/
-.zbshowpage .header .zhubopic .pic::before{display: block;content: '';padding-top: 100%;}
+.zhubolistpage a .pic::before{display: block;content: '';padding-top: 100%;}
+.zhubopic .pic::before{display: block;content: '';padding-top: 100%;}
