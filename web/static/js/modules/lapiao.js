@@ -108,7 +108,6 @@ status 拉票状态，1 有效，2 待支付，3 无效
         //选择金额去拉票
         $("#btnPay").click(function(){
             var total= parseInt($(this).attr("data-amount"));
-            var totalPay = 2;
             $.ajax({  
                 type : "post",  
                 url : config.apiHost+"ajax-pay/wx-prepay/",
@@ -117,7 +116,7 @@ status 拉票状态，1 有效，2 待支付，3 无效
                     openid:window.userInfo.openid,
                     ballot_id:params["ballot_id"],
                     anchor_id:params["anchor_id"],
-                    total:totalPay
+                    total:total
                 },
                 dataType:"json",
                 success : function(resp) {
