@@ -1,6 +1,4 @@
 
-
-
 /*reset.css*/
 * { margin: 0; padding: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-size-adjust: none; -webkit-user-select: none; -ms-user-select: none;user-select: none; font-family: Arial, 'Microsoft YaHei';}
 img { vertical-align: top;  border: none;}
@@ -427,18 +425,10 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 
 /*sj:图片长宽相等*/
 
-.pic{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	border-radius: 50%;
-	border: 3px solid #a16eff;
-	}
-.pic:before{
-	display: block;
-	content: '';
-	padding-top: 100%;
-}
+
+
+
+
 /*sj:二维码*/
 .pic-sj img{
 	max-width: 80%;
@@ -446,3 +436,16 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
     height: auto;
 }
 
+.pic{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	border: 3px solid #a16eff;
+	}
+/*.pic:before{
+	display: block;
+	content: '';
+	padding-top: 100%;
+}*/
+.zbshowpage .header .zhubopic .pic::before{display: block;content: '';padding-top: 100%;}

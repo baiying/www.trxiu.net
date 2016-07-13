@@ -114,11 +114,33 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         $("#btnTouPiao").click(function(){
             var params=util.getParams();
             // location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
-             util.alert('萌主派对投票活动暂未开放，敬请期待!')
+            // util.alert('萌主派对投票活动暂未开放，敬请期待!')
+            
+            var begin_time = +new Date(localStorage.getItem('begin_time'));
+            var end_time = +new Date(localStorage.getItem('end_time'));
+            var time = +new Date();
+
+            if (time > begin_time && time < end_time) {
+                location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
+            }else{
+                util.alert('萌主派对投票活动暂未开放，敬请期待!')
+            }
         })
 
         //我要拉票
         $("#btnLaPiao").click(function(){
+
+            var begin_time = +new Date(localStorage.getItem('begin_time'));
+            var end_time = +new Date(localStorage.getItem('end_time'));
+            var time = +new Date();
+
+            if (time > begin_time && time < end_time) {
+                $("#divShare").show();
+                // 弹出遮罩层，分享如下页面
+                location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+            }else{
+                util.alert('萌主派对投票活动暂未开放，敬请期待!')
+            }
 
 
             // $("#divShare").show();

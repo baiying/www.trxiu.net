@@ -34,6 +34,8 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
             if(dataList[i].ranking<=3){
                 indexIcon="n"+parseInt(dataList[i].ranking);
             }
+
+            // debugger
             itemHtml=itemHtml.replace("{{index}}",indexIcon);
             itemHtml=itemHtml.replace("{{ballot_id}}",window.ballot_id);
             itemHtml=itemHtml.replace("{{anchor_id}}",dataList[i].anchor_id);
@@ -63,6 +65,7 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                     
                     util.setCookie("ballot_id",resp.data.ballot.ballot_id,30);
                     bindBaseInfo(resp.data.ballot);
+                    saveTime(resp.data.ballot);
                     bindZhuBoList(resp.data.anchors)
                     
                     //活动状态不是1则显示活动结束
@@ -78,6 +81,14 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
                 $("#loading").hide();
             }
         });
+    }
+
+    // 保存活动的开始时间和结束时间;
+    function saveTime(data){
+        var begin_time = '2016,' + data.begin_time.substr(0,2) + ',' + data.begin_time.substr(3,2);
+        var end_time = '2016,' + data.end_time.substr(0,2) + ',' + data.end_time.substr(3,2);
+        localStorage.setItem('begin_time', begin_time);
+        localStorage.setItem('end_time', end_time);
     }
 
 	function main(){
