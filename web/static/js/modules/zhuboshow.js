@@ -116,9 +116,10 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             // location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
             // util.alert('萌主派对投票活动暂未开放，敬请期待!')
             
-            var begin_time = +new Date(localStorage.getItem('begin_time'));
-            var end_time = +new Date(localStorage.getItem('end_time'));
+            var begin_time = +new Date(localStorage.getItem('begin_timestamp'));
+            var end_time = +new Date(localStorage.getItem('end_timestamp'));
             var time = +new Date();
+            alert(time+"<br>"+begin_time);
 
             if (time > begin_time && time < end_time) {
                 location.href="lapiao.html?anchor_id="+ params["anchor_id"]+"&ballot_id="+params["ballot_id"];
@@ -130,8 +131,8 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
         //我要拉票
         $("#btnLaPiao").click(function(){
 
-            var begin_time = +new Date(localStorage.getItem('begin_time'));
-            var end_time = +new Date(localStorage.getItem('end_time'));
+            var begin_time = +new Date(localStorage.getItem('begin_timestamp'));
+            var end_time = +new Date(localStorage.getItem('end_timestamp'));
             var time = +new Date();
 
             if (time > begin_time && time < end_time) {

@@ -87,8 +87,12 @@ require(["zepto","login","util","navigation"],function($,login,util,nav){
     function saveTime(data){
         var begin_time = '2016,' + data.begin_time.substr(0,2) + ',' + data.begin_time.substr(3,2);
         var end_time = '2016,' + data.end_time.substr(0,2) + ',' + data.end_time.substr(3,2);
+        var begin_timestamp = data.begin_time;
+        var end_timestamp = data.end_time;
         localStorage.setItem('begin_time', begin_time);
         localStorage.setItem('end_time', end_time);
+        localStorage.setItem('begin_timestamp', begin_timestamp);
+        localStorage.setItem('end_timestamp', end_timestamp);
     }
 
 	function main(){
