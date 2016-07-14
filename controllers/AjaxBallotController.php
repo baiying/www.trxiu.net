@@ -25,6 +25,8 @@ class AjaxBallotController extends AjaxBaseController {
         }
         $ballot = $res['data']['list'][0];
         $ballot['votes'] += $ballot['votes_amend'];
+        $ballot['begin_timestamp'] = $ballot['begin_time'];
+        $ballot['end_timestamp'] = $ballot['end_time'];
         $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
         $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         unset($ballot['votes_amend']);
