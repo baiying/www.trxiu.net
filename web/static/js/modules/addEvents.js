@@ -154,7 +154,7 @@ require(["zepto","login","util","moxie","plupload","qiniu"],function($,login,uti
     function getUpdateParams(){
         $.ajax({  
             type : "get",  
-            url : "http://wechat.trxiu.net/qiniu/ajax/?act=token",
+            url : "http://wechat.trxiu.com/qiniu/ajax/?act=token",
             dataType:"json",
             success : function(resp) {
                 $("#uptoken").val(resp.uptoken);
