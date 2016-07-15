@@ -29,7 +29,7 @@ body{background: #fc2d8e;}
 display: -webkit-flex;display: -ms-flexbox;flex-flow: row; position: relative;}
 .comjiangping .li .title{ height: 20px; font-size: 16px; color: #fff;  background-repeat: no-repeat;
  background-position: right center; background-size: 24px; padding: 15px 5px 15px 15px; }
-.comjiangping .li .jpname{font-size: 10px; height: 20px; padding: 15px;  line-height: 24px;  color: #fff;flex: 1; }
+.comjiangping .li .jpname{font-size: 10px; height: 20px; padding: 15px 3% 15px 3%; line-height: 24px;  color: #fff;flex: 1; }
 .comjiangping .li .product img{ height: 55px; border:none;  position: absolute; right: 0px; top: -10px;}
 .comjiangping .li.n1 { background: #fb2d8e; }
 .comjiangping .li.n2 { background: #a16eff; }
@@ -453,3 +453,11 @@ display:-webkit-box; display:box; -webkit-box-pack:center; box-pack:center; -web
 }*/
 .zhubolistpage a .pic::before{display: block;content: '';padding-top: 100%;}
 .zhubopic .pic::before{display: block;content: '';padding-top: 100%;}
+@media screen and (max-width: 376px) and (max-width: 320px){
+	.lapiaodetail .mbox .mcont.zhuboinfo {
+	        margin-bottom: 60px;
+		    margin-top: 10px;
+		    display: -webkit-flex;
+		    flex-flow: row;
+	}
+}
