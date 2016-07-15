@@ -77,6 +77,7 @@ require(["zepto","login","util"],function($,login,util){
                     }
                     $("#divList").html(listHtml);
 
+                    saveTime(resp.data.ballot);
 
                     //活动状态不是1则显示活动结束
                     if(resp.data.status==3){
@@ -102,6 +103,17 @@ require(["zepto","login","util"],function($,login,util){
         })
 
 
+    }
+    // 保存活动的开始时间和结束时间;
+    function saveTime(data){
+        // var begin_time = '2016,' + data.begin_time.substr(0,2) + ',' + data.begin_time.substr(3,2);
+        // var end_time = '2016,' + data.end_time.substr(0,2) + ',' + data.end_time.substr(3,2);
+        var begin_timestamp = data.begin_timestamp;
+        var end_timestamp = data.end_timestamp;
+        // localStorage.setItem('begin_time', begin_time);
+        // localStorage.setItem('end_time', end_time);
+        localStorage.setItem('begin_timestamp', begin_timestamp);
+        localStorage.setItem('end_timestamp', end_timestamp);
     }
 
 	function main(){
