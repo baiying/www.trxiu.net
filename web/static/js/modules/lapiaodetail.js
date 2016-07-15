@@ -35,6 +35,8 @@ require(["zepto","login","util"],function($,login,util){
             success : function(resp) {
 
                 if(resp.status=="success"){
+                    localStorage.setItem('begin_timestamp', begin_timestamp);
+                    localStorage.setItem('end_timestamp', end_timestamp);
                     $("#divZhuboPic").html('<img class="img" src="'+resp.data.thumb+'" />');
                     $("#divZhuboName").html(resp.data.name);
                     $("#divVoteCount").html(resp.data.vote+"票");
@@ -58,6 +60,7 @@ require(["zepto","login","util"],function($,login,util){
 
                 if(resp.status=="success"){
 
+                    saveTime(resp.data);
                     var html=resp.data.ballot_name+'（'+resp.data.begin_time+'-'+resp.data.end_time+'）';
                     $("#pHuoDongTitle").html(html);
                     var dataList=resp.data.parizeList;
@@ -77,7 +80,6 @@ require(["zepto","login","util"],function($,login,util){
                     }
                     $("#divList").html(listHtml);
 
-                    saveTime(resp.data.ballot);
 
                     //活动状态不是1则显示活动结束
                     if(resp.data.status==3){
@@ -104,14 +106,11 @@ require(["zepto","login","util"],function($,login,util){
 
 
     }
+
     // 保存活动的开始时间和结束时间;
     function saveTime(data){
-        // var begin_time = '2016,' + data.begin_time.substr(0,2) + ',' + data.begin_time.substr(3,2);
-        // var end_time = '2016,' + data.end_time.substr(0,2) + ',' + data.end_time.substr(3,2);
         var begin_timestamp = data.begin_timestamp;
         var end_timestamp = data.end_timestamp;
-        // localStorage.setItem('begin_time', begin_time);
-        // localStorage.setItem('end_time', end_time);
         localStorage.setItem('begin_timestamp', begin_timestamp);
         localStorage.setItem('end_timestamp', end_timestamp);
     }
