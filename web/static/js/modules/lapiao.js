@@ -35,7 +35,8 @@ require(["zepto","login","util","navigation","jweixin"],function($,login,util,na
                 type : "post",  
                 url : config.apiHost+"ajax-vote/vote/",
                 data:{
-                    ballot_id:util.getCookie("ballot_id"),
+//                    ballot_id:util.getCookie("ballot_id"),
+                	ballot_id:params["ballot_id"],
                     anchor_id:params["anchor_id"],
                     fans_id: window.userInfo.fansid
                 },
