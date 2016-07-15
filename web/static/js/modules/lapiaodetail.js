@@ -35,8 +35,6 @@ require(["zepto","login","util"],function($,login,util){
             success : function(resp) {
 
                 if(resp.status=="success"){
-                    localStorage.setItem('begin_timestamp', resp.data.begin_timestamp);
-                    localStorage.setItem('end_timestamp', resp.data.end_timestamp);
                     $("#divZhuboPic").html('<img class="img" src="'+resp.data.thumb+'" />');
                     $("#divZhuboName").html(resp.data.name);
                     $("#divVoteCount").html(resp.data.vote+"票");
