@@ -120,6 +120,8 @@ class AjaxBallotController extends AjaxBaseController {
             unset($ballotResult['data']['anchorList']);
         }
         $ballot = $ballotResult['data'];
+        $ballot['begin_timestamp'] = $ballot['begin_time'];
+        $ballot['end_timestamp'] = $ballot['end_time'];
         $ballot['begin_time'] = date('m月d日',$ballot['begin_time']);
         $ballot['end_time'] = date('m月d日',$ballot['end_time']);
         // 获取活动奖项设置
