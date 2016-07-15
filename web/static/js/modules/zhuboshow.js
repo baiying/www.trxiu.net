@@ -133,20 +133,16 @@ require(["zepto","login","util","navigation","imgPreview","jweixin"],function($,
             var begin_time = localStorage.getItem('begin_timestamp');
             var end_time = localStorage.getItem('end_timestamp');
             var time = +new Date();
-
+            
             if (time > begin_time*1000 && time < end_time*1000) {
                 $("#divShare").show();
                 // 弹出遮罩层，分享如下页面
-                location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
+                location.href="lapiaodetail.html?anchor_id="+ util.getParams()["anchor_id"] + '&ballot_id=' + util.getParams()["ballot_id"];
             }else{
                 util.alert('萌主派对投票活动暂未开放，敬请期待!')
             }
 
 
-            // $("#divShare").show();
-            //弹出遮罩层，分享如下页面
-            //location.href="lapiaodetail.html?zhuboid="+ util.getParams()["id"];
-             util.alert('萌主派对投票活动暂未开放，敬请期待!')
         })
 
 
